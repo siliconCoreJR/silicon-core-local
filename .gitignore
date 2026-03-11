@@ -1,0 +1,20 @@
+# Source 3D files — too large, GLB is the web-ready version
+assets/3d/*.obj
+assets/3d/*.mtl
+assets/3d/*.stp
+assets/3d/*.step
+
+# PowerShell scripts — local only
+DOWNLOAD-IMAGES.ps1
+DOWNLOAD-MISSING.ps1
+SCAN-AND-DOWNLOAD.ps1
+PATCH-CDN-FALLBACKS.ps1
+
+# Local server — not needed on GitHub Pages
+serve.ps1
+LAUNCH.bat
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

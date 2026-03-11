@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enlighten Signature Series — SiliconCore</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" href="../assets/images/icons/favicon.ico">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+
+    /* ─── PAGE VARIABLES ──────────────────────────────────────── */
+    :root {
+      --accent:     #D71920;
+      --dark:       #171717;
+      --mid:        #444;
+      --light-bg:   #f7f7f7;
+      --border:     rgba(0,0,0,0.09);
+      --radius:     4px;
+      --transition: 0.22s ease;
+    }
+
+    /* ─── HERO ────────────────────────────────────────────────── */
+    .ps-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 540px;
+      background: #0e0e0e;
+      color: #fff;
+    }
+    .ps-hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 60px 80px 60px;
+    }
+    .ps-series-label {
+      font-family: var(--font-subheading);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .ps-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .ps-hero-tagline {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 36px;
+    }
+    .ps-hero-badges {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .ps-badge {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .ps-badge-val {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+    .ps-badge-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .ps-hero-image {
+      position: relative;
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+    .ps-hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* ─── 3D MODEL VIEWER ─────────────────────────────────────── */
+    .ps-model-viewer-wrap {
+      width: 100%;
+      height: 100%;
+      min-height: 540px;
+      position: relative;
+      background: radial-gradient(ellipse at 60% 40%, #c8cdd4 0%, #9aa0a8 50%, #6b7177 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    model-viewer {
+      width: 100%;
+      height: 100%;
+      min-height: 540px;
+      background-color: transparent;
+      --progress-bar-color: #D71920;
+      --progress-bar-height: 3px;
+    }
+    .mv-hint {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.55);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      padding: 6px 16px;
+      border-radius: 20px;
+      pointer-events: none;
+      white-space: nowrap;
+      animation: mvfade 3s ease 2s forwards;
+      opacity: 1;
+    }
+    @keyframes mvfade { to { opacity: 0; } }
+    .mv-no-model {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      min-height: 540px;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.85rem;
+      gap: 12px;
+      text-align: center;
+      padding: 40px;
+    }
+    .mv-no-model svg { opacity: 0.3; }
+    .ps-hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 32px;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-subheading);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: background var(--transition);
+      margin-right: 14px;
+    }
+    .ps-hero-cta:hover { background: #b5141b; }
+    .ps-hero-cta-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 28px;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.8);
+      font-family: var(--font-subheading);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: all var(--transition);
+    }
+    .ps-hero-cta-ghost:hover { border-color: #fff; color: #fff; }
+
+    /* ─── SECTION WRAPPER ─────────────────────────────────────── */
+    .ps-section {
+      padding: 80px 6%;
+    }
+    .ps-section.light  { background: var(--light-bg); }
+    .ps-section.white  { background: #fff; }
+    .ps-section.dark   { background: var(--dark); color: #fff; }
+    .ps-section-label {
+      font-family: var(--font-subheading);
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .ps-section h2 {
+      font-family: var(--font-subheading);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .ps-section.dark h2 { color: #fff; }
+    .ps-section-lead {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.8;
+      max-width: 680px;
+      margin-bottom: 52px;
+    }
+    .ps-section.dark .ps-section-lead { color: rgba(255,255,255,0.6); }
+
+    /* ─── OVERVIEW SPLIT ──────────────────────────────────────── */
+    .ps-overview {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .ps-overview-image img {
+      width: 100%;
+      border-radius: var(--radius);
+      display: block;
+    }
+    .ps-overview-text h2 {
+      margin-bottom: 20px;
+    }
+    .ps-overview-text p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    /* ─── DIFFERENTIATORS ─────────────────────────────────────── */
+    .ps-diff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2px;
+    }
+    .ps-diff-card {
+      background: #fff;
+      padding: 36px 30px;
+      border-top: 3px solid transparent;
+      transition: border-color var(--transition);
+    }
+    .ps-diff-card:hover { border-color: var(--accent); }
+    .ps-section.light .ps-diff-card { background: #fff; }
+    .ps-diff-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(215,25,32,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .ps-diff-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.8; }
+    .ps-diff-card h4 {
+      font-family: var(--font-subheading);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+    .ps-diff-card p {
+      font-size: 0.87rem;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    /* ─── MODEL SELECTOR (pixel pitch cards) ─────────────────── */
+    .ps-model-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .ps-model-tab {
+      padding: 10px 22px;
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+      font-family: var(--font-subheading);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      background: #fff;
+      color: var(--mid);
+      transition: all var(--transition);
+    }
+    .ps-model-tab:hover,
+    .ps-model-tab.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(215,25,32,0.04);
+    }
+
+    .ps-model-panel { display: none; }
+    .ps-model-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+
+    .ps-model-image img {
+      width: 100%;
+      border-radius: var(--radius);
+      display: block;
+      background: #f0f0f0;
+    }
+    .ps-model-info h3 {
+      font-family: var(--font-subheading);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .ps-model-pitch {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .ps-model-pitch-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 28px;
+    }
+
+    /* Spec rows */
+    .ps-specs {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 28px;
+    }
+    .ps-specs tr { border-bottom: 1px solid var(--border); }
+    .ps-specs tr:last-child { border-bottom: none; }
+    .ps-specs td {
+      padding: 11px 0;
+      font-size: 0.87rem;
+      vertical-align: top;
+    }
+    .ps-specs td:first-child {
+      color: #888;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      width: 44%;
+    }
+    .ps-specs td:last-child {
+      color: var(--dark);
+      font-weight: 500;
+    }
+
+    /* ─── COMPARISON TABLE ────────────────────────────────────── */
+    .ps-compare-wrap {
+      overflow-x: auto;
+    }
+    .ps-compare {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+    .ps-compare th {
+      background: var(--dark);
+      color: #fff;
+      padding: 14px 20px;
+      font-family: var(--font-subheading);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .ps-compare th:first-child { background: #111; }
+    .ps-compare td {
+      padding: 13px 20px;
+      font-size: 0.88rem;
+      color: var(--dark);
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .ps-compare td:first-child {
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #888;
+      background: #fafafa;
+      white-space: nowrap;
+    }
+    .ps-compare tr:nth-child(even) td { background: #f9f9f9; }
+    .ps-compare tr:nth-child(even) td:first-child { background: #f4f4f4; }
+    .ps-compare tr:hover td { background: rgba(215,25,32,0.03); }
+    .ps-compare .highlight-col {
+      background: rgba(215,25,32,0.04) !important;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    /* ─── APPLICATIONS / MARKETS ──────────────────────────────── */
+    .ps-apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .ps-app-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: #222;
+    }
+    .ps-app-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.75;
+      transition: opacity var(--transition), transform var(--transition);
+    }
+    .ps-app-card:hover img { opacity: 0.55; transform: scale(1.03); }
+    .ps-app-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 12px 16px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: #fff;
+      font-family: var(--font-subheading);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── CTA STRIP ───────────────────────────────────────────── */
+    .ps-cta-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+      padding: 64px 6%;
+      background: var(--accent);
+      color: #fff;
+    }
+    .ps-cta-strip h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 700;
+      color: #fff;
+    }
+    .ps-cta-strip p {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+      margin-top: 6px;
+    }
+    .ps-cta-strip-links { display: flex; gap: 14px; flex-wrap: wrap; }
+    .ps-btn-white {
+      display: inline-block;
+      padding: 13px 32px;
+      background: #fff;
+      color: var(--accent);
+      font-family: var(--font-subheading);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: all var(--transition);
+    }
+    .ps-btn-white:hover { background: rgba(255,255,255,0.88); }
+    .ps-btn-outline-white {
+      display: inline-block;
+      padding: 12px 28px;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      color: #fff;
+      font-family: var(--font-subheading);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: all var(--transition);
+    }
+    .ps-btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 860px) {
+      .ps-hero { grid-template-columns: 1fr; }
+      .ps-hero-image { min-height: 280px; }
+      .ps-hero-content { padding: 56px 28px; }
+      .ps-overview { grid-template-columns: 1fr; gap: 36px; }
+      .ps-model-panel.active { grid-template-columns: 1fr; }
+      .ps-section { padding: 56px 5%; }
+    }
+
+    /* ─── EDIT HINTS (remove before publishing) ───────────────── */
+    .edit-hint {
+      display: inline-block;
+      background: rgba(215,25,32,0.1);
+      color: var(--accent);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 2px;
+      margin-bottom: 8px;
+      font-family: monospace;
+    }
+
+  </style>
+</head>
+<body class="page-body">
+  <script src="../assets/js/components.js"></script>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════════════ -->
+  <section class="ps-hero">
+    <div class="ps-hero-content">
+      <p class="ps-series-label">Indoor LED Display Series</p>
+      <h1>Enlighten<br>Signature</h1>
+      <p class="ps-hero-tagline">
+        The highest-performance COB dvLED panel in the SiliconCore lineup.
+        Built for command-and-control environments, broadcast studios,
+        and boardrooms that demand uncompromising image quality.
+      </p>
+      <div class="ps-hero-badges">
+        <div class="ps-badge">
+          <span class="ps-badge-val">0.78–1.9<span style="font-size:1rem">mm</span></span>
+          <span class="ps-badge-label">Pixel Pitch Range</span>
+        </div>
+        <div class="ps-badge">
+          <span class="ps-badge-val">1800<span style="font-size:1rem">nit</span></span>
+          <span class="ps-badge-label">Peak Brightness</span>
+        </div>
+        <div class="ps-badge">
+          <span class="ps-badge-val">16-bit</span>
+          <span class="ps-badge-label">Greyscale Depth</span>
+        </div>
+      </div>
+      <div style="margin-top:36px;">
+        <a href="../contact-us/index.html" class="ps-hero-cta">Request a Quote</a>
+        <a href="#compare" class="ps-hero-cta-ghost">View Specs</a>
+      </div>
+    </div>
+    <div class="ps-hero-image">
+      <div class="ps-model-viewer-wrap" id="mv-wrap">
+
+        <!-- 3D MODEL VIEWER -->
+        <model-viewer
+          id="cabinet-viewer"
+          src="../assets/3d/cabinet.glb?v=8"
+          alt="COB dvLED cabinet 3D model"
+          auto-rotate
+          auto-rotate-delay="1000"
+          rotation-per-second="20deg"
+          camera-controls
+          touch-action="pan-y"
+          shadow-intensity="0.6"
+          shadow-softness="0.8"
+          exposure="0.55"
+          environment-image="legacy"
+        ></model-viewer>
+
+        <div class="mv-hint">Drag to rotate · Scroll to zoom</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SERIES OVERVIEW
+  ═══════════════════════════════════════════════════════ -->
+  <section class="ps-section white">
+    <div class="ps-overview">
+      <div class="ps-overview-image">
+        <!-- REPLACE: close-up panel / cabinet image -->
+        <img src="../assets/images/technology/tech-lisa-icon.png"
+             onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/636df7f1-efad-4f3a-8729-fbaa44c51b11/PNG_LISA_G.png'"
+             alt="Enlighten Signature panel detail"
+             style="background:#f2f2f2; padding:40px; border-radius:4px;">
+      </div>
+      <div class="ps-overview-text">
+        <p class="ps-section-label">About the Series</p>
+        <h2>Engineered for the most demanding environments</h2>
+        <p>The Enlighten Signature series is SiliconCore's flagship indoor dvLED platform. Combining our proprietary LISA surface-mount technology with Common Cathode IQ and ZACH calibration, every cabinet delivers extraordinary uniformity and color accuracy straight out of the box.</p>
+        <p>Available in pixel pitches from 0.78mm to 1.9mm, Enlighten Signature scales from intimate boardrooms to expansive control rooms — all within a single, consistent cabinet ecosystem.</p>
+        <p>Fan-less. Cool-running. Built to outlast the competition.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       DIFFERENTIATORS
+  ═══════════════════════════════════════════════════════ -->
+  <section class="ps-section light">
+    <p class="ps-section-label">Why Enlighten Signature</p>
+    <h2>What sets this series apart</h2>
+    <div class="ps-diff-grid">
+
+      <div class="ps-diff-card">
+        <div class="ps-diff-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <h4>Common Cathode IQ</h4>
+        <p>The only manufacturing process we use. Up to 40% less power, lower operating temperatures, and fan-less operation as a result.</p>
+      </div>
+
+      <div class="ps-diff-card">
+        <div class="ps-diff-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h4>LISA Surface Protection</h4>
+        <p>LEDs encapsulated in our proprietary surface material — shielded from physical contact and ambient damage without any brightness trade-off.</p>
+      </div>
+
+      <div class="ps-diff-card">
+        <div class="ps-diff-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        </div>
+        <h4>ZACH Calibration</h4>
+        <p>Factory-embedded per-pixel brightness and color uniformity. Near Rec.2020 color gamut, consistent across the full life of the display.</p>
+      </div>
+
+      <div class="ps-diff-card">
+        <div class="ps-diff-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h4>16-bit Greyscale</h4>
+        <p>65,536 intensity levels versus the industry-standard 8-bit. Eliminates banding at low brightness and delivers smooth, natural gradients.</p>
+      </div>
+
+      <div class="ps-diff-card">
+        <div class="ps-diff-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <h4>1,800 nit Peak Brightness</h4>
+        <p>Enough headroom to perform in high-ambient-light environments with color fidelity fully maintained at every output level.</p>
+      </div>
+
+      <div class="ps-diff-card">
+        <div class="ps-diff-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h4>Modular Cabinet System</h4>
+        <p>All pixel pitches share the same cabinet footprint, simplifying installation, spares management, and future expansion.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       MODEL SELECTOR — pixel pitch cards
+  ═══════════════════════════════════════════════════════ -->
+  <section class="ps-section white" id="models">
+    <p class="ps-section-label">Choose Your Model</p>
+    <h2>Select a pixel pitch</h2>
+    <p class="ps-section-lead">Each model shares the same cabinet platform. Choose based on viewing distance and resolution requirements.</p>
+
+    <!-- Tab buttons -->
+    <div class="ps-model-tabs">
+      <button class="ps-model-tab active" data-model="m078">0.78 mm</button>
+      <button class="ps-model-tab" data-model="m095">0.95 mm</button>
+      <button class="ps-model-tab" data-model="m120">1.2 mm</button>
+      <button class="ps-model-tab" data-model="m150">1.5 mm</button>
+      <button class="ps-model-tab" data-model="m190">1.9 mm</button>
+    </div>
+
+    <!-- 0.78 mm -->
+    <div class="ps-model-panel active" id="m078">
+      <div class="ps-model-image">
+        <img src="../assets/images/technology/tech-lisa-icon.png"
+             onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/636df7f1-efad-4f3a-8729-fbaa44c51b11/PNG_LISA_G.png'"
+             alt="ES-0.78">
+      </div>
+      <div class="ps-model-info">
+        <h3>Enlighten Signature</h3>
+        <div class="ps-model-pitch">0.78<span style="font-size:1.4rem">mm</span></div>
+        <div class="ps-model-pitch-label">Pixel Pitch</div>
+        <table class="ps-specs">
+          <tr><td>Model</td><td>ES-0.78</td></tr>
+          <tr><td>Pixel Pitch</td><td>0.78 mm</td></tr>
+          <tr><td>Cabinet Size</td><td>600 × 337.5 mm</td></tr>
+          <tr><td>Resolution</td><td>768 × 432 px / cabinet</td></tr>
+          <tr><td>Brightness</td><td>800 nit (typ) · 1,800 nit (peak)</td></tr>
+          <tr><td>Contrast Ratio</td><td>5,000 : 1</td></tr>
+          <tr><td>Viewing Angle</td><td>160° H / 140° V</td></tr>
+          <tr><td>Refresh Rate</td><td>3,840 Hz</td></tr>
+          <tr><td>Greyscale</td><td>16-bit</td></tr>
+          <tr><td>IP Rating</td><td>IP30 Front</td></tr>
+          <tr><td>Min. Viewing Distance</td><td>~0.8 m</td></tr>
+          <tr><td>Power (avg / max)</td><td>110 W / 290 W</td></tr>
+        </table>
+        <a href="../contact-us/index.html" class="ps-hero-cta" style="margin-top:8px;">Request Quote</a>
+      </div>
+    </div>
+
+    <!-- 0.95 mm -->
+    <div class="ps-model-panel" id="m095">
+      <div class="ps-model-image">
+        <img src="../assets/images/technology/tech-common-cathode-icon.png"
+             onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/5f7c6fdc-4029-4b04-81ae-0081665c2e65/PNG_CCIQ_G.png'"
+             alt="ES-0.95">
+      </div>
+      <div class="ps-model-info">
+        <h3>Enlighten Signature</h3>
+        <div class="ps-model-pitch">0.95<span style="font-size:1.4rem">mm</span></div>
+        <div class="ps-model-pitch-label">Pixel Pitch</div>
+        <table class="ps-specs">
+          <tr><td>Model</td><td>ES-0.95</td></tr>
+          <tr><td>Pixel Pitch</td><td>0.95 mm</td></tr>
+          <tr><td>Cabinet Size</td><td>600 × 337.5 mm</td></tr>
+          <tr><td>Resolution</td><td>630 × 354 px / cabinet</td></tr>
+          <tr><td>Brightness</td><td>800 nit (typ) · 1,800 nit (peak)</td></tr>
+          <tr><td>Contrast Ratio</td><td>5,000 : 1</td></tr>
+          <tr><td>Viewing Angle</td><td>160° H / 140° V</td></tr>
+          <tr><td>Refresh Rate</td><td>3,840 Hz</td></tr>
+          <tr><td>Greyscale</td><td>16-bit</td></tr>
+          <tr><td>IP Rating</td><td>IP30 Front</td></tr>
+          <tr><td>Min. Viewing Distance</td><td>~1.0 m</td></tr>
+          <tr><td>Power (avg / max)</td><td>100 W / 270 W</td></tr>
+        </table>
+        <a href="../contact-us/index.html" class="ps-hero-cta" style="margin-top:8px;">Request Quote</a>
+      </div>
+    </div>
+
+    <!-- 1.2 mm -->
+    <div class="ps-model-panel" id="m120">
+      <div class="ps-model-image">
+        <img src="../assets/images/technology/tech-zach-icon.png"
+             onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/7a23c2d3-3164-4152-8bc9-fc9c19a00a17/PNG_ZACH_G.png'"
+             alt="ES-1.2">
+      </div>
+      <div class="ps-model-info">
+        <h3>Enlighten Signature</h3>
+        <div class="ps-model-pitch">1.2<span style="font-size:1.4rem">mm</span></div>
+        <div class="ps-model-pitch-label">Pixel Pitch</div>
+        <table class="ps-specs">
+          <tr><td>Model</td><td>ES-1.2</td></tr>
+          <tr><td>Pixel Pitch</td><td>1.2 mm</td></tr>
+          <tr><td>Cabinet Size</td><td>600 × 337.5 mm</td></tr>
+          <tr><td>Resolution</td><td>500 × 281 px / cabinet</td></tr>
+          <tr><td>Brightness</td><td>800 nit (typ) · 1,800 nit (peak)</td></tr>
+          <tr><td>Contrast Ratio</td><td>5,000 : 1</td></tr>
+          <tr><td>Viewing Angle</td><td>160° H / 140° V</td></tr>
+          <tr><td>Refresh Rate</td><td>3,840 Hz</td></tr>
+          <tr><td>Greyscale</td><td>16-bit</td></tr>
+          <tr><td>IP Rating</td><td>IP30 Front</td></tr>
+          <tr><td>Min. Viewing Distance</td><td>~1.2 m</td></tr>
+          <tr><td>Power (avg / max)</td><td>90 W / 240 W</td></tr>
+        </table>
+        <a href="../contact-us/index.html" class="ps-hero-cta" style="margin-top:8px;">Request Quote</a>
+      </div>
+    </div>
+
+    <!-- 1.5 mm -->
+    <div class="ps-model-panel" id="m150">
+      <div class="ps-model-image">
+        <img src="../assets/images/technology/tech-lisa-icon.png"
+             onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/636df7f1-efad-4f3a-8729-fbaa44c51b11/PNG_LISA_G.png'"
+             alt="ES-1.5">
+      </div>
+      <div class="ps-model-info">
+        <h3>Enlighten Signature</h3>
+        <div class="ps-model-pitch">1.5<span style="font-size:1.4rem">mm</span></div>
+        <div class="ps-model-pitch-label">Pixel Pitch</div>
+        <table class="ps-specs">
+          <tr><td>Model</td><td>ES-1.5</td></tr>
+          <tr><td>Pixel Pitch</td><td>1.5 mm</td></tr>
+          <tr><td>Cabinet Size</td><td>600 × 337.5 mm</td></tr>
+          <tr><td>Resolution</td><td>400 × 225 px / cabinet</td></tr>
+          <tr><td>Brightness</td><td>800 nit (typ) · 1,800 nit (peak)</td></tr>
+          <tr><td>Contrast Ratio</td><td>5,000 : 1</td></tr>
+          <tr><td>Viewing Angle</td><td>160° H / 140° V</td></tr>
+          <tr><td>Refresh Rate</td><td>3,840 Hz</td></tr>
+          <tr><td>Greyscale</td><td>16-bit</td></tr>
+          <tr><td>IP Rating</td><td>IP30 Front</td></tr>
+          <tr><td>Min. Viewing Distance</td><td>~1.5 m</td></tr>
+          <tr><td>Power (avg / max)</td><td>80 W / 210 W</td></tr>
+        </table>
+        <a href="../contact-us/index.html" class="ps-hero-cta" style="margin-top:8px;">Request Quote</a>
+      </div>
+    </div>
+
+    <!-- 1.9 mm -->
+    <div class="ps-model-panel" id="m190">
+      <div class="ps-model-image">
+        <img src="../assets/images/technology/tech-zach-icon.png"
+             onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/7a23c2d3-3164-4152-8bc9-fc9c19a00a17/PNG_ZACH_G.png'"
+             alt="ES-1.9">
+      </div>
+      <div class="ps-model-info">
+        <h3>Enlighten Signature</h3>
+        <div class="ps-model-pitch">1.9<span style="font-size:1.4rem">mm</span></div>
+        <div class="ps-model-pitch-label">Pixel Pitch</div>
+        <table class="ps-specs">
+          <tr><td>Model</td><td>ES-1.9</td></tr>
+          <tr><td>Pixel Pitch</td><td>1.9 mm</td></tr>
+          <tr><td>Cabinet Size</td><td>600 × 337.5 mm</td></tr>
+          <tr><td>Resolution</td><td>315 × 177 px / cabinet</td></tr>
+          <tr><td>Brightness</td><td>800 nit (typ) · 1,800 nit (peak)</td></tr>
+          <tr><td>Contrast Ratio</td><td>5,000 : 1</td></tr>
+          <tr><td>Viewing Angle</td><td>160° H / 140° V</td></tr>
+          <tr><td>Refresh Rate</td><td>3,840 Hz</td></tr>
+          <tr><td>Greyscale</td><td>16-bit</td></tr>
+          <tr><td>IP Rating</td><td>IP30 Front</td></tr>
+          <tr><td>Min. Viewing Distance</td><td>~1.9 m</td></tr>
+          <tr><td>Power (avg / max)</td><td>70 W / 180 W</td></tr>
+        </table>
+        <a href="../contact-us/index.html" class="ps-hero-cta" style="margin-top:8px;">Request Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FULL COMPARISON TABLE
+  ═══════════════════════════════════════════════════════ -->
+  <section class="ps-section light" id="compare">
+    <p class="ps-section-label">Full Specifications</p>
+    <h2>Model comparison</h2>
+    <p class="ps-section-lead">All models. All specs. Side by side.</p>
+    <div class="ps-compare-wrap">
+      <table class="ps-compare">
+        <thead>
+          <tr>
+            <th>Specification</th>
+            <th>ES-0.78</th>
+            <th class="highlight-col">ES-0.95</th>
+            <th>ES-1.2</th>
+            <th>ES-1.5</th>
+            <th>ES-1.9</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pixel Pitch</td>
+            <td>0.78 mm</td><td class="highlight-col">0.95 mm</td><td>1.2 mm</td><td>1.5 mm</td><td>1.9 mm</td>
+          </tr>
+          <tr>
+            <td>Cabinet Size</td>
+            <td colspan="5" style="text-align:center; color:#555;">600 × 337.5 mm (all models)</td>
+          </tr>
+          <tr>
+            <td>Cabinet Res.</td>
+            <td>768 × 432</td><td class="highlight-col">630 × 354</td><td>500 × 281</td><td>400 × 225</td><td>315 × 177</td>
+          </tr>
+          <tr>
+            <td>Brightness (typ)</td>
+            <td colspan="5" style="text-align:center; color:#555;">800 nit (all models)</td>
+          </tr>
+          <tr>
+            <td>Brightness (peak)</td>
+            <td colspan="5" style="text-align:center; color:#555;">1,800 nit (all models)</td>
+          </tr>
+          <tr>
+            <td>Contrast Ratio</td>
+            <td colspan="5" style="text-align:center; color:#555;">5,000 : 1 (all models)</td>
+          </tr>
+          <tr>
+            <td>Refresh Rate</td>
+            <td colspan="5" style="text-align:center; color:#555;">3,840 Hz (all models)</td>
+          </tr>
+          <tr>
+            <td>Greyscale</td>
+            <td colspan="5" style="text-align:center; color:#555;">16-bit (all models)</td>
+          </tr>
+          <tr>
+            <td>Viewing Angle H/V</td>
+            <td colspan="5" style="text-align:center; color:#555;">160° / 140° (all models)</td>
+          </tr>
+          <tr>
+            <td>Min. View Dist.</td>
+            <td>~0.8 m</td><td class="highlight-col">~1.0 m</td><td>~1.2 m</td><td>~1.5 m</td><td>~1.9 m</td>
+          </tr>
+          <tr>
+            <td>Power avg / max</td>
+            <td>110 / 290 W</td><td class="highlight-col">100 / 270 W</td><td>90 / 240 W</td><td>80 / 210 W</td><td>70 / 180 W</td>
+          </tr>
+          <tr>
+            <td>IP Rating</td>
+            <td colspan="5" style="text-align:center; color:#555;">IP30 Front (all models)</td>
+          </tr>
+          <tr>
+            <td>Technology</td>
+            <td colspan="5" style="text-align:center; color:#555;">LISA · Common Cathode IQ · ZACH</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       APPLICATIONS
+  ═══════════════════════════════════════════════════════ -->
+  <section class="ps-section white">
+    <p class="ps-section-label">Where It's Used</p>
+    <h2>Ideal applications</h2>
+    <p class="ps-section-lead">Enlighten Signature is deployed wherever image quality cannot be compromised.</p>
+    <div class="ps-apps-grid">
+      <div class="ps-app-card">
+        <img src="../assets/images/experience/experience-nist-lab.jpg"
+             onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1762512184165-F3MV59FXDDQJU6V0RHCD/NIST+SiliconCore+2025.jpg'"
+             alt="Control Room">
+        <div class="ps-app-label">Control Rooms</div>
+      </div>
+      <div class="ps-app-card">
+        <img src="../assets/images/experience/experience-lincoln-center-geffen-hall.jpg"
+             onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1695048446151-8XP6UKWJ5EAWN59N695A/Hauser+Digital+Wall+David+Geffen+Hall+AV%26C+SiliconCore+2023.jpg'"
+             alt="Corporate Lobby">
+        <div class="ps-app-label">Corporate Lobbies</div>
+      </div>
+      <div class="ps-app-card">
+        <img src="../assets/images/experience/experience-lord-abbett-hq.jpg"
+             onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1762515015990-445PAT9YSB19KRUTL7HP/Lord-Abbett-Headquarters-Jersey-City-NJ-1501-HR-1030x687.jpg'"
+             alt="Boardroom">
+        <div class="ps-app-label">Boardrooms</div>
+      </div>
+      <div class="ps-app-card">
+        <img src="../assets/images/experience/experience-integris-auditorium.jpg"
+             onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1762514679918-93GONVUAYZAJ5YRHCFKF/240820-integris-auditorium-9.jpg'"
+             alt="Auditorium">
+        <div class="ps-app-label">Auditoriums</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CTA STRIP
+  ═══════════════════════════════════════════════════════ -->
+  <div class="ps-cta-strip">
+    <div>
+      <h3>Ready to specify Enlighten Signature?</h3>
+      <p>Our team will help you select the right pixel pitch and configure the ideal wall for your space.</p>
+    </div>
+    <div class="ps-cta-strip-links">
+      <a href="../contact-us/index.html" class="ps-btn-white">Request a Quote</a>
+      <a href="../casestudies/index.html" class="ps-btn-outline-white">View Case Studies</a>
+    </div>
+  </div>
+
+  <script>
+    /* ── Pixel pitch tab switcher ── */
+    document.querySelectorAll('.ps-model-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.model;
+        document.querySelectorAll('.ps-model-tab').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.ps-model-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(target).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SiliconCore — Leading Fine Pixel Pitch LED Display Manufacturing</title>
+  <meta name="description" content="SiliconCore leads the industry in fine pixel pitch LED display manufacturing with cutting-edge display technology.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/images/icons/favicon.ico">
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       TRACK-BASED CAROUSELS
+       All four sliders use display:flex tracks moved with
+       transform:translateX — no display:none toggling, no opacity
+       flicker, guaranteed single-image rendering.
+    ═══════════════════════════════════════════════════════════ */
+
+    /* ── Hero Slider ─────────────────────────────────────────── */
+    .hero-slider {
+      position: relative !important;
+      height: auto !important;
+      min-height: 0 !important;
+      overflow: hidden;
+      background: #000;
+    }
+    .hero-track {
+      display: flex;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    /* Override style.css absolute/opacity approach */
+    .hero-slide {
+      flex: 0 0 100%;
+      min-width: 100%;
+      position: relative !important;
+      inset: auto !important;
+      opacity: 1 !important;
+      display: block !important;
+      padding: 0 !important;
+      transition: none !important;
+    }
+    .hero-slide a { display: block; }
+    .hero-slide a img { width: 100%; height: auto; display: block; }
+    .hero-arrows {
+      position: absolute;
+      bottom: 20px; right: 20px;
+      display: flex; flex-direction: row; gap: 8px;
+      z-index: 10;
+    }
+    .hero-arrows button {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.4);
+      width: 38px; height: 38px; border-radius: 50%;
+      cursor: pointer; font-size: 1.2rem; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .hero-arrows button:hover { background: rgba(255,255,255,0.38); }
+
+    /* ── Section separator ───────────────────────────────────── */
+    .section-sep {
+      height: 1px;
+      margin: 0;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(0,0,0,0.1) 20%,
+        rgba(0,0,0,0.1) 80%,
+        transparent
+      );
+    }
+    .section-sep span { display: none; }
+
+    /* ── Headline ────────────────────────────────────────────── */
+    .homepage-headline {
+      padding: 88px 40px;
+      text-align: center;
+      background: var(--color-red);
+      position: relative;
+      overflow: hidden;
+    }
+    /* subtle pixel-grid texture — thin white lines, very low opacity */
+    .homepage-headline::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .homepage-headline h1 {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 5.5vw, 4.8rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #fff;
+      max-width: 880px;
+      margin: 0 auto;
+      line-height: 1.08;
+    }
+    /* short white rule above the text */
+    .homepage-headline h1::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 2px;
+      background: rgba(255,255,255,0.55);
+      margin: 0 auto 28px;
+    }
+
+    /* ── Features Slider ─────────────────────────────────────── */
+    .features-wrap {
+      position: relative;
+      background: #fff;
+      overflow: hidden;
+    }
+    .features-track {
+      display: flex !important;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      will-change: transform;
+      /* kill style.css's gap, max-width, margin and opacity transition */
+      gap: 0 !important;
+      max-width: none !important;
+      margin: 0 !important;
+      align-items: stretch !important;
+    }
+    .features-slide {
+      flex: 0 0 100%;
+      min-width: 100%;
+    }
+    .features-slide > a {
+      display: block;
+      position: relative;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .features-slide > a > img {
+      width: 100%; height: auto; display: block;
+    }
+    .features-caption {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translateY(-50%);
+      width: 44%;
+      text-align: left;
+      pointer-events: none;
+      padding-right: 5%;
+    }
+    .features-caption h3 {
+      font-family: var(--font-subheading);
+      font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+      font-weight: 600;
+      color: var(--color-dark);
+      margin-bottom: 14px;
+    }
+    .features-caption p {
+      color: rgba(23,23,23,0.72);
+      line-height: 1.75;
+      font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+      margin: 0;
+    }
+    .features-nav {
+      position: absolute;
+      bottom: 20px; right: 20px;
+      display: flex; gap: 8px; z-index: 5;
+    }
+    .features-nav button {
+      background: rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.18);
+      width: 38px; height: 38px; border-radius: 50%;
+      cursor: pointer; font-size: 1.2rem; color: #333;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .features-nav button:hover { background: rgba(0,0,0,0.22); color: #000; }
+
+    /* ── Technology ──────────────────────────────────────────── */
+    .tech-section {
+      padding: 70px 40px;
+      background: #fff;
+    }
+
+    /* ── Shared section title ────────────────────────────────── */
+    .section-title,
+    .tech-section h2.section-title,
+    .experience-section h2,
+    .displays-section h2 {
+      font-family: var(--font-subheading) !important;
+      text-align: center;
+      font-size: 2.5rem !important;
+      font-weight: 400 !important;
+      color: var(--color-dark) !important;
+      letter-spacing: 0 !important;
+      text-transform: none !important;
+      margin-bottom: 10px;
+    }
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 1000px;
+      margin: 50px auto 0;
+    }
+    .tech-card { text-align: center; }
+    .tech-card img {
+      width: 190px; height: 190px;
+      object-fit: contain;
+      display: block; margin: 0 auto 20px;
+    }
+    .tech-card h4 { display: none; }
+    .tech-card p {
+      font-size: 0.96rem;
+      color: rgba(23,23,23,0.65);
+      line-height: 1.7;
+    }
+    .tech-learn-more { text-align: center; margin-top: 44px; }
+
+    /* ── Experience ──────────────────────────────────────────── */
+    .experience-section { padding: 70px 0; background: #fff; }
+    .experience-section .section-center { padding: 0 40px; margin-bottom: 36px; }
+    .exp-slider { position: relative; overflow: hidden; }
+    .exp-track {
+      display: flex;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .exp-slide { flex: 0 0 100%; min-width: 100%; }
+    .exp-slide a { display: block; position: relative; }
+    .exp-slide a img { width: 100%; height: 420px; object-fit: cover; display: block; }
+    .exp-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.75));
+      padding: 80px 40px 36px;
+    }
+    .exp-caption-block {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 5px;
+      border-left: 2px solid var(--color-red);
+      padding-left: 16px;
+    }
+    .exp-label {
+      font-family: var(--font-subheading);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      font-weight: 400;
+    }
+    .exp-caption .exp-title {
+      display: block;
+      font-family: var(--font-subheading);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: 0.01em;
+    }
+    .exp-caption .exp-link {
+      display: block;
+      font-family: var(--font-subheading);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-top: 4px;
+    }
+    .exp-arrows {
+      position: absolute;
+      bottom: 20px; right: 20px;
+      display: flex; gap: 8px; z-index: 5;
+    }
+    .exp-arrows button {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.4);
+      width: 38px; height: 38px; border-radius: 50%;
+      cursor: pointer; font-size: 1.2rem; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .exp-arrows button:hover { background: rgba(255,255,255,0.38); }
+
+    /* ── Displays ────────────────────────────────────────────── */
+    .displays-section { padding: 70px 40px; background: #fff; }
+    .displays-section .section-center { margin-bottom: 36px; }
+    .disp-slider { position: relative; overflow: hidden; max-width: 1100px; margin: 0 auto; }
+    .disp-track {
+      display: flex;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .disp-slide {
+      flex: 0 0 100%;
+      min-width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+    .disp-slide img { width: 100%; border-radius: 4px; }
+    .disp-text h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-dark);
+      margin-bottom: 16px;
+    }
+    .disp-text p { color: rgba(23,23,23,0.7); line-height: 1.7; margin-bottom: 24px; }
+    .disp-arrows {
+      position: absolute;
+      bottom: 20px; right: 20px;
+      display: flex; gap: 8px; z-index: 5;
+    }
+    .disp-arrows button {
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(0,0,0,0.25);
+      width: 38px; height: 38px; border-radius: 50%;
+      cursor: pointer; font-size: 1.2rem; color: #333;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .disp-arrows button:hover { background: rgba(0,0,0,0.38); }
+
+    /* ── Contact Strip ───────────────────────────────────────── */
+    .contact-strip { background: #1c1c1c; padding: 60px 40px; }
+    .contact-strip-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 40px; align-items: center;
+    }
+    .contact-strip h2 {
+      font-family: var(--font-heading);
+      font-size: 2.4rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: #fff; margin-bottom: 10px;
+    }
+    .contact-strip p { color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.6; max-width: 500px; }
+    .contact-strip-links { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
+    .contact-strip-links a.contact-detail {
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      font-size: 0.95rem; transition: color 0.2s;
+    }
+    .contact-strip-links a.contact-detail:hover { color: #fff; }
+    .contact-strip-links .btn-contact {
+      display: inline-block; margin-top: 6px;
+      padding: 12px 32px; background: var(--color-red);
+      color: #fff; text-decoration: none;
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.95rem; letter-spacing: 0.1em; text-transform: uppercase;
+      border-radius: 2px; transition: background 0.2s;
+    }
+    .contact-strip-links .btn-contact:hover { background: #c01920; }
+
+    @media (max-width: 700px) {
+      .tech-grid { grid-template-columns: repeat(2, 1fr); }
+      .disp-slide { grid-template-columns: 1fr; }
+      .contact-strip-inner { grid-template-columns: 1fr; }
+      .contact-strip-links { align-items: flex-start; }
+      .features-caption { width: 90%; left: 5%; transform: translateY(-50%); }
+    }
+  </style>
+</head>
+<body class="page-body">
+
+  <script src="assets/js/components.js"></script>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO SLIDER
+  ═══════════════════════════════════════════════════════ -->
+  <section class="hero-slider">
+    <div class="hero-track">
+
+      <div class="hero-slide">
+        <a href="products/all-in-one/index.html">
+          <img src="assets/images/hero/hero-banner-01.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1771328434830-RVO7FVVDFJR576IKJ0OY/SC+Web+Banners+1.png'"   alt="SiliconCore LED Displays">
+        </a>
+      </div>
+
+      <div class="hero-slide">
+        <a href="products/mobile-foldable-columns/index.html">
+          <img src="assets/images/hero/hero-banner-02.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1771328464459-3RTJ20PIUI3J3A93QV5B/SC+Web+Banners+2.png'"   alt="Mobile Foldable Columns">
+        </a>
+      </div>
+
+      <div class="hero-slide">
+        <a href="products/trak-kit/index.html">
+          <img src="assets/images/hero/hero-banner-trakkit.jpg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1771328500586-H13K6KS28MYM0LRTHLWF/SC_WebBanner_TrakKit.jpg'"   alt="TRAK-KIT — Set Your Space in Motion">
+        </a>
+      </div>
+
+      <div class="hero-slide">
+        <a href="virtual-production/index.html">
+          <img src="assets/images/hero/hero-banner-03.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1759484387522-NADO4LLXR1EDCA1H5L54/SC+Web+Banners+3.png'"   alt="Virtual Production — LED Volumes">
+        </a>
+      </div>
+
+      <div class="hero-slide">
+        <a href="products/enlighten/index.html">
+          <img src="assets/images/hero/hero-banner-04.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1759484362448-KXBS3RAZHG94QNU9LGUL/SC+Web+Banners+4.png'"   alt="Enlighten Series — COB dvLED Displays">
+        </a>
+      </div>
+
+      <div class="hero-slide">
+        <a href="unique-technologies/index.html">
+          <img src="assets/images/hero/hero-banner-05.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1759484281043-TYQLEWGY4YDBPWG9WD5R/SC+Web+Banners+5.png'"   alt="Unique Technologies">
+        </a>
+      </div>
+
+    </div>
+    <div class="hero-arrows">
+      <button id="heroPrev" aria-label="Previous slide">&#8249;</button>
+      <button id="heroNext" aria-label="Next slide">&#8250;</button>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       TECHNOLOGY
+  ═══════════════════════════════════════════════════════ -->
+  <section class="tech-section">
+    <h2 class="section-title">The Technology</h2>
+    <div class="section-divider" style="margin: 0 auto;"></div>
+    <div class="tech-grid">
+
+      <div class="tech-card">
+        <img src="assets/images/technology/tech-lisa-icon.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/636df7f1-efad-4f3a-8729-fbaa44c51b11/PNG_LISA_G.png'"   alt="LISA Technology">
+        <h4>LISA Technology</h4>
+        <p>LED In-Surface Application protects LEDs from damage with no compromise on brightness, maintaining life expectancy in rugged environments.</p>
+      </div>
+
+      <div class="tech-card">
+        <img src="assets/images/technology/tech-common-cathode-icon.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/5f7c6fdc-4029-4b04-81ae-0081665c2e65/PNG_CCIQ_G.png'"   alt="Common Cathode IQ">
+        <h4>Common Cathode IQ</h4>
+        <p>The only manufacturing process we use. Pixel pitches as low as 0.83mm, up to 40% less power, low operating temperatures and fan-less operation.</p>
+      </div>
+
+      <div class="tech-card">
+        <img src="assets/images/technology/tech-zach-icon.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/7a23c2d3-3164-4152-8bc9-fc9c19a00a17/PNG_ZACH_G.png'"   alt="ZACH Technology">
+        <h4>ZACH Technology</h4>
+        <p>Embedded in our driver chips, ZACH achieves uniform brightness and homogenous color across the display — including near Rec.2020 color gamut.</p>
+      </div>
+
+    </div>
+    <div class="tech-learn-more">
+      <a href="unique-technologies/index.html" class="btn btn-dark">Learn More</a>
+    </div>
+  </section>
+
+  <div class="section-sep"><span></span></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HEADLINE
+  ═══════════════════════════════════════════════════════ -->
+  <section class="homepage-headline">
+    <h1>Leading the industry in fine pixel pitch LED display manufacturing.</h1>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FEATURES SLIDER
+  ═══════════════════════════════════════════════════════ -->
+  <section class="features-wrap">
+    <div class="features-track">
+
+      <div class="features-slide">
+        <a href="why-siliconcore/index.html">
+          <img src="assets/images/features/feature-color-reproduction.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1575456388037-Z8UTNZZ8V790CHHSL9ZK/Header_color.png'"   alt="Life-like color reproduction">
+          <div class="features-caption">
+            <h3>Life-like color reproduction</h3>
+            <p>Our LED display's 16 bit range achieves a vivid color gamut beyond industry standard to near Rec.2020 for life-like color reproduction.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="features-slide">
+        <a href="why-siliconcore/index.html">
+          <img src="assets/images/features/feature-brightness.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1575455361856-0FENUMQY7M08QS3VR43B/Header_bright.png'"   alt="The brightest LED displays">
+          <div class="features-caption">
+            <h3>The brightest LED displays</h3>
+            <p>With a brightness capacity up to 40% higher than the industry average, consistent brightness levels can be maintained across the life of the product.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="features-slide">
+        <a href="why-siliconcore/index.html">
+          <img src="assets/images/features/feature-cool-whites.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1575455363610-IHGYG2P0OY2NV7YJ3MO3/Header_cool.png'"   alt="Cool &amp; quiet operation">
+          <div class="features-caption">
+            <h3>Cool &amp; quiet operation</h3>
+            <p>Our LED display operating temperatures run cool-to-the-touch, eliminating the requirement for fan cooling systems and reducing noise interruption.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="features-slide">
+        <a href="why-siliconcore/index.html">
+          <img src="assets/images/features/feature-dynamic-range.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1575455365658-9QXL39RGTL3U6QEF0BG3/Header_dynamic.png'"   alt="Highest dynamic range">
+          <div class="features-caption">
+            <h3>Highest dynamic range</h3>
+            <p>Greater color range for greater depth and uniformity — especially at lower brightness levels where most displays struggle to maintain quality.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="features-slide">
+        <a href="why-siliconcore/index.html">
+          <img src="assets/images/features/feature-low-power.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1575455365491-4G4V1GPBOGWHFA09ZHLL/Header_lower.png'"   alt="Lower energy consumption">
+          <div class="features-caption">
+            <h3>Lower energy consumption</h3>
+            <p>By reducing heat dissipation from within the display, the overall power consumption of our displays is reduced by 20–50% for a more sustainable investment.</p>
+          </div>
+        </a>
+      </div>
+
+    </div>
+    <div class="features-nav">
+      <button id="featPrev">&#8249;</button>
+      <button id="featNext">&#8250;</button>
+    </div>
+  </section>
+
+  <div class="section-sep"><span></span></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       EXPERIENCE — Case Studies
+  ═══════════════════════════════════════════════════════ -->
+  <section class="experience-section">
+    <div class="section-center">
+      <h2>The Experience</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="exp-slider">
+      <div class="exp-track">
+
+        <div class="exp-slide">
+          <a href="case-studies/cnh-industrial/index.html">
+            <img src="assets/images/experience/experience-cnh-virtalis.jpg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1770901214896-LGYDMDRAGMXT0QXR8RNB/CNH+Virtalis+2025+%282%29.jpg'"   alt="CNH Industrial">
+            <div class="exp-caption">
+              <div class="exp-caption-block">
+                <span class="exp-label">Case Study</span>
+                <span class="exp-title">CNH Industrial</span>
+                <span class="exp-link">View project →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="exp-slide">
+          <a href="case-studies/david-geffen-hall-lincoln-center-for-the-performing-arts/index.html">
+            <img src="assets/images/experience/experience-lincoln-center-geffen-hall.jpg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1695048446151-8XP6UKWJ5EAWN59N695A/Hauser+Digital+Wall+David+Geffen+Hall+AV%26C+SiliconCore+2023.jpg'"   alt="David Geffen Hall — Lincoln Center">
+            <div class="exp-caption">
+              <div class="exp-caption-block">
+                <span class="exp-label">Case Study</span>
+                <span class="exp-title">David Geffen Hall — Lincoln Center</span>
+                <span class="exp-link">View project →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="exp-slide">
+          <a href="case-studies/lord-abbett-and-co/index.html">
+            <img src="assets/images/experience/experience-lord-abbett-hq.jpg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1762515015990-445PAT9YSB19KRUTL7HP/Lord-Abbett-Headquarters-Jersey-City-NJ-1501-HR-1030x687.jpg'"   alt="Lord Abbett">
+            <div class="exp-caption">
+              <div class="exp-caption-block">
+                <span class="exp-label">Case Study</span>
+                <span class="exp-title">Lord Abbett &amp; Co</span>
+                <span class="exp-link">View project →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="exp-slide">
+          <a href="case-studies/integris-health-auditorium/index.html">
+            <img src="assets/images/experience/experience-integris-auditorium.jpg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1762514679918-93GONVUAYZAJ5YRHCFKF/240820-integris-auditorium-9.jpg'"   alt="INTEGRIS Health">
+            <div class="exp-caption">
+              <div class="exp-caption-block">
+                <span class="exp-label">Case Study</span>
+                <span class="exp-title">INTEGRIS Health Corporate Tower Auditorium</span>
+                <span class="exp-link">View project →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="exp-slide">
+          <a href="case-studies/regent-college/index.html">
+            <img src="assets/images/experience/experience-regents-university.jpg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1762513598124-WCVXCR82O8OG9K2N16Q1/Regents+University+Virtalis+2023+%281%29.jpg'"   alt="Regent College">
+            <div class="exp-caption">
+              <div class="exp-caption-block">
+                <span class="exp-label">Case Study</span>
+                <span class="exp-title">Regent College London</span>
+                <span class="exp-link">View project →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="exp-slide">
+          <a href="case-studies/us-research-lab/index.html">
+            <img src="assets/images/experience/experience-nist-lab.jpg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1762512184165-F3MV59FXDDQJU6V0RHCD/NIST+SiliconCore+2025.jpg'"   alt="US Research Laboratory">
+            <div class="exp-caption">
+              <div class="exp-caption-block">
+                <span class="exp-label">Case Study</span>
+                <span class="exp-title">US Research Laboratory</span>
+                <span class="exp-link">View project →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="exp-slide">
+          <a href="case-studies/white-case/index.html">
+            <img src="assets/images/experience/experience-white-and-case.jpg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/03183124-2794-4c30-9a6b-4d29eeb70b66/White+and+Case+2.jpeg'"   alt="White &amp; Case">
+            <div class="exp-caption">
+              <div class="exp-caption-block">
+                <span class="exp-label">Case Study</span>
+                <span class="exp-title">White &amp; Case Grand Hall Forum</span>
+                <span class="exp-link">View project →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="exp-slide">
+          <a href="case-studies/yongchuan-technology-studio-virtual-production/index.html">
+            <img src="assets/images/experience/experience-yongchuan-studio.jpg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/dceefa09-9842-42e3-9ae1-07d4238e5c2e/Yongchuan+Technology+Studio+SiliconCore+2023.jpg'"   alt="Yongchuan Technology Studio">
+            <div class="exp-caption">
+              <div class="exp-caption-block">
+                <span class="exp-label">Case Study</span>
+                <span class="exp-title">Yongchuan Technology Studio — Virtual Production</span>
+                <span class="exp-link">View project →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="exp-slide">
+          <a href="case-studies/ramazstudios/index.html">
+            <img src="assets/images/experience/experience-installation-shot.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1689254186392-JV2HNMR6MOC2NE5SGQMP/Copy+of+IMG_1960.PNG'"   alt="Ramaz Studios">
+            <div class="exp-caption">
+              <div class="exp-caption-block">
+                <span class="exp-label">Case Study</span>
+                <span class="exp-title">Ramaz Studios — Virtual Production</span>
+                <span class="exp-link">View project →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="exp-slide">
+          <a href="case-studies/multi-point-of-view-vr-at-ise/index.html">
+            <img src="assets/images/experience/experience-site-installation.jpg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1709746108611-28KSLNBFD8U6FVBL5RCE/Photo+01-02-2023%2C+10+33+03.jpg'"   alt="Multi-Point VR at ISE">
+            <div class="exp-caption">
+              <div class="exp-caption-block">
+                <span class="exp-label">Case Study</span>
+                <span class="exp-title">Multi-Point of View VR at ISE</span>
+                <span class="exp-link">View project →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+      <div class="exp-arrows">
+        <button id="expPrev">&#8249;</button>
+        <button id="expNext">&#8250;</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-sep"><span></span></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       THE DISPLAYS
+  ═══════════════════════════════════════════════════════ -->
+  <section class="displays-section">
+    <div class="section-center">
+      <h2 class="section-title">The Displays</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="disp-slider">
+      <div class="disp-track">
+
+        <div class="disp-slide">
+          <img src="assets/images/hero/hero-banner-01.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1771328434830-RVO7FVVDFJR576IKJ0OY/SC+Web+Banners+1.png'"   alt="Mobile All-In-One">
+          <div class="disp-text">
+            <h3>Mobile All-In-One LED Displays</h3>
+            <p>Bringing the benefits of our unique and patented technologies into a high-performing, flexible 135" HD+ presentation solution.</p>
+            <a href="products/all-in-one/index.html" class="btn btn-dark">Find out more ›</a>
+          </div>
+        </div>
+
+        <div class="disp-slide">
+          <img src="assets/images/hero/hero-banner-trakkit.jpg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1771328500586-H13K6KS28MYM0LRTHLWF/SC_WebBanner_TrakKit.jpg'"   alt="TRAK-KIT">
+          <div class="disp-text">
+            <h3>TRAK-KIT</h3>
+            <p>TRAK-KIT and SiliconCore are introducing a new way to integrate dvLED displays into the built environment. Expand creative potential for workplaces, digital signage and brand environments.</p>
+            <a href="products/trak-kit/index.html" class="btn btn-dark">Find out more ›</a>
+          </div>
+        </div>
+
+        <div class="disp-slide">
+          <img src="assets/images/hero/hero-banner-03.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1759484387522-NADO4LLXR1EDCA1H5L54/SC+Web+Banners+3.png'"   alt="Enlighten COB Series">
+          <div class="disp-text">
+            <h3>Enlighten COB Series</h3>
+            <p>The new Enlighten COB Series from SiliconCore. dvLED displays with the highest performance and ultra-low power consumption — up to 50% less than traditional SMD solutions.</p>
+            <a href="products/enlighten/index.html" class="btn btn-dark">Find out more ›</a>
+          </div>
+        </div>
+
+        <div class="disp-slide">
+          <img src="assets/images/hero/hero-banner-04.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1759484362448-KXBS3RAZHG94QNU9LGUL/SC+Web+Banners+4.png'"   alt="Virtual Production">
+          <div class="disp-text">
+            <h3>Virtual Production</h3>
+            <p>SiliconCore LED volumes purpose-built for in-camera VFX and virtual production. Ultra-low reflection, high refresh rate, and precise colour calibration for broadcast-grade results.</p>
+            <a href="virtual-production/index.html" class="btn btn-dark">Find out more ›</a>
+          </div>
+        </div>
+
+        <div class="disp-slide">
+          <img src="assets/images/hero/hero-banner-05.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1759484281043-TYQLEWGY4YDBPWG9WD5R/SC+Web+Banners+5.png'"   alt="Iris 0.78mm">
+          <div class="disp-text">
+            <h3>Iris 0.78mm</h3>
+            <p>The world's finest pixel pitch dvLED display, delivering unparalleled resolution and image quality for the most demanding close-viewing applications.</p>
+            <a href="products/iris/index.html" class="btn btn-dark">Find out more ›</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="disp-arrows">
+        <button id="dispPrev">&#8249;</button>
+        <button id="dispNext">&#8250;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CONTACT STRIP
+  ═══════════════════════════════════════════════════════ -->
+  <section class="contact-strip" id="signup">
+    <div class="contact-strip-inner">
+      <div>
+        <h2>Let's talk.</h2>
+        <p>Get in touch with the SiliconCore sales team to discuss your project requirements.</p>
+      </div>
+      <div class="contact-strip-links">
+        <a href="tel:+14089468185" class="contact-detail">+1 (408) 946 8185</a>
+        <a href="mailto:sales@silicon-core.com" class="contact-detail">sales@silicon-core.com</a>
+        <a href="contact-us/index.html" class="btn-contact">Contact Us →</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // ── Track slider factory ──────────────────────────────────
+    // - One flex track per carousel, shifted with translateX.
+    // - Manual prev/next restarts the 6s auto-timer from zero.
+    // - startDelay staggers when each carousel's auto-timer begins
+    //   so they never all advance at the same moment.
+    function makeSlider(trackSel, prevId, nextId, intervalMs, startDelay) {
+      var track = document.querySelector(trackSel);
+      if (!track) return;
+      var total = track.children.length;
+      var idx   = 0;
+      var timer = null;
+
+      function go(n) {
+        idx = ((n % total) + total) % total;
+        track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+      }
+
+      function resetTimer() {
+        if (timer) clearInterval(timer);
+        timer = setInterval(function() { go(idx + 1); }, intervalMs);
+      }
+
+      document.getElementById(prevId).addEventListener('click', function() {
+        go(idx - 1);
+        resetTimer();
+      });
+      document.getElementById(nextId).addEventListener('click', function() {
+        go(idx + 1);
+        resetTimer();
+      });
+
+      // stagger each carousel's auto-start
+      setTimeout(function() { resetTimer(); }, startDelay);
+    }
+
+    makeSlider('.hero-track',     'heroPrev', 'heroNext', 6000,    0);
+    makeSlider('.features-track', 'featPrev', 'featNext', 6000, 1500);
+    makeSlider('.exp-track',      'expPrev',  'expNext',  6000, 3000);
+    makeSlider('.disp-track',     'dispPrev', 'dispNext', 6000, 4500);
+  </script>
+</body>
+</html>
