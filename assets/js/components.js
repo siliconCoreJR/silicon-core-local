@@ -1,13 +1,19 @@
 /* ============================================================
-   SILICONCORE LOCAL — Shared Header + Footer Components
+   SILICONCORE LOCAL â Shared Header + Footer Components
    Injected by each page via <script> at top/bottom of body
    ============================================================ */
 
-/* Determine path depth for relative asset links */
-const _depth = (window.location.pathname.match(/\//g) || []).length - 1;
+/* Determine path depth for relative asset links.
+   On GitHub Pages the URL includes a repo subfolder (e.g. /silicon-core-local/)
+   that doesn't exist on localhost â strip it before counting depth. */
+const _onGHPages = window.location.hostname.endsWith('github.io');
+const _pathname  = _onGHPages
+  ? '/' + window.location.pathname.split('/').slice(2).join('/')
+  : window.location.pathname;
+const _depth = (_pathname.match(/\//g) || []).length - 1;
 const _root  = _depth > 0 ? '../'.repeat(_depth) : './';
 
-/* ── Header ────────────────────────────────────────────────── */
+/* ââ Header ââââââââââââââââââââââââââââââââââââââââââââââââââ */
 document.addEventListener('DOMContentLoaded', () => {
 
   /* Insert header */
@@ -29,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <button class="dn-btn">Products <span class="dn-chevron"></span></button>
           <ul class="dn-dropdown">
 
-            <!-- Indoor → flyout -->
+            <!-- Indoor â flyout -->
             <li>
               <button class="dn-sub-btn">Indoor <span class="dn-sub-arrow"></span></button>
               <ul class="dn-subflyout">
@@ -42,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </ul>
             </li>
 
-            <!-- Outdoor → flyout -->
+            <!-- Outdoor â flyout -->
             <li>
               <button class="dn-sub-btn">Outdoor <span class="dn-sub-arrow"></span></button>
               <ul class="dn-subflyout">
@@ -54,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <li><a href="${_root}taa-compliant-led-displays/index.html">TAA</a></li>
             <li><a href="${_root}displays/index.html">Controllers</a></li>
 
-            <!-- Solutions → flyout -->
+            <!-- Solutions â flyout -->
             <li>
               <button class="dn-sub-btn">Solutions <span class="dn-sub-arrow"></span></button>
               <ul class="dn-subflyout">
@@ -179,8 +185,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <li><a href="${_root}products/orchid/index.html">Orchid 1.9mm HB</a></li>
           <li><a href="${_root}products/peony/index.html">Peony 2.6mm</a></li>
           <li><a href="${_root}products/daffodil/index.html">Daffodil 2.5mm</a></li>
-          <li><a href="${_root}products/tulip-indoor/index.html">Tulip 3.9mm — Indoor</a></li>
-          <li><a href="${_root}products/tulip-outdoor/index.html">Tulip 3.9mm — Outdoor</a></li>
+          <li><a href="${_root}products/tulip-indoor/index.html">Tulip 3.9mm â Indoor</a></li>
+          <li><a href="${_root}products/tulip-outdoor/index.html">Tulip 3.9mm â Outdoor</a></li>
           <li><a href="${_root}products/lotus/index.html">Lotus 0.83mm</a></li>
           <li><a href="${_root}products/lily/index.html">Lily</a></li>
           <li><a href="${_root}products/magnolia-158/index.html">Magnolia 158"</a></li>
@@ -262,9 +268,9 @@ document.addEventListener('DOMContentLoaded', () => {
         </ul>
       </div>
       <div class="footer-social">
-        <a href="https://twitter.com/siliconcore" target="_blank" aria-label="Twitter">𝕏</a>
+        <a href="https://twitter.com/siliconcore" target="_blank" aria-label="Twitter">ð</a>
         <a href="https://linkedin.com/company/siliconcore" target="_blank" aria-label="LinkedIn">in</a>
-        <a href="https://youtube.com/siliconcore" target="_blank" aria-label="YouTube">▶</a>
+        <a href="https://youtube.com/siliconcore" target="_blank" aria-label="YouTube">â¶</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -272,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         TEL: +1 (408) 946 8185 &nbsp;|&nbsp;
         <a href="mailto:sales@silicon-core.com">sales@silicon-core.com</a>
       </span>
-      <span>© 2024 SiliconCore Technology Inc. &nbsp;|&nbsp; <a href="${_root}privacy-statement/index.html">Privacy Policy</a></span>
+      <span>Â© 2024 SiliconCore Technology Inc. &nbsp;|&nbsp; <a href="${_root}privacy-statement/index.html">Privacy Policy</a></span>
     </div>
   `;
   document.body.appendChild(footerEl);
