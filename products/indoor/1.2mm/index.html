@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>0.9mm Products — SiliconCore</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="icon" href="../assets/images/icons/favicon.ico">
+  <title>1.2mm Products — SiliconCore</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="icon" href="../../../assets/images/icons/favicon.ico">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
 
@@ -682,7 +682,7 @@
   </style>
 </head>
 <body class="page-body">
-  <script src="../assets/js/components.js"></script>
+  <script src="../../../assets/js/components.js"></script>
 
   <!-- ═══════════════════════════════════════════════════════
        PIXEL PITCH CONTEXT + PRODUCT SWITCHER
@@ -691,7 +691,7 @@
     <div class="pp-context">
       <div class="pp-context-inner">
         <span class="pp-context-label">Pixel Pitch</span>
-        <span class="pp-context-value">0.9<span>mm</span></span>
+        <span class="pp-context-value">1.2<span>mm</span></span>
       </div>
     </div>
     <div class="pp-tabs">
@@ -735,13 +735,28 @@
       </div>
 
       <div class="ps-hero-actions">
-        <a href="../contact-us/index.html" class="ps-btn-primary">Request a Quote</a>
+        <a href="../../../contact-us/index.html" class="ps-btn-primary">Request a Quote</a>
         <a href="#specs" class="ps-btn-ghost">View Specs</a>
       </div>
     </div>
 
-
-</div>
+    <div class="ps-hero-viewer">
+      <model-viewer
+        id="cabinet-viewer"
+        src="../../../assets/3d/600-BOE-COB-cabinet.glb"
+        alt="Cabinet 3D model"
+        auto-rotate
+        auto-rotate-delay="1000"
+        rotation-per-second="20deg"
+        camera-controls
+        touch-action="pan-y"
+        shadow-intensity="0.6"
+        shadow-softness="0.8"
+        exposure="0.55"
+        environment-image="legacy"
+      ></model-viewer>
+      <div class="mv-hint">Drag to rotate · Scroll to zoom</div>
+    </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════
@@ -773,29 +788,29 @@
     <h2>Ideal applications</h2>
     <p class="ps-section-lead" id="apps-lead"></p>
     <div class="ps-apps-grid">
-      <a href="../casestudies/index.html" class="ps-app-card">
-        <img src="../assets/images/experience/experience-nist-lab.jpg"
+      <a href="../../../casestudies/index.html" class="ps-app-card">
+        <img src="../../../assets/images/experience/experience-nist-lab.jpg"
              onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1762512184165-F3MV59FXDDQJU6V0RHCD/NIST+SiliconCore+2025.jpg'"
              alt="Control Room">
         <div class="ps-app-label">Control Rooms</div>
         <div class="ps-app-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
-      <a href="../casestudies/index.html" class="ps-app-card">
-        <img src="../assets/images/experience/experience-lincoln-center-geffen-hall.jpg"
+      <a href="../../../casestudies/index.html" class="ps-app-card">
+        <img src="../../../assets/images/experience/experience-lincoln-center-geffen-hall.jpg"
              onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1695048446151-8XP6UKWJ5EAWN59N695A/Hauser+Digital+Wall+David+Geffen+Hall+AV%26C+SiliconCore+2023.jpg'"
              alt="Corporate Lobby">
         <div class="ps-app-label">Corporate Lobbies</div>
         <div class="ps-app-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
-      <a href="../casestudies/index.html" class="ps-app-card">
-        <img src="../assets/images/experience/experience-lord-abbett-hq.jpg"
+      <a href="../../../casestudies/index.html" class="ps-app-card">
+        <img src="../../../assets/images/experience/experience-lord-abbett-hq.jpg"
              onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1762515015990-445PAT9YSB19KRUTL7HP/Lord-Abbett-Headquarters-Jersey-City-NJ-1501-HR-1030x687.jpg'"
              alt="Boardroom">
         <div class="ps-app-label">Boardrooms</div>
         <div class="ps-app-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
-      <a href="../casestudies/index.html" class="ps-app-card">
-        <img src="../assets/images/experience/experience-integris-auditorium.jpg"
+      <a href="../../../casestudies/index.html" class="ps-app-card">
+        <img src="../../../assets/images/experience/experience-integris-auditorium.jpg"
              onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1762514679918-93GONVUAYZAJ5YRHCFKF/240820-integris-auditorium-9.jpg'"
              alt="Auditorium">
         <div class="ps-app-label">Auditoriums</div>
@@ -813,8 +828,8 @@
       <p>Our team will help you configure the ideal display for your space.</p>
     </div>
     <div class="ps-cta-strip-links">
-      <a href="../contact-us/index.html" class="ps-btn-white">Request a Quote</a>
-      <a href="../casestudies/index.html" class="ps-btn-outline-white">View Case Studies</a>
+      <a href="../../../contact-us/index.html" class="ps-btn-white">Request a Quote</a>
+      <a href="../../../casestudies/index.html" class="ps-btn-outline-white">View Case Studies</a>
     </div>
   </div>
 
@@ -836,14 +851,14 @@
         line: 'Indoor dvLED · Enlighten Series',
         name: 'Enlighten<br>Signature', nameShort: 'Enlighten Signature',
         tagline: 'The highest-performance COB dvLED panel in the SiliconCore lineup. Built for command-and-control environments, broadcast studios, and boardrooms that demand uncompromising image quality.',
-        glb: '../assets/3d/600-BOE-COB-cabinet.glb',
+        glb: '../../../assets/3d/600-BOE-COB-cabinet.glb',
         /* Highlights grid — 8 items, displayed in 4×2 */
         highlights: [
           { val: '1,800 nit',    label: 'Peak Brightness'    },
           { val: '16:9',         label: 'Aspect Ratio'       },
           { val: '1/60',         label: 'Scan Ratio'         },
           { val: '16-bit',       label: 'Greyscale'          },
-          { val: '~0.9 m',       label: 'Suggested Dist.'    },
+          { val: '~1.2 m',       label: 'Suggested Dist.'    },
           { val: '105 W avg',    label: 'Power / Cabinet'    },
           { val: '0° – 40°C',    label: 'Operating Temp'     },
           { val: '600×338 mm',   label: 'Cabinet Size'       },
@@ -854,18 +869,18 @@
         specsDesc: 'Powered by Common Cathode IQ and LISA surface protection, the Enlighten Signature delivers unmatched pixel density and reliability in a fan-less, maintenance-friendly cabinet.',
         specs: {
           '600 × 337.5 mm': [
-            ['Pixel Pitch','0.9 mm'],['Cabinet Size','600 × 337.5 mm'],['Resolution','666 × 375 px'],
+            ['Pixel Pitch','1.2 mm'],['Cabinet Size','600 × 337.5 mm'],['Resolution','500 x 281 px'],
             ['Brightness (typ)','800 nit'],['Brightness (peak)','1,800 nit'],
             ['Viewing Angle','160° H / 140° V'],['Refresh Rate','3,840 Hz'],['Greyscale','16-bit'],
-            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP30 Front'],['Min. View Distance','~0.9 m'],
+            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP30 Front'],['Min. View Distance','~1.2 m'],
             ['Power (avg / max)','105 W / 280 W'],['Operating Temp','0°C to +40°C'],
             ['Technology','LISA · CC IQ · ZACH'],
           ],
           '600 × 675 mm': [
-            ['Pixel Pitch','0.9 mm'],['Cabinet Size','600 × 675 mm'],['Resolution','666 × 750 px'],
+            ['Pixel Pitch','1.2 mm'],['Cabinet Size','600 × 675 mm'],['Resolution','666 × 750 px'],
             ['Brightness (typ)','800 nit'],['Brightness (peak)','1,800 nit'],
             ['Viewing Angle','160° H / 140° V'],['Refresh Rate','3,840 Hz'],['Greyscale','16-bit'],
-            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP30 Front'],['Min. View Distance','~0.9 m'],
+            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP30 Front'],['Min. View Distance','~1.2 m'],
             ['Power (avg / max)','210 W / 560 W'],['Operating Temp','0°C to +40°C'],
             ['Technology','LISA · CC IQ · ZACH'],
           ],
@@ -887,13 +902,13 @@
         line: 'Indoor dvLED · Enlighten Series',
         name: 'Enlighten<br>Select', nameShort: 'Enlighten Select',
         tagline: 'Performance-grade COB dvLED delivering SiliconCore quality at a more accessible price point. Ideal for corporate and commercial deployments.',
-        glb: '../assets/3d/600-BOE-COB-cabinet.glb',
+        glb: '../../../assets/3d/600-BOE-COB-cabinet.glb',
         highlights: [
           { val: '1,200 nit',    label: 'Peak Brightness'    },
           { val: '16:9',         label: 'Aspect Ratio'       },
           { val: '1/60',         label: 'Scan Ratio'         },
           { val: '14-bit',       label: 'Greyscale'          },
-          { val: '~0.9 m',       label: 'Suggested Dist.'    },
+          { val: '~1.2 m',       label: 'Suggested Dist.'    },
           { val: '95 W avg',     label: 'Power / Cabinet'    },
           { val: '0° – 40°C',    label: 'Operating Temp'     },
           { val: '600×338 mm',   label: 'Cabinet Size'       },
@@ -903,10 +918,10 @@
         specsDesc: 'The Enlighten Select brings SiliconCore COB technology and fan-less operation to a broader range of commercial applications without compromising on build quality.',
         specs: {
           '600 × 337.5 mm': [
-            ['Pixel Pitch','0.9 mm'],['Cabinet Size','600 × 337.5 mm'],['Resolution','666 × 375 px'],
+            ['Pixel Pitch','1.2 mm'],['Cabinet Size','600 × 337.5 mm'],['Resolution','500 x 281 px'],
             ['Brightness (typ)','600 nit'],['Brightness (peak)','1,200 nit'],
             ['Viewing Angle','160° H / 140° V'],['Refresh Rate','3,840 Hz'],['Greyscale','14-bit'],
-            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP30 Front'],['Min. View Distance','~0.9 m'],
+            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP30 Front'],['Min. View Distance','~1.2 m'],
             ['Power (avg / max)','95 W / 250 W'],['Operating Temp','0°C to +40°C'],
             ['Technology','COB · Common Cathode'],
           ],
@@ -926,13 +941,13 @@
         line: 'Indoor dvLED · SMD Series',
         name: 'Apex', nameShort: 'Apex',
         tagline: 'Premium SMD dvLED engineered for high-impact commercial, retail, and large-venue installations. Uncompromising brightness, reliability, and compatibility.',
-        glb: '../assets/3d/608-SMD-Standard-Cabinet.glb',
+        glb: '../../../assets/3d/608-SMD-Standard-Cabinet.glb',
         highlights: [
           { val: '1,000 nit',    label: 'Peak Brightness'    },
           { val: '1:1',          label: 'Aspect Ratio'       },
           { val: '1/60',         label: 'Scan Ratio'         },
           { val: '12-bit',       label: 'Greyscale'          },
-          { val: '~0.9 m',       label: 'Suggested Dist.'    },
+          { val: '~1.2 m',       label: 'Suggested Dist.'    },
           { val: '80 W avg',     label: 'Power / Cabinet'    },
           { val: '0° – 40°C',    label: 'Operating Temp'     },
           { val: '480×480 mm',   label: 'Cabinet Size'       },
@@ -942,18 +957,18 @@
         specsDesc: 'The Apex cabinet is engineered for demanding commercial and rental applications, delivering robust, high-brightness performance in versatile footprints.',
         specs: {
           '480 × 480 mm': [
-            ['Pixel Pitch','0.9 mm'],['Cabinet Size','480 × 480 mm'],['Resolution','533 × 533 px'],
+            ['Pixel Pitch','1.2 mm'],['Cabinet Size','480 × 480 mm'],['Resolution','400 x 400 px'],
             ['Brightness (typ)','600 nit'],['Brightness (peak)','1,000 nit'],
             ['Viewing Angle','140° H / 130° V'],['Refresh Rate','1,920 Hz'],['Greyscale','12-bit'],
-            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP40 Front'],['Min. View Distance','~0.9 m'],
+            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP40 Front'],['Min. View Distance','~1.2 m'],
             ['Power (avg / max)','80 W / 200 W'],['Operating Temp','0°C to +40°C'],
             ['Technology','SMD 3-in-1'],
           ],
           '960 × 480 mm': [
-            ['Pixel Pitch','0.9 mm'],['Cabinet Size','960 × 480 mm'],['Resolution','1066 × 533 px'],
+            ['Pixel Pitch','1.2 mm'],['Cabinet Size','960 × 480 mm'],['Resolution','1066 × 533 px'],
             ['Brightness (typ)','600 nit'],['Brightness (peak)','1,000 nit'],
             ['Viewing Angle','140° H / 130° V'],['Refresh Rate','1,920 Hz'],['Greyscale','12-bit'],
-            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP40 Front'],['Min. View Distance','~0.9 m'],
+            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP40 Front'],['Min. View Distance','~1.2 m'],
             ['Power (avg / max)','160 W / 400 W'],['Operating Temp','0°C to +40°C'],
             ['Technology','SMD 3-in-1'],
           ],
@@ -973,13 +988,13 @@
         line: 'Indoor dvLED · SMD Series',
         name: 'Apex<br>Slim', nameShort: 'Apex Slim',
         tagline: 'Premium ultra-slim SMD dvLED for architecturally sensitive installations. Minimal 28mm profile, maximum brightness and impact.',
-        glb: '../assets/3d/304-SMD-ST-Cabinet.glb',
+        glb: '../../../assets/3d/304-SMD-ST-Cabinet.glb',
         highlights: [
           { val: '800 nit',      label: 'Peak Brightness'    },
           { val: '1:1',          label: 'Aspect Ratio'       },
           { val: '1/60',         label: 'Scan Ratio'         },
           { val: '12-bit',       label: 'Greyscale'          },
-          { val: '~0.9 m',       label: 'Suggested Dist.'    },
+          { val: '~1.2 m',       label: 'Suggested Dist.'    },
           { val: '65 W avg',     label: 'Power / Cabinet'    },
           { val: '0° – 40°C',    label: 'Operating Temp'     },
           { val: '480×480 mm',   label: 'Cabinet Size'       },
@@ -989,10 +1004,10 @@
         specsDesc: 'The Apex Slim is engineered for flush-wall and recessed installations, delivering premium performance in a significantly reduced 28mm depth profile.',
         specs: {
           '480 × 480 mm': [
-            ['Pixel Pitch','0.9 mm'],['Cabinet Size','480 × 480 mm'],['Cabinet Depth','28 mm (ultra-slim)'],
-            ['Resolution','533 × 533 px'],['Brightness (typ)','500 nit'],['Brightness (peak)','800 nit'],
+            ['Pixel Pitch','1.2 mm'],['Cabinet Size','480 × 480 mm'],['Cabinet Depth','28 mm (ultra-slim)'],
+            ['Resolution','400 x 400 px'],['Brightness (typ)','500 nit'],['Brightness (peak)','800 nit'],
             ['Viewing Angle','140° H / 130° V'],['Refresh Rate','1,920 Hz'],['Greyscale','12-bit'],
-            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP40 Front'],['Min. View Distance','~0.9 m'],
+            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP40 Front'],['Min. View Distance','~1.2 m'],
             ['Power (avg / max)','65 W / 160 W'],['Operating Temp','0°C to +40°C'],
             ['Technology','SMD 3-in-1'],
           ],

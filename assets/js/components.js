@@ -39,12 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
             <li>
               <button class="dn-sub-btn">Indoor <span class="dn-sub-arrow"></span></button>
               <ul class="dn-subflyout">
-                <li><a href="${_root}products/iris/index.html">Micro LED (MIP)</a></li>
-                <li><a href="${_root}products/enlighten/index.html">Enlighten Signature</a></li>
-                <li><a href="${_root}products/orchid/index.html">Enlighten Select</a></li>
-                <li><a href="${_root}products/iris/index.html">SMD</a></li>
+                <li class="dn-subflyout-group-label">By Pixel Pitch</li>
+                <li><a href="${_root}products/indoor/0.7mm/index.html">0.7 mm</a></li>
+                <li><a href="${_root}products/indoor/0.9mm/index.html">0.9 mm</a></li>
+                <li><a href="${_root}products/indoor/1.2mm/index.html">1.2 mm</a></li>
+                <li><a href="${_root}products/indoor/1.5mm/index.html">1.5 mm</a></li>
+                <li><a href="${_root}products/indoor/1.9mm/index.html">1.9 mm</a></li>
+                <li><a href="${_root}products/indoor/2.5mm/index.html">2.5 mm</a></li>
+                <li class="dn-subflyout-divider"></li>
                 <li><a href="${_root}products/all-in-one/index.html">All In One</a></li>
-                <li><a href="${_root}products/mobile-foldable-columns/index.html">Column Display</a></li>
+                <li><a href="${_root}products/mobile-foldable-columns/index.html">Columns</a></li>
               </ul>
             </li>
 
@@ -112,11 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
           </ul>
         </li>
 
-        <!-- News -->
-        <li class="dn-item">
-          <a class="dn-link" href="${_root}news-1/index.html">News</a>
-        </li>
-
         <!-- Contact -->
         <li class="dn-item">
           <a class="dn-link" href="${_root}contact-us/index.html">Contact</a>
@@ -131,11 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <li><a href="${_root}history/index.html">History</a></li>
             <li><a href="${_root}why-siliconcore/index.html">The Difference</a></li>
           </ul>
-        </li>
-
-        <!-- Product Template -->
-        <li class="dn-item">
-          <a class="dn-link" href="${_root}product-template/index.html">Product Template</a>
         </li>
 
       </ul>

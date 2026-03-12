@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>0.9mm Products — SiliconCore</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="icon" href="../assets/images/icons/favicon.ico">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="icon" href="../../../assets/images/icons/favicon.ico">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
 
@@ -682,7 +682,7 @@
   </style>
 </head>
 <body class="page-body">
-  <script src="../assets/js/components.js"></script>
+  <script src="../../../assets/js/components.js"></script>
 
   <!-- ═══════════════════════════════════════════════════════
        PIXEL PITCH CONTEXT + PRODUCT SWITCHER
@@ -735,13 +735,28 @@
       </div>
 
       <div class="ps-hero-actions">
-        <a href="../contact-us/index.html" class="ps-btn-primary">Request a Quote</a>
+        <a href="../../../contact-us/index.html" class="ps-btn-primary">Request a Quote</a>
         <a href="#specs" class="ps-btn-ghost">View Specs</a>
       </div>
     </div>
 
-
-</div>
+    <div class="ps-hero-viewer">
+      <model-viewer
+        id="cabinet-viewer"
+        src="../../../assets/3d/600-BOE-COB-cabinet.glb"
+        alt="Cabinet 3D model"
+        auto-rotate
+        auto-rotate-delay="1000"
+        rotation-per-second="20deg"
+        camera-controls
+        touch-action="pan-y"
+        shadow-intensity="0.6"
+        shadow-softness="0.8"
+        exposure="0.55"
+        environment-image="legacy"
+      ></model-viewer>
+      <div class="mv-hint">Drag to rotate · Scroll to zoom</div>
+    </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════
@@ -773,29 +788,29 @@
     <h2>Ideal applications</h2>
     <p class="ps-section-lead" id="apps-lead"></p>
     <div class="ps-apps-grid">
-      <a href="../casestudies/index.html" class="ps-app-card">
-        <img src="../assets/images/experience/experience-nist-lab.jpg"
+      <a href="../../../casestudies/index.html" class="ps-app-card">
+        <img src="../../../assets/images/experience/experience-nist-lab.jpg"
              onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1762512184165-F3MV59FXDDQJU6V0RHCD/NIST+SiliconCore+2025.jpg'"
              alt="Control Room">
         <div class="ps-app-label">Control Rooms</div>
         <div class="ps-app-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
-      <a href="../casestudies/index.html" class="ps-app-card">
-        <img src="../assets/images/experience/experience-lincoln-center-geffen-hall.jpg"
+      <a href="../../../casestudies/index.html" class="ps-app-card">
+        <img src="../../../assets/images/experience/experience-lincoln-center-geffen-hall.jpg"
              onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1695048446151-8XP6UKWJ5EAWN59N695A/Hauser+Digital+Wall+David+Geffen+Hall+AV%26C+SiliconCore+2023.jpg'"
              alt="Corporate Lobby">
         <div class="ps-app-label">Corporate Lobbies</div>
         <div class="ps-app-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
-      <a href="../casestudies/index.html" class="ps-app-card">
-        <img src="../assets/images/experience/experience-lord-abbett-hq.jpg"
+      <a href="../../../casestudies/index.html" class="ps-app-card">
+        <img src="../../../assets/images/experience/experience-lord-abbett-hq.jpg"
              onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1762515015990-445PAT9YSB19KRUTL7HP/Lord-Abbett-Headquarters-Jersey-City-NJ-1501-HR-1030x687.jpg'"
              alt="Boardroom">
         <div class="ps-app-label">Boardrooms</div>
         <div class="ps-app-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
-      <a href="../casestudies/index.html" class="ps-app-card">
-        <img src="../assets/images/experience/experience-integris-auditorium.jpg"
+      <a href="../../../casestudies/index.html" class="ps-app-card">
+        <img src="../../../assets/images/experience/experience-integris-auditorium.jpg"
              onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1762514679918-93GONVUAYZAJ5YRHCFKF/240820-integris-auditorium-9.jpg'"
              alt="Auditorium">
         <div class="ps-app-label">Auditoriums</div>
@@ -813,8 +828,8 @@
       <p>Our team will help you configure the ideal display for your space.</p>
     </div>
     <div class="ps-cta-strip-links">
-      <a href="../contact-us/index.html" class="ps-btn-white">Request a Quote</a>
-      <a href="../casestudies/index.html" class="ps-btn-outline-white">View Case Studies</a>
+      <a href="../../../contact-us/index.html" class="ps-btn-white">Request a Quote</a>
+      <a href="../../../casestudies/index.html" class="ps-btn-outline-white">View Case Studies</a>
     </div>
   </div>
 
@@ -836,7 +851,7 @@
         line: 'Indoor dvLED · Enlighten Series',
         name: 'Enlighten<br>Signature', nameShort: 'Enlighten Signature',
         tagline: 'The highest-performance COB dvLED panel in the SiliconCore lineup. Built for command-and-control environments, broadcast studios, and boardrooms that demand uncompromising image quality.',
-        glb: '../assets/3d/600-BOE-COB-cabinet.glb',
+        glb: '../../../assets/3d/600-BOE-COB-cabinet.glb',
         /* Highlights grid — 8 items, displayed in 4×2 */
         highlights: [
           { val: '1,800 nit',    label: 'Peak Brightness'    },
@@ -887,7 +902,7 @@
         line: 'Indoor dvLED · Enlighten Series',
         name: 'Enlighten<br>Select', nameShort: 'Enlighten Select',
         tagline: 'Performance-grade COB dvLED delivering SiliconCore quality at a more accessible price point. Ideal for corporate and commercial deployments.',
-        glb: '../assets/3d/600-BOE-COB-cabinet.glb',
+        glb: '../../../assets/3d/600-BOE-COB-cabinet.glb',
         highlights: [
           { val: '1,200 nit',    label: 'Peak Brightness'    },
           { val: '16:9',         label: 'Aspect Ratio'       },
@@ -926,7 +941,7 @@
         line: 'Indoor dvLED · SMD Series',
         name: 'Apex', nameShort: 'Apex',
         tagline: 'Premium SMD dvLED engineered for high-impact commercial, retail, and large-venue installations. Uncompromising brightness, reliability, and compatibility.',
-        glb: '../assets/3d/608-SMD-Standard-Cabinet.glb',
+        glb: '../../../assets/3d/608-SMD-Standard-Cabinet.glb',
         highlights: [
           { val: '1,000 nit',    label: 'Peak Brightness'    },
           { val: '1:1',          label: 'Aspect Ratio'       },
@@ -973,7 +988,7 @@
         line: 'Indoor dvLED · SMD Series',
         name: 'Apex<br>Slim', nameShort: 'Apex Slim',
         tagline: 'Premium ultra-slim SMD dvLED for architecturally sensitive installations. Minimal 28mm profile, maximum brightness and impact.',
-        glb: '../assets/3d/304-SMD-ST-Cabinet.glb',
+        glb: '../../../assets/3d/304-SMD-ST-Cabinet.glb',
         highlights: [
           { val: '800 nit',      label: 'Peak Brightness'    },
           { val: '1:1',          label: 'Aspect Ratio'       },
