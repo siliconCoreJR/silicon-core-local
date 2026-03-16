@@ -1623,10 +1623,13 @@ def main():
     print(f"Loaded {len(all_products)} rows from product_data.json")
 
     # 2. Filter: active_in_web == "Yes" AND indoor_outdoor == "Indoor"
+    #    Exclude AIO and Column products (standalone product pages, not pitch-grouped)
     indoor_active = [
         row for row in all_products
         if str(row.get("active_in_web", "")).strip().lower() == "yes"
         and str(row.get("indoor_outdoor", "")).strip().lower() == "indoor"
+        and "aio" not in row.get("product_name", "").lower()
+        and "column" not in row.get("product_name", "").lower()
     ]
     print(f"Filtered to {len(indoor_active)} active indoor products")
 
