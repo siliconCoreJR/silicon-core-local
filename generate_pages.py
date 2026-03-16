@@ -342,20 +342,21 @@ def make_specs_desc(product_name: str, product_type: str) -> str:
     return f"The {product_name} delivers high-brightness, reliable performance engineered for demanding commercial environments."
 
 
-def clean_number(val) -> str:
-    """Clean a numeric value: round to integer, strip floating-point noise.
-    Returns the cleaned string. Non-numeric values pass through unchanged.
+def clean_number(val, force_int=False) -> str:
+    """Clean a numeric value: strip floating-point noise.
+    If force_int=True, always round to nearest integer.
     E.g., '107.80000000000001' → '108', '1687.5' → '1687.5', 'abc' → 'abc'.
     """
     s = str(val).strip().replace(',', '')
     try:
         f = float(s)
+        if force_int:
+            return str(round(f))
         # If it's effectively an integer, return as int
-        if f == int(f):
-            return str(int(f))
+        if abs(f - round(f)) < 0.01:
+            return str(round(f))
         # Otherwise round to 2 decimal places to strip floating-point noise
         rounded = round(f, 2)
-        # Remove trailing zeros: 1687.50 → 1687.5
         return f"{rounded:g}"
     except (ValueError, TypeError):
         return str(val).strip()
@@ -408,20 +409,20 @@ def build_product_js(row: dict, pitch: str) -> tuple:
     product_type = determine_type(product_name)
     pid = slugify(product_name)
 
-    width = clean_number(row.get("width", ""))
-    height = clean_number(row.get("height", ""))
-    brightness = clean_number(row.get("brightness", ""))
+    width = clean_number(row.get("width", ""))          # can be decimal (e.g., 337.5)
+    height = clean_number(row.get("height", ""))         # can be decimal (e.g., 337.5)
+    brightness = clean_number(row.get("brightness", ""), force_int=True)
     aspect_ratio = str(row.get("aspect_ratio", "")).strip()
-    viewing_angle_h = clean_number(row.get("viewing_angle_h", ""))
-    viewing_angle_v = clean_number(row.get("viewing_angle_v", ""))
-    ip_rating = clean_number(row.get("ip_rating", ""))
-    max_power = clean_number(row.get("max_power", ""))
-    avg_power = clean_number(row.get("avg_power", ""))
+    viewing_angle_h = clean_number(row.get("viewing_angle_h", ""), force_int=True)
+    viewing_angle_v = clean_number(row.get("viewing_angle_v", ""), force_int=True)
+    ip_rating = clean_number(row.get("ip_rating", ""), force_int=True)
+    max_power = clean_number(row.get("max_power", ""), force_int=True)
+    avg_power = clean_number(row.get("avg_power", ""), force_int=True)
     weight = clean_number(row.get("weight", ""))
     operating_temp = str(row.get("operating_temp", "")).strip()
     scan = str(row.get("scan", "")).strip()
-    life_hours = clean_number(row.get("life_hours", ""))
-    bit_depth = clean_number(row.get("bit_depth", ""))
+    life_hours = clean_number(row.get("life_hours", ""), force_int=True)
+    bit_depth = clean_number(row.get("bit_depth", ""), force_int=True)
     voltage_range = str(row.get("voltage_range", "")).strip()
 
     brightness_display = format_number(brightness)
@@ -434,7 +435,13 @@ def build_product_js(row: dict, pitch: str) -> tuple:
     line = make_series_line(product_name, product_type)
     name_html = make_name_html(product_name)
     glb = pick_glb(product_type, width)
-    tagline = make_tagline(product_name, product_type, brightness_display, pitch)
+    # Use a cleaner pitch for display in taglines/suggested distance
+    # (e.g., '0.63' instead of '0.6333', but keep exact for spec table)
+    try:
+        pitch_display = f"{round(float(pitch), 2):g}"
+    except (ValueError, TypeError):
+        pitch_display = pitch
+    tagline = make_tagline(product_name, product_type, brightness_display, pitch_display)
     techs = make_techs(product_name)
     features = make_features(product_name, product_type)
     apps_lead = make_apps_lead(product_name, product_type)
@@ -446,7 +453,7 @@ def build_product_js(row: dict, pitch: str) -> tuple:
         {"val": aspect_ratio if aspect_ratio else f"{width}\u00d7{height}", "label": "Aspect Ratio"},
         {"val": scan, "label": "Scan Ratio"},
         {"val": f"{bit_depth}-bit", "label": "Greyscale"},
-        {"val": f"~{pitch} m", "label": "Suggested Dist."},
+        {"val": f"~{pitch_display} m", "label": "Suggested Dist."},
         {"val": f"{avg_power} W avg", "label": "Power / Cabinet"},
         {"val": operating_temp, "label": "Operating Temp"},
         {"val": cabinet_size_compact, "label": "Cabinet Size"},
