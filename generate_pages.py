@@ -83,12 +83,19 @@ def make_name_html(product_name: str) -> str:
     return parts[0]
 
 
-def pick_glb(product_type: str, width: str, product_name: str = "") -> str:
-    """Pick the correct 3D model file based on type, cabinet width, and name."""
+def pick_glb(product_type: str, width: str, height: str = "0", product_name: str = "") -> str:
+    """Pick the correct 3D model file based on type, cabinet width/height, and name."""
     try:
         w = float(width)
     except (ValueError, TypeError):
         w = 0
+    # 500x1000 cabinets
+    try:
+        h = float(height)
+    except (ValueError, TypeError):
+        h = 0
+    if abs(w - 500) < 10 and abs(h - 1000) < 10:
+        return "../../../assets/3d/500x1000-Cabinet.glb"
     # Slim cabinets (304mm width)
     if abs(w - 304) < 10:
         return "../../../assets/3d/304-SMD-ST-Cabinet.glb"
@@ -442,7 +449,7 @@ def build_product_js(row: dict, pitch: str) -> tuple:
     type_label = make_type_label(product_name, product_type)
     line = make_series_line(product_name, product_type)
     name_html = make_name_html(product_name)
-    glb = pick_glb(product_type, width)
+    glb = pick_glb(product_type, width, height)
     # Pixel pitch always displayed with exactly 2 decimal places
     try:
         pitch_display = f"{round(float(pitch), 2):.2f}"
