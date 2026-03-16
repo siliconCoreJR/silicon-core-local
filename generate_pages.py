@@ -96,6 +96,8 @@ def pick_glb(product_type: str, width: str, height: str = "0", product_name: str
         h = 0
     if abs(w - 500) < 10 and abs(h - 1000) < 10:
         return "../../../assets/3d/500x1000-Cabinet.glb"
+    if abs(w - 500) < 10 and abs(h - 500) < 10:
+        return "../../../assets/3d/500x500-Cabinet.glb"
     # Slim cabinets (304mm width)
     if abs(w - 304) < 10:
         return "../../../assets/3d/304-SMD-ST-Cabinet.glb"
