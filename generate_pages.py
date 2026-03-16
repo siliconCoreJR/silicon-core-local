@@ -342,16 +342,21 @@ def make_specs_desc(product_name: str, product_type: str) -> str:
     return f"The {product_name} delivers high-brightness, reliable performance engineered for demanding commercial environments."
 
 
-def clean_number(val, force_int=False) -> str:
+def clean_number(val, force_int=False, decimals=None) -> str:
     """Clean a numeric value: strip floating-point noise.
     If force_int=True, always round to nearest integer.
-    E.g., '107.80000000000001' → '108', '1687.5' → '1687.5', 'abc' → 'abc'.
+    If decimals is set, round to that many decimal places (trailing zeros kept).
+    E.g., '107.80000000000001' → '108', '337.5' with decimals=1 → '337.5', 'abc' → 'abc'.
     """
     s = str(val).strip().replace(',', '')
     try:
         f = float(s)
         if force_int:
             return str(round(f))
+        if decimals is not None:
+            rounded = round(f, decimals)
+            # Use :g to drop trailing zeros (337.5 stays 337.5, 608.0 becomes 608)
+            return f"{rounded:g}"
         # If it's effectively an integer, return as int
         if abs(f - round(f)) < 0.01:
             return str(round(f))
@@ -409,8 +414,8 @@ def build_product_js(row: dict, pitch: str) -> tuple:
     product_type = determine_type(product_name)
     pid = slugify(product_name)
 
-    width = clean_number(row.get("width", ""), force_int=True)
-    height = clean_number(row.get("height", ""), force_int=True)
+    width = clean_number(row.get("width", ""), decimals=1)
+    height = clean_number(row.get("height", ""), decimals=1)
     brightness = clean_number(row.get("brightness", ""), force_int=True)
     aspect_ratio = str(row.get("aspect_ratio", "")).strip()
     viewing_angle_h = clean_number(row.get("viewing_angle_h", ""), force_int=True)
