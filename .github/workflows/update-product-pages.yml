@@ -1,0 +1,48 @@
+name: Update Product Pages from Google Sheets
+
+on:
+  workflow_dispatch:
+    inputs:
+      product_data:
+        description: 'Trigger signal (data is already committed to repo)'
+        required: false
+        type: string
+        default: 'committed'
+
+jobs:
+  update-pages:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Verify product data exists
+        run: |
+          if [ ! -f product_data.json ]; then
+            echo "ERROR: product_data.json not found in repo"
+            exit 1
+          fi
+          echo "Found product_data.json with $(wc -l < product_data.json) lines"
+
+      - name: Generate pages
+        run: python3 generate_pages.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "SiliconCore Bot"
+          git config user.email "bot@silicon-core.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-generate product pages from latest sheet data"
+            git push
+          fi
