@@ -83,12 +83,15 @@ def make_name_html(product_name: str) -> str:
     return parts[0]
 
 
-def pick_glb(product_type: str, width: str) -> str:
-    """Pick the correct 3D model file based on type and cabinet width."""
+def pick_glb(product_type: str, width: str, product_name: str = "") -> str:
+    """Pick the correct 3D model file based on type, cabinet width, and name."""
     try:
         w = float(width)
     except (ValueError, TypeError):
         w = 0
+    # Slim cabinets (304mm width)
+    if abs(w - 304) < 10:
+        return "../../../assets/3d/304-SMD-ST-Cabinet.glb"
     if product_type == "COB" and abs(w - 600) < 10:
         return "../../../assets/3d/600-BOE-COB-cabinet.glb"
     if product_type == "SMD" and abs(w - 608) < 10:
