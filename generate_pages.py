@@ -409,8 +409,8 @@ def build_product_js(row: dict, pitch: str) -> tuple:
     product_type = determine_type(product_name)
     pid = slugify(product_name)
 
-    width = clean_number(row.get("width", ""))          # can be decimal (e.g., 337.5)
-    height = clean_number(row.get("height", ""))         # can be decimal (e.g., 337.5)
+    width = clean_number(row.get("width", ""), force_int=True)
+    height = clean_number(row.get("height", ""), force_int=True)
     brightness = clean_number(row.get("brightness", ""), force_int=True)
     aspect_ratio = str(row.get("aspect_ratio", "")).strip()
     viewing_angle_h = clean_number(row.get("viewing_angle_h", ""), force_int=True)
@@ -418,7 +418,7 @@ def build_product_js(row: dict, pitch: str) -> tuple:
     ip_rating = clean_number(row.get("ip_rating", ""), force_int=True)
     max_power = clean_number(row.get("max_power", ""), force_int=True)
     avg_power = clean_number(row.get("avg_power", ""), force_int=True)
-    weight = clean_number(row.get("weight", ""))
+    weight = clean_number(row.get("weight", ""), force_int=True)
     operating_temp = str(row.get("operating_temp", "")).strip()
     scan = str(row.get("scan", "")).strip()
     life_hours = clean_number(row.get("life_hours", ""), force_int=True)
@@ -435,10 +435,9 @@ def build_product_js(row: dict, pitch: str) -> tuple:
     line = make_series_line(product_name, product_type)
     name_html = make_name_html(product_name)
     glb = pick_glb(product_type, width)
-    # Use a cleaner pitch for display in taglines/suggested distance
-    # (e.g., '0.63' instead of '0.6333', but keep exact for spec table)
+    # Pixel pitch always displayed with exactly 2 decimal places
     try:
-        pitch_display = f"{round(float(pitch), 2):g}"
+        pitch_display = f"{round(float(pitch), 2):.2f}"
     except (ValueError, TypeError):
         pitch_display = pitch
     tagline = make_tagline(product_name, product_type, brightness_display, pitch_display)
@@ -461,7 +460,7 @@ def build_product_js(row: dict, pitch: str) -> tuple:
 
     # Build specs
     specs_rows = [
-        ["Pixel Pitch", f"{pitch} mm"],
+        ["Pixel Pitch", f"{pitch_display} mm"],
         ["Cabinet Size", cabinet_size_display],
         ["Brightness", f"{brightness_display} nit"],
         ["Viewing Angle", f"{viewing_angle_h}\u00b0 H / {viewing_angle_v}\u00b0 V"],
