@@ -103,8 +103,8 @@ def pick_glb(product_type: str, width: str, height: str = "0", product_name: str
         return "../../../assets/3d/304-SMD-ST-Cabinet.glb"
     if product_type == "COB" and abs(w - 600) < 10:
         return "../../../assets/3d/600-BOE-COB-cabinet.glb"
-    if product_type == "SMD" and abs(w - 608) < 10:
-        return "../../../assets/3d/608-SMD-Standard-Cabinet.glb"
+    if abs(w - 608) < 10:
+        return "../../../assets/3d/SC-Cabinet-8-in-1.glb"
     if product_type == "SMD" and abs(w - 480) < 10:
         return "../../../assets/3d/608-SMD-Standard-Cabinet.glb"
     # Default / fallback
