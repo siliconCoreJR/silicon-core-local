@@ -342,10 +342,29 @@ def make_specs_desc(product_name: str, product_type: str) -> str:
     return f"The {product_name} delivers high-brightness, reliable performance engineered for demanding commercial environments."
 
 
+def clean_number(val) -> str:
+    """Clean a numeric value: round to integer, strip floating-point noise.
+    Returns the cleaned string. Non-numeric values pass through unchanged.
+    E.g., '107.80000000000001' → '108', '1687.5' → '1687.5', 'abc' → 'abc'.
+    """
+    s = str(val).strip().replace(',', '')
+    try:
+        f = float(s)
+        # If it's effectively an integer, return as int
+        if f == int(f):
+            return str(int(f))
+        # Otherwise round to 2 decimal places to strip floating-point noise
+        rounded = round(f, 2)
+        # Remove trailing zeros: 1687.50 → 1687.5
+        return f"{rounded:g}"
+    except (ValueError, TypeError):
+        return str(val).strip()
+
+
 def format_number(val) -> str:
     """Format a numeric value with commas for display (e.g., 1800 → '1,800')."""
     try:
-        n = int(float(val))
+        n = int(float(str(val).replace(',', '')))
         return f"{n:,}"
     except (ValueError, TypeError):
         return str(val)
@@ -389,20 +408,20 @@ def build_product_js(row: dict, pitch: str) -> tuple:
     product_type = determine_type(product_name)
     pid = slugify(product_name)
 
-    width = str(row.get("width", "")).strip()
-    height = str(row.get("height", "")).strip()
-    brightness = str(row.get("brightness", "")).strip()
+    width = clean_number(row.get("width", ""))
+    height = clean_number(row.get("height", ""))
+    brightness = clean_number(row.get("brightness", ""))
     aspect_ratio = str(row.get("aspect_ratio", "")).strip()
-    viewing_angle_h = str(row.get("viewing_angle_h", "")).strip()
-    viewing_angle_v = str(row.get("viewing_angle_v", "")).strip()
-    ip_rating = str(row.get("ip_rating", "")).strip()
-    max_power = str(row.get("max_power", "")).strip()
-    avg_power = str(row.get("avg_power", "")).strip()
-    weight = str(row.get("weight", "")).strip()
+    viewing_angle_h = clean_number(row.get("viewing_angle_h", ""))
+    viewing_angle_v = clean_number(row.get("viewing_angle_v", ""))
+    ip_rating = clean_number(row.get("ip_rating", ""))
+    max_power = clean_number(row.get("max_power", ""))
+    avg_power = clean_number(row.get("avg_power", ""))
+    weight = clean_number(row.get("weight", ""))
     operating_temp = str(row.get("operating_temp", "")).strip()
     scan = str(row.get("scan", "")).strip()
-    life_hours = str(row.get("life_hours", "")).strip()
-    bit_depth = str(row.get("bit_depth", "")).strip()
+    life_hours = clean_number(row.get("life_hours", ""))
+    bit_depth = clean_number(row.get("bit_depth", ""))
     voltage_range = str(row.get("voltage_range", "")).strip()
 
     brightness_display = format_number(brightness)
