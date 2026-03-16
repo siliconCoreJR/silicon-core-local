@@ -695,21 +695,41 @@
       </div>
     </div>
     <div class="pp-tabs">
-      <button class="pp-tab active" data-product="cob-sig">
-        <span class="pp-tab-type">COB</span>
-        <span class="pp-tab-name">Enlighten Signature</span>
-      </button>
-      <button class="pp-tab" data-product="cob-sel">
+      <button class="pp-tab active" data-product="enlighten-select">
         <span class="pp-tab-type">COB</span>
         <span class="pp-tab-name">Enlighten Select</span>
       </button>
-      <button class="pp-tab" data-product="smd-std">
+      <button class="pp-tab" data-product="enlighten-signature">
+        <span class="pp-tab-type">COB</span>
+        <span class="pp-tab-name">Enlighten Signature</span>
+      </button>
+      <button class="pp-tab" data-product="aio-135-hd">
+        <span class="pp-tab-type">SMD</span>
+        <span class="pp-tab-name">AIO 135" HD</span>
+      </button>
+      <button class="pp-tab" data-product="aio-135-hd-enlighten">
+        <span class="pp-tab-type">SMD</span>
+        <span class="pp-tab-name">AIO 135" HD Enlighten</span>
+      </button>
+      <button class="pp-tab" data-product="apex">
         <span class="pp-tab-type">SMD</span>
         <span class="pp-tab-name">Apex</span>
       </button>
-      <button class="pp-tab" data-product="smd-slim">
+      <button class="pp-tab" data-product="apex-slim-high-brightness">
+        <span class="pp-tab-type">SMD</span>
+        <span class="pp-tab-name">Apex  Slim High Brightness</span>
+      </button>
+      <button class="pp-tab" data-product="apex-high-brightness">
+        <span class="pp-tab-type">SMD</span>
+        <span class="pp-tab-name">Apex High Brightness</span>
+      </button>
+      <button class="pp-tab" data-product="apex-slim">
         <span class="pp-tab-type">SMD</span>
         <span class="pp-tab-name">Apex Slim</span>
+      </button>
+      <button class="pp-tab" data-product="apex-taa">
+        <span class="pp-tab-type">SMD</span>
+        <span class="pp-tab-name">Apex TAA</span>
       </button>
     </div>
   </div>
@@ -846,43 +866,86 @@
     ];
 
     const PRODUCTS = {
-      'cob-sig': {
+      'enlighten-select': {
+        type: 'COB', typeLabel: 'COB · Select',
+        line: 'Indoor dvLED · Enlighten Series',
+        name: 'Enlighten<br>Select', nameShort: 'Enlighten Select',
+        tagline: 'Performance-grade COB dvLED delivering SiliconCore quality at a more accessible price point. Ideal for corporate and commercial deployments.',
+        glb: '../../../assets/3d/600-BOE-COB-cabinet.glb',
+        highlights: [
+          { val: '600 nit', label: 'Peak Brightness' },
+          { val: '600×337.5', label: 'Aspect Ratio' },
+          { val: '40 scan', label: 'Scan Ratio' },
+          { val: '13-bit', label: 'Greyscale' },
+          { val: '~1.56 m', label: 'Suggested Dist.' },
+          { val: '20 W avg', label: 'Power / Cabinet' },
+          { val: '-10 to +40', label: 'Operating Temp' },
+          { val: '600×337.5 mm', label: 'Cabinet Size' },
+        ],
+        techs: ["cc-iq"],
+        sizes: ["600 \u00d7 337.5 mm"],
+        specsDesc: 'The Enlighten Select brings SiliconCore COB technology and fan-less operation to a broader range of commercial applications without compromising on build quality.',
+        specs: {
+          '600 × 337.5 mm': [
+            ['Pixel Pitch','1.56 mm'],
+            ['Cabinet Size','600 × 337.5 mm'],
+            ['Brightness','600 nit'],
+            ['Viewing Angle','160° H / 160° V'],
+            ['Greyscale','13-bit'],
+            ['Scan','40 scan'],
+            ['IP Rating','IP40'],
+            ['Max Power','60 W'],
+            ['Average Power','20 W'],
+            ['Weight','3 kg'],
+            ['Operating Temp','-10 to +40°C'],
+            ['Life Hours','100,000 hrs'],
+            ['Voltage Range','100-240 VAC'],
+          ],
+        },
+        features: [
+          { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: 'Common Cathode', desc: 'Lower power consumption and cooler operation compared to standard anode designs.' },
+          { icon: 'M3 9h18M9 21V9', title: 'Fan-less Design', desc: 'Completely silent operation. No fans means no noise, no vibration, no maintenance.' },
+          { icon: 'M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z', title: 'COB Technology', desc: 'Chip-on-Board packaging for improved uniformity, wider viewing angles, and greater durability.' },
+          { icon: 'M22 12h-4l-3 9L9 3l-3 9H2', title: 'Easy Serviceability', desc: 'Front-access panel design simplifies installation and long-term maintenance.' },
+        ],
+        appsLead: 'Enlighten Select suits corporate AV, retail, and commercial environments.',
+        ctaTitle: 'Ready to specify Enlighten Select?',
+      },
+
+      'enlighten-signature': {
         type: 'COB', typeLabel: 'COB · Signature',
         line: 'Indoor dvLED · Enlighten Series',
         name: 'Enlighten<br>Signature', nameShort: 'Enlighten Signature',
         tagline: 'The highest-performance COB dvLED panel in the SiliconCore lineup. Built for command-and-control environments, broadcast studios, and boardrooms that demand uncompromising image quality.',
         glb: '../../../assets/3d/600-BOE-COB-cabinet.glb',
-        /* Highlights grid — 8 items, displayed in 4×2 */
         highlights: [
-          { val: '1,800 nit',    label: 'Peak Brightness'    },
-          { val: '16:9',         label: 'Aspect Ratio'       },
-          { val: '1/60',         label: 'Scan Ratio'         },
-          { val: '16-bit',       label: 'Greyscale'          },
-          { val: '~1.5 m',       label: 'Suggested Dist.'    },
-          { val: '105 W avg',    label: 'Power / Cabinet'    },
-          { val: '0° – 40°C',    label: 'Operating Temp'     },
-          { val: '600×338 mm',   label: 'Cabinet Size'       },
+          { val: '1,200 nit', label: 'Peak Brightness' },
+          { val: '16:9', label: 'Aspect Ratio' },
+          { val: '27 Scan', label: 'Scan Ratio' },
+          { val: '16-bit', label: 'Greyscale' },
+          { val: '~1.56 m', label: 'Suggested Dist.' },
+          { val: '36 W avg', label: 'Power / Cabinet' },
+          { val: '-20 to +45', label: 'Operating Temp' },
+          { val: '600×337.5 mm', label: 'Cabinet Size' },
         ],
-        /* Active technology badges */
-        techs: ['cc-iq', 'zach', 'lisa'],
-        sizes: ['600 × 337.5 mm'],
+        techs: ["cc-iq", "zach", "lisa"],
+        sizes: ["600 \u00d7 337.5 mm"],
         specsDesc: 'Powered by Common Cathode IQ and LISA surface protection, the Enlighten Signature delivers unmatched pixel density and reliability in a fan-less, maintenance-friendly cabinet.',
         specs: {
           '600 × 337.5 mm': [
-            ['Pixel Pitch','1.5 mm'],['Cabinet Size','600 × 337.5 mm'],['Resolution','400 x 225 px'],
-            ['Brightness (typ)','800 nit'],['Brightness (peak)','1,800 nit'],
-            ['Viewing Angle','160° H / 140° V'],['Refresh Rate','3,840 Hz'],['Greyscale','16-bit'],
-            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP30 Front'],['Min. View Distance','~1.5 m'],
-            ['Power (avg / max)','105 W / 280 W'],['Operating Temp','0°C to +40°C'],
-            ['Technology','LISA · CC IQ · ZACH'],
-          ],
-          '600 × 675 mm': [
-            ['Pixel Pitch','1.5 mm'],['Cabinet Size','600 × 675 mm'],['Resolution','666 × 750 px'],
-            ['Brightness (typ)','800 nit'],['Brightness (peak)','1,800 nit'],
-            ['Viewing Angle','160° H / 140° V'],['Refresh Rate','3,840 Hz'],['Greyscale','16-bit'],
-            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP30 Front'],['Min. View Distance','~1.5 m'],
-            ['Power (avg / max)','210 W / 560 W'],['Operating Temp','0°C to +40°C'],
-            ['Technology','LISA · CC IQ · ZACH'],
+            ['Pixel Pitch','1.56 mm'],
+            ['Cabinet Size','600 × 337.5 mm'],
+            ['Brightness','1,200 nit'],
+            ['Viewing Angle','160° H / 140° V'],
+            ['Greyscale','16-bit'],
+            ['Scan','27 Scan'],
+            ['IP Rating','IP20'],
+            ['Max Power','73 W'],
+            ['Average Power','36 W'],
+            ['Weight','6 kg'],
+            ['Operating Temp','-20 to +45°C'],
+            ['Life Hours','100,000 hrs'],
+            ['Voltage Range','100-240 VAC'],
           ],
         },
         features: [
@@ -897,85 +960,137 @@
         ctaTitle: 'Ready to specify Enlighten Signature?',
       },
 
-      'cob-sel': {
-        type: 'COB', typeLabel: 'COB · Select',
-        line: 'Indoor dvLED · Enlighten Series',
-        name: 'Enlighten<br>Select', nameShort: 'Enlighten Select',
-        tagline: 'Performance-grade COB dvLED delivering SiliconCore quality at a more accessible price point. Ideal for corporate and commercial deployments.',
-        glb: '../../../assets/3d/600-BOE-COB-cabinet.glb',
+      'aio-135-hd': {
+        type: 'SMD', typeLabel: 'AIO · 135" HD',
+        line: 'Indoor dvLED · SMD Series',
+        name: 'AIO<br>135" HD', nameShort: 'AIO 135" HD',
+        tagline: 'High-performance SMD dvLED at 1.56 mm pixel pitch. Engineered for demanding commercial and large-venue applications with up to 1,000 nit output.',
+        glb: '../../../assets/3d/cabinet.glb',
         highlights: [
-          { val: '1,200 nit',    label: 'Peak Brightness'    },
-          { val: '16:9',         label: 'Aspect Ratio'       },
-          { val: '1/60',         label: 'Scan Ratio'         },
-          { val: '14-bit',       label: 'Greyscale'          },
-          { val: '~1.5 m',       label: 'Suggested Dist.'    },
-          { val: '95 W avg',     label: 'Power / Cabinet'    },
-          { val: '0° – 40°C',    label: 'Operating Temp'     },
-          { val: '600×338 mm',   label: 'Cabinet Size'       },
+          { val: '1,000 nit', label: 'Peak Brightness' },
+          { val: '16:9', label: 'Aspect Ratio' },
+          { val: '15 Scan', label: 'Scan Ratio' },
+          { val: '16-bit', label: 'Greyscale' },
+          { val: '~1.56 m', label: 'Suggested Dist.' },
+          { val: '651 W avg', label: 'Power / Cabinet' },
+          { val: '-20 to +45', label: 'Operating Temp' },
+          { val: '3000×1687.5 mm', label: 'Cabinet Size' },
         ],
         techs: [],
-        sizes: ['600 × 337.5 mm'],
-        specsDesc: 'The Enlighten Select brings SiliconCore COB technology and fan-less operation to a broader range of commercial applications without compromising on build quality.',
+        sizes: ["3000 \u00d7 1687.5 mm"],
+        specsDesc: 'The AIO 135" HD delivers high-brightness, reliable performance engineered for demanding commercial environments.',
         specs: {
-          '600 × 337.5 mm': [
-            ['Pixel Pitch','1.5 mm'],['Cabinet Size','600 × 337.5 mm'],['Resolution','400 x 225 px'],
-            ['Brightness (typ)','600 nit'],['Brightness (peak)','1,200 nit'],
-            ['Viewing Angle','160° H / 140° V'],['Refresh Rate','3,840 Hz'],['Greyscale','14-bit'],
-            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP30 Front'],['Min. View Distance','~1.5 m'],
-            ['Power (avg / max)','95 W / 250 W'],['Operating Temp','0°C to +40°C'],
-            ['Technology','COB · Common Cathode'],
+          '3000 × 1687.5 mm': [
+            ['Pixel Pitch','1.56 mm'],
+            ['Cabinet Size','3000 × 1687.5 mm'],
+            ['Brightness','1,000 nit'],
+            ['Viewing Angle','160° H / 140° V'],
+            ['Greyscale','16-bit'],
+            ['Scan','15 Scan'],
+            ['IP Rating','IP31'],
+            ['Max Power','1,836 W'],
+            ['Average Power','651 W'],
+            ['Weight','454 kg'],
+            ['Operating Temp','-20 to +45°C'],
+            ['Life Hours','100,000 hrs'],
+            ['Voltage Range','100-240 VAC'],
           ],
         },
         features: [
-          { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: 'Common Cathode', desc: 'Lower power consumption and cooler operation compared to standard anode designs.' },
-          { icon: 'M3 9h18M9 21V9', title: 'Fan-less Design', desc: 'Completely silent operation. No fans means no noise, no vibration, no maintenance.' },
-          { icon: 'M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z', title: 'COB Technology', desc: 'Chip-on-Board packaging for improved uniformity, wider viewing angles, and greater durability.' },
-          { icon: 'M22 12h-4l-3 9L9 3l-3 9H2', title: 'Easy Serviceability', desc: 'Front-access panel design simplifies installation and long-term maintenance.' },
+          { icon: 'M3 9h18M9 21V9', title: 'High Brightness', desc: 'High peak output — ideal for environments with ambient lighting challenges.' },
+          { icon: 'M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z', title: 'Versatile Footprint', desc: 'Flexible cabinet sizes for diverse system design and screen-size configurations.' },
+          { icon: 'M22 12h-4l-3 9L9 3l-3 9H2', title: 'Broad Compatibility', desc: 'Works with all major LED processors and control systems on the market.' },
+          { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: 'Proven Reliability', desc: 'SMD technology with a track record across thousands of commercial installations worldwide.' },
         ],
-        appsLead: 'Enlighten Select suits corporate AV, retail, and commercial environments.',
-        ctaTitle: 'Ready to specify Enlighten Select?',
+        appsLead: 'AIO 135" HD is built for demanding commercial, retail, and large-venue applications.',
+        ctaTitle: 'Ready to specify AIO 135" HD?',
       },
 
-      'smd-std': {
+      'aio-135-hd-enlighten': {
+        type: 'SMD', typeLabel: 'AIO · 135" HD Enlighten',
+        line: 'Indoor dvLED · SMD Series',
+        name: 'AIO<br>135" HD Enlighten', nameShort: 'AIO 135" HD Enlighten',
+        tagline: 'High-performance SMD dvLED at 1.56 mm pixel pitch. Engineered for demanding commercial and large-venue applications with up to 1,200 nit output.',
+        glb: '../../../assets/3d/cabinet.glb',
+        highlights: [
+          { val: '1,200 nit', label: 'Peak Brightness' },
+          { val: '16:9', label: 'Aspect Ratio' },
+          { val: '36 Scan', label: 'Scan Ratio' },
+          { val: '16-bit', label: 'Greyscale' },
+          { val: '~1.56 m', label: 'Suggested Dist.' },
+          { val: '700 W avg', label: 'Power / Cabinet' },
+          { val: '-10 to +40', label: 'Operating Temp' },
+          { val: '3000×1687.5 mm', label: 'Cabinet Size' },
+        ],
+        techs: ["cc-iq"],
+        sizes: ["3000 \u00d7 1687.5 mm"],
+        specsDesc: 'The AIO 135" HD Enlighten delivers high-brightness, reliable performance engineered for demanding commercial environments.',
+        specs: {
+          '3000 × 1687.5 mm': [
+            ['Pixel Pitch','1.56 mm'],
+            ['Cabinet Size','3000 × 1687.5 mm'],
+            ['Brightness','1,200 nit'],
+            ['Viewing Angle','160° H / 140° V'],
+            ['Greyscale','16-bit'],
+            ['Scan','36 Scan'],
+            ['IP Rating','IP31'],
+            ['Max Power','1,850 W'],
+            ['Average Power','700 W'],
+            ['Weight','454 kg'],
+            ['Operating Temp','-10 to +40°C'],
+            ['Life Hours','100,000 hrs'],
+            ['Voltage Range','100-240 VAC'],
+          ],
+        },
+        features: [
+          { icon: 'M3 9h18M9 21V9', title: 'High Brightness', desc: 'High peak output — ideal for environments with ambient lighting challenges.' },
+          { icon: 'M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z', title: 'Versatile Footprint', desc: 'Flexible cabinet sizes for diverse system design and screen-size configurations.' },
+          { icon: 'M22 12h-4l-3 9L9 3l-3 9H2', title: 'Broad Compatibility', desc: 'Works with all major LED processors and control systems on the market.' },
+          { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: 'Proven Reliability', desc: 'SMD technology with a track record across thousands of commercial installations worldwide.' },
+        ],
+        appsLead: 'AIO 135" HD Enlighten is built for demanding commercial, retail, and large-venue applications.',
+        ctaTitle: 'Ready to specify AIO 135" HD Enlighten?',
+      },
+
+      'apex': {
         type: 'SMD', typeLabel: 'Apex',
         line: 'Indoor dvLED · SMD Series',
         name: 'Apex', nameShort: 'Apex',
         tagline: 'Premium SMD dvLED engineered for high-impact commercial, retail, and large-venue installations. Uncompromising brightness, reliability, and compatibility.',
         glb: '../../../assets/3d/608-SMD-Standard-Cabinet.glb',
         highlights: [
-          { val: '1,000 nit',    label: 'Peak Brightness'    },
-          { val: '1:1',          label: 'Aspect Ratio'       },
-          { val: '1/60',         label: 'Scan Ratio'         },
-          { val: '12-bit',       label: 'Greyscale'          },
-          { val: '~1.5 m',       label: 'Suggested Dist.'    },
-          { val: '80 W avg',     label: 'Power / Cabinet'    },
-          { val: '0° – 40°C',    label: 'Operating Temp'     },
-          { val: '480×480 mm',   label: 'Cabinet Size'       },
+          { val: '1,200 nit', label: 'Peak Brightness' },
+          { val: '16:9', label: 'Aspect Ratio' },
+          { val: '15 Scan', label: 'Scan Ratio' },
+          { val: '16-bit', label: 'Greyscale' },
+          { val: '~1.58 m', label: 'Suggested Dist.' },
+          { val: '39 W avg', label: 'Power / Cabinet' },
+          { val: '-20 to +45', label: 'Operating Temp' },
+          { val: '608×342 mm', label: 'Cabinet Size' },
         ],
         techs: [],
-        sizes: ['480 × 480 mm'],
+        sizes: ["608 \u00d7 342 mm"],
         specsDesc: 'The Apex cabinet is engineered for demanding commercial and rental applications, delivering robust, high-brightness performance in versatile footprints.',
         specs: {
-          '480 × 480 mm': [
-            ['Pixel Pitch','1.5 mm'],['Cabinet Size','480 × 480 mm'],['Resolution','320 x 320 px'],
-            ['Brightness (typ)','600 nit'],['Brightness (peak)','1,000 nit'],
-            ['Viewing Angle','140° H / 130° V'],['Refresh Rate','1,920 Hz'],['Greyscale','12-bit'],
-            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP40 Front'],['Min. View Distance','~1.5 m'],
-            ['Power (avg / max)','80 W / 200 W'],['Operating Temp','0°C to +40°C'],
-            ['Technology','SMD 3-in-1'],
-          ],
-          '960 × 480 mm': [
-            ['Pixel Pitch','1.5 mm'],['Cabinet Size','960 × 480 mm'],['Resolution','1066 × 533 px'],
-            ['Brightness (typ)','600 nit'],['Brightness (peak)','1,000 nit'],
-            ['Viewing Angle','140° H / 130° V'],['Refresh Rate','1,920 Hz'],['Greyscale','12-bit'],
-            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP40 Front'],['Min. View Distance','~1.5 m'],
-            ['Power (avg / max)','160 W / 400 W'],['Operating Temp','0°C to +40°C'],
-            ['Technology','SMD 3-in-1'],
+          '608 × 342 mm': [
+            ['Pixel Pitch','1.58 mm'],
+            ['Cabinet Size','608 × 342 mm'],
+            ['Brightness','1,200 nit'],
+            ['Viewing Angle','160° H / 140° V'],
+            ['Greyscale','16-bit'],
+            ['Scan','15 Scan'],
+            ['IP Rating','IP40'],
+            ['Max Power','116 W'],
+            ['Average Power','39 W'],
+            ['Weight','10 kg'],
+            ['Operating Temp','-20 to +45°C'],
+            ['Life Hours','100,000 hrs'],
+            ['Voltage Range','100-240 VAC'],
           ],
         },
         features: [
-          { icon: 'M3 9h18M9 21V9', title: 'High Brightness', desc: 'Up to 1,000 nit peak output — ideal for environments with ambient lighting challenges.' },
-          { icon: 'M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z', title: 'Versatile Footprint', desc: 'Two cabinet sizes offer flexibility in system design and screen-size configurations.' },
+          { icon: 'M3 9h18M9 21V9', title: 'High Brightness', desc: 'High peak output — ideal for environments with ambient lighting challenges.' },
+          { icon: 'M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z', title: 'Versatile Footprint', desc: 'Flexible cabinet sizes for diverse system design and screen-size configurations.' },
           { icon: 'M22 12h-4l-3 9L9 3l-3 9H2', title: 'Broad Compatibility', desc: 'Works with all major LED processors and control systems on the market.' },
           { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: 'Proven Reliability', desc: 'SMD technology with a track record across thousands of commercial installations worldwide.' },
         ],
@@ -983,37 +1098,136 @@
         ctaTitle: 'Ready to specify Apex?',
       },
 
-      'smd-slim': {
-        type: 'SMD', typeLabel: 'Apex · Slim',
+      'apex-slim-high-brightness': {
+        type: 'SMD', typeLabel: 'Apex · Slim High Brightness',
         line: 'Indoor dvLED · SMD Series',
-        name: 'Apex<br>Slim', nameShort: 'Apex Slim',
-        tagline: 'Premium ultra-slim SMD dvLED for architecturally sensitive installations. Minimal 28mm profile, maximum brightness and impact.',
-        glb: '../../../assets/3d/304-SMD-ST-Cabinet.glb',
+        name: 'Apex<br>Slim High Brightness', nameShort: 'Apex  Slim High Brightness',
+        tagline: 'High-performance SMD dvLED at 1.58 mm pixel pitch. Engineered for demanding commercial and large-venue applications with up to 3,000 nit output.',
+        glb: '../../../assets/3d/cabinet.glb',
         highlights: [
-          { val: '800 nit',      label: 'Peak Brightness'    },
-          { val: '1:1',          label: 'Aspect Ratio'       },
-          { val: '1/60',         label: 'Scan Ratio'         },
-          { val: '12-bit',       label: 'Greyscale'          },
-          { val: '~1.5 m',       label: 'Suggested Dist.'    },
-          { val: '65 W avg',     label: 'Power / Cabinet'    },
-          { val: '0° – 40°C',    label: 'Operating Temp'     },
-          { val: '480×480 mm',   label: 'Cabinet Size'       },
+          { val: '3,000 nit', label: 'Peak Brightness' },
+          { val: '304×682', label: 'Aspect Ratio' },
+          { val: '15 Scan', label: 'Scan Ratio' },
+          { val: '16-bit', label: 'Greyscale' },
+          { val: '~1.58 m', label: 'Suggested Dist.' },
+          { val: '39 W avg', label: 'Power / Cabinet' },
+          { val: '-20 to +45', label: 'Operating Temp' },
+          { val: '304×682 mm', label: 'Cabinet Size' },
         ],
         techs: [],
-        sizes: ['480 × 480 mm'],
-        specsDesc: 'The Apex Slim is engineered for flush-wall and recessed installations, delivering premium performance in a significantly reduced 28mm depth profile.',
+        sizes: ["304 \u00d7 682 mm"],
+        specsDesc: 'The Apex  Slim High Brightness delivers high-brightness, reliable performance engineered for demanding commercial environments.',
         specs: {
-          '480 × 480 mm': [
-            ['Pixel Pitch','1.5 mm'],['Cabinet Size','480 × 480 mm'],['Cabinet Depth','28 mm (ultra-slim)'],
-            ['Resolution','320 x 320 px'],['Brightness (typ)','500 nit'],['Brightness (peak)','800 nit'],
-            ['Viewing Angle','140° H / 130° V'],['Refresh Rate','1,920 Hz'],['Greyscale','12-bit'],
-            ['Scan Ratio','1/60 (PWM)'],['IP Rating','IP40 Front'],['Min. View Distance','~1.5 m'],
-            ['Power (avg / max)','65 W / 160 W'],['Operating Temp','0°C to +40°C'],
-            ['Technology','SMD 3-in-1'],
+          '304 × 682 mm': [
+            ['Pixel Pitch','1.58 mm'],
+            ['Cabinet Size','304 × 682 mm'],
+            ['Brightness','3,000 nit'],
+            ['Viewing Angle','160° H / 140° V'],
+            ['Greyscale','16-bit'],
+            ['Scan','15 Scan'],
+            ['IP Rating','IP40'],
+            ['Max Power','118 W'],
+            ['Average Power','39 W'],
+            ['Weight','10 kg'],
+            ['Operating Temp','-20 to +45°C'],
+            ['Life Hours','100,000 hrs'],
+            ['Voltage Range','100-240 VAC'],
           ],
         },
         features: [
-          { icon: 'M3 9h18M9 21V9', title: 'Ultra-slim Profile', desc: 'Just 28mm deep — designed for recessed, flush-wall, and architecturally integrated installations.' },
+          { icon: 'M3 9h18M9 21V9', title: 'Ultra-slim Profile', desc: 'Designed for recessed, flush-wall, and architecturally integrated installations.' },
+          { icon: 'M22 12h-4l-3 9L9 3l-3 9H2', title: 'Low Weight', desc: 'Reduced cabinet mass simplifies mounting and reduces structural load on walls and frames.' },
+          { icon: 'M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z', title: 'Clean Aesthetics', desc: 'Near-seamless installation with minimal visible bezel for a premium architectural look.' },
+          { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: 'Easy Front Access', desc: 'Front-serviceable design maintains ease of maintenance even in recessed installations.' },
+        ],
+        appsLead: 'Apex  Slim High Brightness is built for demanding commercial, retail, and large-venue applications.',
+        ctaTitle: 'Ready to specify Apex  Slim High Brightness?',
+      },
+
+      'apex-high-brightness': {
+        type: 'SMD', typeLabel: 'Apex · High Brightness',
+        line: 'Indoor dvLED · SMD Series',
+        name: 'Apex<br>High Brightness', nameShort: 'Apex High Brightness',
+        tagline: 'High-performance SMD dvLED at 1.58 mm pixel pitch. Engineered for demanding commercial and large-venue applications with up to 3,000 nit output.',
+        glb: '../../../assets/3d/608-SMD-Standard-Cabinet.glb',
+        highlights: [
+          { val: '3,000 nit', label: 'Peak Brightness' },
+          { val: '16:9', label: 'Aspect Ratio' },
+          { val: '15 Scan', label: 'Scan Ratio' },
+          { val: '16-bit', label: 'Greyscale' },
+          { val: '~1.58 m', label: 'Suggested Dist.' },
+          { val: ' W avg', label: 'Power / Cabinet' },
+          { val: '-20 to +45', label: 'Operating Temp' },
+          { val: '608×342 mm', label: 'Cabinet Size' },
+        ],
+        techs: [],
+        sizes: ["608 \u00d7 342 mm"],
+        specsDesc: 'The Apex High Brightness delivers high-brightness, reliable performance engineered for demanding commercial environments.',
+        specs: {
+          '608 × 342 mm': [
+            ['Pixel Pitch','1.58 mm'],
+            ['Cabinet Size','608 × 342 mm'],
+            ['Brightness','3,000 nit'],
+            ['Viewing Angle','160° H / 140° V'],
+            ['Greyscale','16-bit'],
+            ['Scan','15 Scan'],
+            ['IP Rating','IP40'],
+            ['Max Power',' W'],
+            ['Average Power',' W'],
+            ['Weight','10 kg'],
+            ['Operating Temp','-20 to +45°C'],
+            ['Life Hours','100,000 hrs'],
+            ['Voltage Range','100-240 VAC'],
+          ],
+        },
+        features: [
+          { icon: 'M3 9h18M9 21V9', title: 'High Brightness', desc: 'High peak output — ideal for environments with ambient lighting challenges.' },
+          { icon: 'M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z', title: 'Versatile Footprint', desc: 'Flexible cabinet sizes for diverse system design and screen-size configurations.' },
+          { icon: 'M22 12h-4l-3 9L9 3l-3 9H2', title: 'Broad Compatibility', desc: 'Works with all major LED processors and control systems on the market.' },
+          { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: 'Proven Reliability', desc: 'SMD technology with a track record across thousands of commercial installations worldwide.' },
+        ],
+        appsLead: 'Apex High Brightness is built for demanding commercial, retail, and large-venue applications.',
+        ctaTitle: 'Ready to specify Apex High Brightness?',
+      },
+
+      'apex-slim': {
+        type: 'SMD', typeLabel: 'Apex · Slim',
+        line: 'Indoor dvLED · SMD Series',
+        name: 'Apex<br>Slim', nameShort: 'Apex Slim',
+        tagline: 'Premium ultra-slim SMD dvLED for architecturally sensitive installations. Minimal profile, maximum brightness and impact.',
+        glb: '../../../assets/3d/cabinet.glb',
+        highlights: [
+          { val: '1,200 nit', label: 'Peak Brightness' },
+          { val: '304×682', label: 'Aspect Ratio' },
+          { val: '15 Scan', label: 'Scan Ratio' },
+          { val: '16-bit', label: 'Greyscale' },
+          { val: '~1.58 m', label: 'Suggested Dist.' },
+          { val: '39 W avg', label: 'Power / Cabinet' },
+          { val: '-20 to +45', label: 'Operating Temp' },
+          { val: '304×682 mm', label: 'Cabinet Size' },
+        ],
+        techs: [],
+        sizes: ["304 \u00d7 682 mm"],
+        specsDesc: 'The Apex Slim is engineered for flush-wall and recessed installations, delivering premium performance in a significantly reduced depth profile.',
+        specs: {
+          '304 × 682 mm': [
+            ['Pixel Pitch','1.58 mm'],
+            ['Cabinet Size','304 × 682 mm'],
+            ['Brightness','1,200 nit'],
+            ['Viewing Angle','160° H / 140° V'],
+            ['Greyscale','16-bit'],
+            ['Scan','15 Scan'],
+            ['IP Rating','IP40'],
+            ['Max Power','116 W'],
+            ['Average Power','39 W'],
+            ['Weight','10 kg'],
+            ['Operating Temp','-20 to +45°C'],
+            ['Life Hours','100,000 hrs'],
+            ['Voltage Range','100-240 VAC'],
+          ],
+        },
+        features: [
+          { icon: 'M3 9h18M9 21V9', title: 'Ultra-slim Profile', desc: 'Designed for recessed, flush-wall, and architecturally integrated installations.' },
           { icon: 'M22 12h-4l-3 9L9 3l-3 9H2', title: 'Low Weight', desc: 'Reduced cabinet mass simplifies mounting and reduces structural load on walls and frames.' },
           { icon: 'M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z', title: 'Clean Aesthetics', desc: 'Near-seamless installation with minimal visible bezel for a premium architectural look.' },
           { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: 'Easy Front Access', desc: 'Front-serviceable design maintains ease of maintenance even in recessed installations.' },
@@ -1021,33 +1235,78 @@
         appsLead: 'Apex Slim is ideal for luxury lobbies, boardrooms, and premium spaces with architectural constraints.',
         ctaTitle: 'Ready to specify Apex Slim?',
       },
+
+      'apex-taa': {
+        type: 'SMD', typeLabel: 'Apex · TAA',
+        line: 'Indoor dvLED · SMD Series',
+        name: 'Apex<br>TAA', nameShort: 'Apex TAA',
+        tagline: 'High-performance SMD dvLED at 1.58 mm pixel pitch. Engineered for demanding commercial and large-venue applications with up to 1,200 nit output.',
+        glb: '../../../assets/3d/608-SMD-Standard-Cabinet.glb',
+        highlights: [
+          { val: '1,200 nit', label: 'Peak Brightness' },
+          { val: '16:9', label: 'Aspect Ratio' },
+          { val: '15 Scan', label: 'Scan Ratio' },
+          { val: '16-bit', label: 'Greyscale' },
+          { val: '~1.58 m', label: 'Suggested Dist.' },
+          { val: '39 W avg', label: 'Power / Cabinet' },
+          { val: '-20 to +45', label: 'Operating Temp' },
+          { val: '608×342 mm', label: 'Cabinet Size' },
+        ],
+        techs: [],
+        sizes: ["608 \u00d7 342 mm"],
+        specsDesc: 'The Apex TAA delivers high-brightness, reliable performance engineered for demanding commercial environments.',
+        specs: {
+          '608 × 342 mm': [
+            ['Pixel Pitch','1.58 mm'],
+            ['Cabinet Size','608 × 342 mm'],
+            ['Brightness','1,200 nit'],
+            ['Viewing Angle','160° H / 140° V'],
+            ['Greyscale','16-bit'],
+            ['Scan','15 Scan'],
+            ['IP Rating','IP40'],
+            ['Max Power','116 W'],
+            ['Average Power','39 W'],
+            ['Weight','10 kg'],
+            ['Operating Temp','-20 to +45°C'],
+            ['Life Hours','100,000 hrs'],
+            ['Voltage Range','100-240 VAC'],
+          ],
+        },
+        features: [
+          { icon: 'M3 9h18M9 21V9', title: 'High Brightness', desc: 'High peak output — ideal for environments with ambient lighting challenges.' },
+          { icon: 'M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z', title: 'Versatile Footprint', desc: 'Flexible cabinet sizes for diverse system design and screen-size configurations.' },
+          { icon: 'M22 12h-4l-3 9L9 3l-3 9H2', title: 'Broad Compatibility', desc: 'Works with all major LED processors and control systems on the market.' },
+          { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: 'Proven Reliability', desc: 'SMD technology with a track record across thousands of commercial installations worldwide.' },
+        ],
+        appsLead: 'Apex TAA is built for demanding commercial, retail, and large-venue applications.',
+        ctaTitle: 'Ready to specify Apex TAA?',
+      }
     };
 
-    let currentProduct = 'cob-sig';
+    let currentProduct = 'enlighten-select';
     let currentSize = null;
 
     /* Rows shown in the comparison table — must match spec keys exactly */
     const COMPARE_ROWS = [
       'Pixel Pitch',
-      'Brightness (peak)',
+      'Brightness',
       'Greyscale',
-      'Scan Ratio',
-      'Refresh Rate',
+      'Scan',
       'Viewing Angle',
-      'Power (avg / max)',
-      'Min. View Distance',
+      'Max Power',
+      'Average Power',
       'Operating Temp',
       'IP Rating',
-      'Technology',
+      'Weight',
     ];
 
-    const PRODUCT_ORDER = ['cob-sig', 'cob-sel', 'smd-std', 'smd-slim'];
+    const PRODUCT_ORDER = ['enlighten-select', 'enlighten-signature', 'aio-135-hd', 'aio-135-hd-enlighten', 'apex', 'apex-slim-high-brightness', 'apex-high-brightness', 'apex-slim', 'apex-taa'];
 
     /* Extract a single spec value (first available size) */
     function getSpecVal(product, label) {
       const firstSize = product.sizes[0];
       const row = (product.specs[firstSize] || []).find(([k]) => k === label);
-      return row ? row[1] : '—';
+      return row ? row[1] : '\u2014';
     }
 
     /* Build / refresh the comparison table, highlighting activeId */
@@ -1194,7 +1453,7 @@
       tab.addEventListener('click', () => switchProduct(tab.dataset.product))
     );
 
-    switchProduct('cob-sig');
+    switchProduct('enlighten-select');
   </script>
 
 </body>

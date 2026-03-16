@@ -357,6 +357,20 @@ def sort_key(product_type: str, product_name: str) -> tuple:
     return (type_order.get(product_type, 9), product_name)
 
 
+def round_pitch(pitch: str) -> str:
+    """Round a pitch value to one decimal place for menu/folder grouping.
+    E.g., '0.94' → '0.9', '1.27' → '1.2', '2.53' → '2.5', '0.63' → '0.6'.
+    """
+    try:
+        val = float(pitch)
+        # Round down to 1 decimal: truncate to one decimal place
+        import math
+        rounded = math.floor(val * 10) / 10
+        return f"{rounded:.1f}"
+    except (ValueError, TypeError):
+        return pitch
+
+
 def js_string(s: str) -> str:
     """Escape a string for embedding in a JS single-quoted string literal."""
     return s.replace("\\", "\\\\").replace("'", "\\'").replace("\n", "\\n")
@@ -1578,12 +1592,14 @@ def main():
         print("WARNING: No active indoor products found. No pages will be generated.")
         sys.exit(0)
 
-    # 3. Group by pitch
+    # 3. Group by rounded pitch (single decimal) for menu/folder structure
+    #    e.g., 0.94 and 0.95 both go under "0.9"
     by_pitch = defaultdict(list)
     for row in indoor_active:
         pitch = str(row.get("pitch", "")).strip()
         if pitch:
-            by_pitch[pitch].append(row)
+            menu_pitch = round_pitch(pitch)
+            by_pitch[menu_pitch].append(row)
 
     # Sort pitches ascending (numerically)
     sorted_pitches = sorted(by_pitch.keys(), key=lambda p: float(p))
@@ -1591,32 +1607,35 @@ def main():
     print(f"\nFound {len(sorted_pitches)} unique pitch values: {', '.join(p + 'mm' for p in sorted_pitches)}")
 
     # 4. Generate pages
+    #    menu_pitch = rounded single-decimal value used for folder name, title, header
+    #    Each product's exact pitch from the sheet is preserved in specs/highlights
     summary = []
-    for pitch in sorted_pitches:
-        rows = by_pitch[pitch]
+    for menu_pitch in sorted_pitches:
+        rows = by_pitch[menu_pitch]
 
-        # Build product entries
+        # Build product entries — pass each row's exact pitch for spec data
         product_entries = []
         for row in rows:
-            pid, ptype, pname, js_block = build_product_js(row, pitch)
+            exact_pitch = str(row.get("pitch", "")).strip()
+            pid, ptype, pname, js_block = build_product_js(row, exact_pitch)
             product_entries.append((pid, ptype, pname, js_block))
 
         # Sort: COB first, then SMD, then XR, then others; alphabetical within type
         product_entries.sort(key=lambda x: sort_key(x[1], x[2]))
 
-        # Generate HTML
-        html = build_page_html(pitch, product_entries)
+        # Generate HTML — use rounded pitch for page title & header display
+        html = build_page_html(menu_pitch, product_entries)
 
-        # Write to disk
-        page_dir = os.path.join(INDOOR_DIR, f"{pitch}mm")
+        # Write to disk — folder uses rounded pitch (e.g., 0.9mm not 0.94mm)
+        page_dir = os.path.join(INDOOR_DIR, f"{menu_pitch}mm")
         os.makedirs(page_dir, exist_ok=True)
         page_path = os.path.join(page_dir, "index.html")
         with open(page_path, "w", encoding="utf-8") as f:
             f.write(html)
 
         product_names = [pname for _, _, pname, _ in product_entries]
-        summary.append((pitch, product_names))
-        print(f"  {pitch}mm → {len(product_entries)} products: {', '.join(product_names)}")
+        summary.append((menu_pitch, product_names))
+        print(f"  {menu_pitch}mm → {len(product_entries)} products: {', '.join(product_names)}")
 
     # 5. Generate pitch_menu.json
     pitch_menu = sorted_pitches
@@ -1628,8 +1647,8 @@ def main():
     total_products = sum(len(names) for _, names in summary)
     print(f"\n{'='*60}")
     print(f"DONE: Generated {len(summary)} pitch pages with {total_products} total product entries.")
-    for pitch, names in summary:
-        print(f"  /products/indoor/{pitch}mm/index.html — {len(names)} product(s)")
+    for menu_pitch, names in summary:
+        print(f"  /products/indoor/{menu_pitch}mm/index.html — {len(names)} product(s)")
     print(f"  /pitch_menu.json — {len(pitch_menu)} pitch values")
     print(f"{'='*60}")
 

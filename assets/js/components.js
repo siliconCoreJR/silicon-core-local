@@ -40,12 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
               <button class="dn-sub-btn">Indoor <span class="dn-sub-arrow"></span></button>
               <ul class="dn-subflyout">
                 <li class="dn-subflyout-group-label">By Pixel Pitch</li>
+                <li><a href="${_root}products/indoor/0.6mm/index.html">0.6 mm</a></li>
                 <li><a href="${_root}products/indoor/0.7mm/index.html">0.7 mm</a></li>
                 <li><a href="${_root}products/indoor/0.9mm/index.html">0.9 mm</a></li>
                 <li><a href="${_root}products/indoor/1.2mm/index.html">1.2 mm</a></li>
                 <li><a href="${_root}products/indoor/1.5mm/index.html">1.5 mm</a></li>
                 <li><a href="${_root}products/indoor/1.9mm/index.html">1.9 mm</a></li>
                 <li><a href="${_root}products/indoor/2.5mm/index.html">2.5 mm</a></li>
+                <li><a href="${_root}products/indoor/2.6mm/index.html">2.6 mm</a></li>
                 <li class="dn-subflyout-divider"></li>
                 <li><a href="${_root}products/all-in-one/index.html">All In One</a></li>
                 <li><a href="${_root}products/mobile-foldable-columns/index.html">Columns</a></li>
