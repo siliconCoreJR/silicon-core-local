@@ -1688,11 +1688,191 @@ def main():
         print(f"  {menu_pitch}mm → {len(product_entries)} products: {', '.join(product_names)}")
 
     # 5. Generate pitch_menu.json
-    pitch_menu = sorted_pitches
+# Build pitch menu with categories
+    pitch_menu = {}
+    
+    # Collect pitches from indoor products
+    if 'indoor_by_pitch' in locals():
+        indoor_pitches = sorted(indoor_by_pitch.keys())
+        pitch_menu['indoor'] = indoor_pitches
+        print(f"   - Indoor: {len(indoor_pitches)} pitches")
+    
+    # Collect pitches from TAA indoor products
+    if 'taa_indoor_by_pitch' in locals():
+        taa_indoor_pitches = sorted(taa_indoor_by_pitch.keys())
+        pitch_menu['taa_indoor'] = taa_indoor_pitches
+        print(f"   - TAA Indoor: {len(taa_indoor_pitches)} pitches")
+    
+    # Collect pitches from TAA outdoor products
+    if 'taa_outdoor_by_pitch' in locals():
+        taa_outdoor_pitches = sorted(taa_outdoor_by_pitch.keys())
+        pitch_menu['taa_outdoor'] = taa_outdoor_pitches
+        print(f"   - TAA Outdoor: {len(taa_outdoor_pitches)} pitches")
+    
+    # Collect pitches from outdoor products
+    if 'outdoor_by_pitch' in locals():
+        outdoor_pitches = sorted(outdoor_by_pitch.keys())
+        pitch_menu['outdoor'] = outdoor_pitches
+        print(f"   - Outdoor: {len(outdoor_pitches)} pitches")
     with open(PITCH_MENU_FILE, "w", encoding="utf-8") as f:
                 json.dump(pitch_menu, f, indent=2)
 
             # ====================================================================
+        # ========================================================================
+        # INDOOR PAGES
+    # ========================================================================
+    
+    print("\n" + "="*60)
+    print("GENERATING INDOOR PRODUCT PAGES")
+    print("="*60)
+    
+    # Filter: active_in_web == "yes" AND indoor_outdoor == "Yes"
+    # Exclude AIO and Column products
+    # Exclude TAA products (those will go in TAA section)
+    indoor_active = [
+        row for row in all_products
+        if str(row.get("active_in_web", "")).strip().lower() == "yes"
+        and str(row.get("indoor_outdoor", "")).strip().lower() == "yes"
+        and str(row.get("taa", "")).strip().lower() != "yes"
+        and "aio" not in row.get("product_name", "").lower()
+        and "column" not in row.get("product_name", "").lower()
+    ]
+    print(f"Filtered to {len(indoor_active)} active indoor products")
+    
+    if indoor_active:
+        # Group by rounded pitch
+        indoor_by_pitch = defaultdict(list)
+        for row in indoor_active:
+            pitch = str(row.get("pitch", "")).strip()
+            if pitch:
+                menu_pitch = round_pitch(pitch)
+                indoor_by_pitch[menu_pitch].append(row)
+        
+        # Generate page for each pitch
+        for menu_pitch in sorted(indoor_by_pitch.keys()):
+            product_entries = indoor_by_pitch[menu_pitch]
+            
+            # Sort by pitch (most specific first)
+            product_entries.sort(key=lambda x: sort_key(x[1], x[2]))
+            
+            # Generate HTML — use rounded pitch for page title & header display
+            html = build_page_html(menu_pitch, product_entries)
+            
+            # Write to disk — folder uses rounded pitch (e.g., 0.9mm not 0.94mm)
+            page_dir = os.path.join(INDOOR_DIR, f"{menu_pitch}mm")
+            os.makedirs(page_dir, exist_ok=True)
+            page_path = os.path.join(page_dir, "index.html")
+            with open(page_path, "w", encoding="utf-8") as f:
+                f.write(html)
+            
+            product_names = [pname for _, pname, _ in product_entries]
+            summary.append((menu_pitch, product_names))
+            print(f"  {menu_pitch}mm → {len(product_entries)} products: {', '.join(product_names)}")
+    else:
+        print("WARNING: No active indoor products found. No pages will be generated.")
+    # ========================================================================
+    # TAA INDOOR PAGES
+    # ========================================================================
+    
+    print("\n" + "="*60)
+    print("GENERATING TAA INDOOR PRODUCT PAGES")
+    print("="*60)
+    
+    # Filter: active_in_web == "yes" AND taa == "Yes" AND indoor_outdoor == "Yes"
+    # Exclude AIO and Column products
+    taa_indoor_active = [
+        row for row in all_products
+        if str(row.get("active_in_web", "")).strip().lower() == "yes"
+        and str(row.get("taa", "")).strip().lower() == "yes"
+        and str(row.get("indoor_outdoor", "")).strip().lower() == "yes"
+        and "aio" not in row.get("product_name", "").lower()
+        and "column" not in row.get("product_name", "").lower()
+    ]
+    print(f"Filtered to {len(taa_indoor_active)} active TAA indoor products")
+    
+    if taa_indoor_active:
+        # Group by rounded pitch
+        taa_indoor_by_pitch = defaultdict(list)
+        for row in taa_indoor_active:
+            pitch = str(row.get("pitch", "")).strip()
+            if pitch:
+                menu_pitch = round_pitch(pitch)
+                taa_indoor_by_pitch[menu_pitch].append(row)
+        
+        # Generate page for each pitch
+        for menu_pitch in sorted(taa_indoor_by_pitch.keys()):
+            product_entries = taa_indoor_by_pitch[menu_pitch]
+            
+            # Sort by pitch (most specific first)
+            product_entries.sort(key=lambda x: sort_key(x[1], x[2]))
+            
+            # Generate HTML
+            html = build_page_html(menu_pitch, product_entries)
+            
+            # Write to disk
+            page_dir = os.path.join(TAA_INDOOR_DIR, f"{menu_pitch}mm")
+            os.makedirs(page_dir, exist_ok=True)
+            page_path = os.path.join(page_dir, "index.html")
+            with open(page_path, "w", encoding="utf-8") as f:
+                f.write(html)
+            
+            product_names = [pname for _, pname, _ in product_entries]
+            summary.append((f"TAA Indoor {menu_pitch}", product_names))
+            print(f"  {menu_pitch}mm → {len(product_entries)} products: {', '.join(product_names)}")
+    else:
+        print("WARNING: No active TAA indoor products found.")
+    # ========================================================================
+    # TAA OUTDOOR PAGES
+    # ========================================================================
+    
+    print("\n" + "="*60)
+    print("GENERATING TAA OUTDOOR PRODUCT PAGES")
+    print("="*60)
+    
+    # Filter: active_in_web == "yes" AND taa == "Yes" AND indoor_outdoor == "outdoor"
+    # Exclude AIO and Column products
+    taa_outdoor_active = [
+        row for row in all_products
+        if str(row.get("active_in_web", "")).strip().lower() == "yes"
+        and str(row.get("taa", "")).strip().lower() == "yes"
+        and str(row.get("indoor_outdoor", "")).strip().lower() == "outdoor"
+        and "aio" not in row.get("product_name", "").lower()
+        and "column" not in row.get("product_name", "").lower()
+    ]
+    print(f"Filtered to {len(taa_outdoor_active)} active TAA outdoor products")
+    
+    if taa_outdoor_active:
+        # Group by rounded pitch
+        taa_outdoor_by_pitch = defaultdict(list)
+        for row in taa_outdoor_active:
+            pitch = str(row.get("pitch", "")).strip()
+            if pitch:
+                menu_pitch = round_pitch(pitch)
+                taa_outdoor_by_pitch[menu_pitch].append(row)
+        
+        # Generate page for each pitch
+        for menu_pitch in sorted(taa_outdoor_by_pitch.keys()):
+            product_entries = taa_outdoor_by_pitch[menu_pitch]
+            
+            # Sort by pitch (most specific first)
+            product_entries.sort(key=lambda x: sort_key(x[1], x[2]))
+            
+            # Generate HTML
+            html = build_page_html(menu_pitch, product_entries)
+            
+            # Write to disk
+            page_dir = os.path.join(TAA_OUTDOOR_DIR, f"{menu_pitch}mm")
+            os.makedirs(page_dir, exist_ok=True)
+            page_path = os.path.join(page_dir, "index.html")
+            with open(page_path, "w", encoding="utf-8") as f:
+                f.write(html)
+            
+            product_names = [pname for _, pname, _ in product_entries]
+            summary.append((f"TAA Outdoor {menu_pitch}", product_names))
+            print(f"  {menu_pitch}mm → {len(product_entries)} products: {', '.join(product_names)}")
+    else:
+        print("WARNING: No active TAA outdoor products found.")
+
     # OUTDOOR PAGES
     # ====================================================================
     print("\n" + "="*60)
