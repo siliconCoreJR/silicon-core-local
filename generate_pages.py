@@ -1865,7 +1865,6 @@ def main():
     print(f"  - TAA Indoor: {len(pitch_menu['taa_indoor'])} pitches")
     print(f"  - TAA Outdoor: {len(pitch_menu['taa_outdoor'])} pitches")
 
-        , f, indent=2)
     print(f"\nGenerated pitch_menu.json with {len(pitch_menu)} entries: {pitch_menu}")
 
     # 6. Summary
