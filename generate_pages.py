@@ -1,3 +1,4 @@
+1690
 #!/usr/bin/env python3
 """
 generate_pages.py — Regenerate indoor pixel-pitch product pages for the SiliconCore website.
@@ -1840,7 +1841,32 @@ def main():
     else:
         print("No active TAA outdoor products found.")
 
+            # ====================================================================
+    # GENERATE COMPLETE PITCH MENU JSON
+    # ====================================================================
+    print("\n" + "="*60)
+    print("GENERATING COMPLETE PITCH MENU JSON")
+    print("="*60)
+    
+    # Build complete menu structure with all categories
+    pitch_menu = {
+        "indoor": sorted_pitches if 'sorted_pitches' in locals() else [],
+        "outdoor": sorted_outdoor_pitches if 'sorted_outdoor_pitches' in locals() else [],
+        "taa_indoor": sorted_taa_indoor_pitches if 'sorted_taa_indoor_pitches' in locals() else [],
+        "taa_outdoor": sorted_taa_outdoor_pitches if 'sorted_taa_outdoor_pitches' in locals() else []
+    }
+    
+    with open(PITCH_MENU_FILE, "w", encoding="utf-8") as f:
         json.dump(pitch_menu, f, indent=2)
+    
+    print(f"Generated pitch_menu.json with:")
+    print(f"  - Indoor: {len(pitch_menu['indoor'])} pitches")
+    print(f"  - Outdoor: {len(pitch_menu['outdoor'])} pitches")
+    print(f"  - TAA Indoor: {len(pitch_menu['taa_indoor'])} pitches")
+    print(f"  - TAA Outdoor: {len(pitch_menu['taa_outdoor'])} pitches")
+
+        1690
+        , f, indent=2)
     print(f"\nGenerated pitch_menu.json with {len(pitch_menu)} entries: {pitch_menu}")
 
     # 6. Summary
