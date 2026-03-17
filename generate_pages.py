@@ -1689,6 +1689,7 @@ def main():
     # 5. Generate pitch_menu.json
     pitch_menu = sorted_pitches
     with open(PITCH_MENU_FILE, "w", encoding="utf-8") as f:
+                json.dump(pitch_menu, f, indent=2)
 
             # ====================================================================
     # OUTDOOR PAGES
