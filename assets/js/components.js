@@ -55,15 +55,40 @@ document.addEventListener('DOMContentLoaded', () => {
             </li>
 
             <!-- Outdoor â flyout -->
-            <li>
-              <button class="dn-sub-btn">Outdoor <span class="dn-sub-arrow"></span></button>
-              <ul class="dn-subflyout">
-                <li><a href="${_root}products/enlighten/index.html">Enlighten Outdoor</a></li>
-                <li><a href="${_root}products/tulip-outdoor/index.html">SMD</a></li>
-              </ul>
+              <li>
+                <button class="dn-sub-btn">Outdoor <span class="dn-sub-arrow"></span></button>
+                <ul class="dn-subflyout">
+                  <li class="dn-subflyout-group-label">By Pixel Pitch</li>
+                  <li><a href="${_root}products/outdoor/0.8mm/index.html">0.8 mm</a></li>
+                  <li><a href="${_root}products/outdoor/1.2mm/index.html">1.2 mm</a></li>
+                  <li><a href="${_root}products/outdoor/1.5mm/index.html">1.5 mm</a></li>
+                  <li><a href="${_root}products/outdoor/1.9mm/index.html">1.9 mm</a></li>
+                  <li><a href="${_root}products/outdoor/2.6mm/index.html">2.6 mm</a></li>
+                  <li><a href="${_root}products/outdoor/3.9mm/index.html">3.9 mm</a></li>
+                  <li><a href="${_root}products/outdoor/6.0mm/index.html">6.0 mm</a></li>
+                  <li><a href="${_root}products/outdoor/7.8mm/index.html">7.8 mm</a></li>
+                  <li><a href="${_root}products/outdoor/10.4mm/index.html">10.4 mm</a></li>
+                  <li><a href="${_root}products/outdoor/12.0mm/index.html">12.0 mm</a></li>
+                  <li><a href="${_root}products/outdoor/16.0mm/index.html">16.0 mm</a></li>
+                </ul>
+              </li>
             </li>
 
-            <li><a href="${_root}taa-compliant-led-displays/index.html">TAA</a></li>
+              <li>
+                <button class="dn-sub-btn">TAA <span class="dn-sub-arrow"></span></button>
+                <ul class="dn-subflyout">
+                  <li><a href="${_root}taa-compliant-led-displays/index.html">TAA Products</a></li>
+                  <li class="dn-subflyout-divider"></li>
+                  <li class="dn-subflyout-group-label">TAA Indoor</li>
+                  <li><a href="${_root}products/taa/indoor/0.6mm/index.html">0.6 mm</a></li>
+                  <li><a href="${_root}products/taa/indoor/0.9mm/index.html">0.9 mm</a></li>
+                  <li><a href="${_root}products/taa/indoor/1.2mm/index.html">1.2 mm</a></li>
+                  <li><a href="${_root}products/taa/indoor/1.5mm/index.html">1.5 mm</a></li>
+                  <li class="dn-subflyout-divider"></li>
+                  <li class="dn-subflyout-group-label">TAA Outdoor</li>
+                  <li><a href="${_root}products/taa/outdoor/1.2mm/index.html">1.2 mm</a></li>
+                </ul>
+              </li>
             <li><a href="${_root}displays/index.html">Controllers</a></li>
 
             <!-- Solutions â flyout -->
