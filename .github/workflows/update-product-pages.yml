@@ -1,6 +1,11 @@
 name: Update Product Pages from Google Sheets
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'product_data.json'
   workflow_dispatch:
     inputs:
       product_data:
