@@ -24,6 +24,10 @@ DATA_FILE = os.path.join(REPO_ROOT, "product_data.json")
 INDOOR_DIR = os.path.join(REPO_ROOT, "products", "indoor")
 PITCH_MENU_FILE = os.path.join(REPO_ROOT, "pitch_menu.json")
 
+OUTDOOR_DIR = os.path.join(REPO_ROOT, "products", "outdoor")
+TAA_INDOOR_DIR = os.path.join(REPO_ROOT, "products", "taa", "indoor")
+TAA_OUTDOOR_DIR = os.path.join(REPO_ROOT, "products", "taa", "outdoor")
+
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
@@ -1685,6 +1689,156 @@ def main():
     # 5. Generate pitch_menu.json
     pitch_menu = sorted_pitches
     with open(PITCH_MENU_FILE, "w", encoding="utf-8") as f:
+
+            # ====================================================================
+    # OUTDOOR PAGES
+    # ====================================================================
+    print("\n" + "="*60)
+    print("GENERATING OUTDOOR PRODUCT PAGES")
+    print("="*60)
+
+    # Filter: active_in_web == "Yes" AND indoor_outdoor == "Outdoor"
+    # Exclude AIO and Column products
+    outdoor_active = [
+        row for row in all_products
+        if str(row.get("active_in_web", "")).strip().lower() == "yes"
+        and str(row.get("indoor_outdoor", "")).strip().lower() == "outdoor"
+        and "aio" not in row.get("product_name", "").lower()
+        and "column" not in row.get("product_name", "").lower()
+    ]
+    print(f"Filtered to {len(outdoor_active)} active outdoor products")
+
+    if outdoor_active:
+        # Group by rounded pitch
+        outdoor_by_pitch = defaultdict(list)
+        for row in outdoor_active:
+            pitch = str(row.get("pitch", "")).strip()
+            if pitch:
+                menu_pitch = round_pitch(pitch)
+                outdoor_by_pitch[menu_pitch].append(row)
+
+        sorted_outdoor_pitches = sorted(outdoor_by_pitch.keys(), key=lambda p: float(p))
+        print(f"Found {len(sorted_outdoor_pitches)} unique outdoor pitch values: {', '.join(p + 'mm' for p in sorted_outdoor_pitches)}")
+
+        outdoor_summary = []
+        for menu_pitch in sorted_outdoor_pitches:
+            rows = outdoor_by_pitch[menu_pitch]
+            product_entries = []
+            for row in rows:
+                exact_pitch = str(row.get("pitch", "")).strip()
+                pid, ptype, pname, js_block = build_product_js(row, exact_pitch)
+                product_entries.append((pid, ptype, pname, js_block))
+            product_entries.sort(key=lambda x: sort_key(x[1], x[2]))
+            html = build_page_html(menu_pitch, product_entries)
+            page_dir = os.path.join(OUTDOOR_DIR, f"{menu_pitch}mm")
+            os.makedirs(page_dir, exist_ok=True)
+            page_path = os.path.join(page_dir, "index.html")
+            with open(page_path, "w", encoding="utf-8") as f:
+                f.write(html)
+            product_names = [pname for _, _, pname, _ in product_entries]
+            outdoor_summary.append((menu_pitch, product_names))
+            print(f"  {menu_pitch}mm → {len(product_entries)} products: {', '.join(product_names)}")
+    else:
+        print("No active outdoor products found.")
+
+    # ====================================================================
+    # TAA INDOOR PAGES
+    # ====================================================================
+    print("\n" + "="*60)
+    print("GENERATING TAA INDOOR PRODUCT PAGES")
+    print("="*60)
+
+    # Filter: active_in_web == "Yes" AND taa == "Yes" AND indoor_outdoor == "Indoor"
+    taa_indoor_active = [
+        row for row in all_products
+        if str(row.get("active_in_web", "")).strip().lower() == "yes"
+        and str(row.get("taa", "")).strip().lower() == "yes"
+        and str(row.get("indoor_outdoor", "")).strip().lower() == "indoor"
+    ]
+    print(f"Filtered to {len(taa_indoor_active)} active TAA indoor products")
+
+    if taa_indoor_active:
+        # Group by rounded pitch
+        taa_indoor_by_pitch = defaultdict(list)
+        for row in taa_indoor_active:
+            pitch = str(row.get("pitch", "")).strip()
+            if pitch:
+                menu_pitch = round_pitch(pitch)
+                taa_indoor_by_pitch[menu_pitch].append(row)
+
+        sorted_taa_indoor_pitches = sorted(taa_indoor_by_pitch.keys(), key=lambda p: float(p))
+        print(f"Found {len(sorted_taa_indoor_pitches)} unique TAA indoor pitch values: {', '.join(p + 'mm' for p in sorted_taa_indoor_pitches)}")
+
+        taa_indoor_summary = []
+        for menu_pitch in sorted_taa_indoor_pitches:
+            rows = taa_indoor_by_pitch[menu_pitch]
+            product_entries = []
+            for row in rows:
+                exact_pitch = str(row.get("pitch", "")).strip()
+                pid, ptype, pname, js_block = build_product_js(row, exact_pitch)
+                product_entries.append((pid, ptype, pname, js_block))
+            product_entries.sort(key=lambda x: sort_key(x[1], x[2]))
+            html = build_page_html(menu_pitch, product_entries)
+            page_dir = os.path.join(TAA_INDOOR_DIR, f"{menu_pitch}mm")
+            os.makedirs(page_dir, exist_ok=True)
+            page_path = os.path.join(page_dir, "index.html")
+            with open(page_path, "w", encoding="utf-8") as f:
+                f.write(html)
+            product_names = [pname for _, _, pname, _ in product_entries]
+            taa_indoor_summary.append((menu_pitch, product_names))
+            print(f"  {menu_pitch}mm → {len(product_entries)} products: {', '.join(product_names)}")
+    else:
+        print("No active TAA indoor products found.")
+
+    # ====================================================================
+    # TAA OUTDOOR PAGES
+    # ====================================================================
+    print("\n" + "="*60)
+    print("GENERATING TAA OUTDOOR PRODUCT PAGES")
+    print("="*60)
+
+    # Filter: active_in_web == "Yes" AND taa == "Yes" AND indoor_outdoor == "Outdoor"
+    taa_outdoor_active = [
+        row for row in all_products
+        if str(row.get("active_in_web", "")).strip().lower() == "yes"
+        and str(row.get("taa", "")).strip().lower() == "yes"
+        and str(row.get("indoor_outdoor", "")).strip().lower() == "outdoor"
+    ]
+    print(f"Filtered to {len(taa_outdoor_active)} active TAA outdoor products")
+
+    if taa_outdoor_active:
+        # Group by rounded pitch
+        taa_outdoor_by_pitch = defaultdict(list)
+        for row in taa_outdoor_active:
+            pitch = str(row.get("pitch", "")).strip()
+            if pitch:
+                menu_pitch = round_pitch(pitch)
+                taa_outdoor_by_pitch[menu_pitch].append(row)
+
+        sorted_taa_outdoor_pitches = sorted(taa_outdoor_by_pitch.keys(), key=lambda p: float(p))
+        print(f"Found {len(sorted_taa_outdoor_pitches)} unique TAA outdoor pitch values: {', '.join(p + 'mm' for p in sorted_taa_outdoor_pitches)}")
+
+        taa_outdoor_summary = []
+        for menu_pitch in sorted_taa_outdoor_pitches:
+            rows = taa_outdoor_by_pitch[menu_pitch]
+            product_entries = []
+            for row in rows:
+                exact_pitch = str(row.get("pitch", "")).strip()
+                pid, ptype, pname, js_block = build_product_js(row, exact_pitch)
+                product_entries.append((pid, ptype, pname, js_block))
+            product_entries.sort(key=lambda x: sort_key(x[1], x[2]))
+            html = build_page_html(menu_pitch, product_entries)
+            page_dir = os.path.join(TAA_OUTDOOR_DIR, f"{menu_pitch}mm")
+            os.makedirs(page_dir, exist_ok=True)
+            page_path = os.path.join(page_dir, "index.html")
+            with open(page_path, "w", encoding="utf-8") as f:
+                f.write(html)
+            product_names = [pname for _, _, pname, _ in product_entries]
+            taa_outdoor_summary.append((menu_pitch, product_names))
+            print(f"  {menu_pitch}mm → {len(product_entries)} products: {', '.join(product_names)}")
+    else:
+        print("No active TAA outdoor products found.")
+
         json.dump(pitch_menu, f, indent=2)
     print(f"\nGenerated pitch_menu.json with {len(pitch_menu)} entries: {pitch_menu}")
 
