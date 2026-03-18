@@ -719,10 +719,6 @@
         <span class="pp-tab-type">SMD</span>
         <span class="pp-tab-name">Apex Slim</span>
       </button>
-      <button class="pp-tab" data-product="apex-taa">
-        <span class="pp-tab-type">SMD</span>
-        <span class="pp-tab-name">Apex TAA</span>
-      </button>
     </div>
   </div>
 
@@ -1134,52 +1130,6 @@
         ],
         appsLead: 'Apex Slim is ideal for luxury lobbies, boardrooms, and premium spaces with architectural constraints.',
         ctaTitle: 'Ready to specify Apex Slim?',
-      },
-
-      'apex-taa': {
-        type: 'SMD', typeLabel: 'Apex · TAA',
-        line: 'Indoor dvLED · SMD Series',
-        name: 'Apex<br>TAA', nameShort: 'Apex TAA',
-        tagline: 'High-performance SMD dvLED at 1.58 mm pixel pitch. Engineered for demanding commercial and large-venue applications with up to 1,200 nit output.',
-        glb: '../../../assets/3d/SC-Cabinet-8-in-1.glb',
-        highlights: [
-          { val: '1,200 nit', label: 'Peak Brightness' },
-          { val: '16:9', label: 'Aspect Ratio' },
-          { val: '15 Scan', label: 'Scan Ratio' },
-          { val: '16-bit', label: 'Greyscale' },
-          { val: '~1.58 m', label: 'Suggested Dist.' },
-          { val: '39 W avg', label: 'Power / Cabinet' },
-          { val: '-20 to +45', label: 'Operating Temp' },
-          { val: '608×342 mm', label: 'Cabinet Size' },
-        ],
-        techs: [],
-        sizes: ["608 \u00d7 342 mm"],
-        specsDesc: 'The Apex TAA delivers high-brightness, reliable performance engineered for demanding commercial environments.',
-        specs: {
-          '608 × 342 mm': [
-            ['Pixel Pitch','1.58 mm'],
-            ['Cabinet Size','608 × 342 mm'],
-            ['Brightness','1,200 nit'],
-            ['Viewing Angle','160° H / 140° V'],
-            ['Greyscale','16-bit'],
-            ['Scan','15 Scan'],
-            ['IP Rating','IP40'],
-            ['Max Power','116 W'],
-            ['Average Power','39 W'],
-            ['Weight','10 kg'],
-            ['Operating Temp','-20 to +45°C'],
-            ['Life Hours','100,000 hrs'],
-            ['Voltage Range','100-240 VAC'],
-          ],
-        },
-        features: [
-          { icon: 'M3 9h18M9 21V9', title: 'High Brightness', desc: 'High peak output — ideal for environments with ambient lighting challenges.' },
-          { icon: 'M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z', title: 'Versatile Footprint', desc: 'Flexible cabinet sizes for diverse system design and screen-size configurations.' },
-          { icon: 'M22 12h-4l-3 9L9 3l-3 9H2', title: 'Broad Compatibility', desc: 'Works with all major LED processors and control systems on the market.' },
-          { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: 'Proven Reliability', desc: 'SMD technology with a track record across thousands of commercial installations worldwide.' },
-        ],
-        appsLead: 'Apex TAA is built for demanding commercial, retail, and large-venue applications.',
-        ctaTitle: 'Ready to specify Apex TAA?',
       }
     };
 
@@ -1200,7 +1150,7 @@
       'Weight',
     ];
 
-    const PRODUCT_ORDER = ['enlighten-select', 'enlighten-signature', 'apex', 'apex-slim-high-brightness', 'apex-high-brightness', 'apex-slim', 'apex-taa'];
+    const PRODUCT_ORDER = ['enlighten-select', 'enlighten-signature', 'apex', 'apex-slim-high-brightness', 'apex-high-brightness', 'apex-slim'];
 
     /* Extract a single spec value (first available size) */
     function getSpecVal(product, label) {
