@@ -63,22 +63,23 @@ function buildColumnMap_(headerRow) {
 }
 
 /**
- * Adds the SiliconCore Web menu to the spreadsheet.
+ * Adds both custom menus to the spreadsheet.
+ * Keep this as the ONLY onOpen() across all .gs files.
  */
 function onOpen() {
-  SpreadsheetApp.getUi()
-    .createMenu('SiliconCore Web')
-    .addItem('Push to Website', 'pushToWebsite')
-    .addSeparator()
-    .addItem('Setup Help', 'showSetupHelp')
-    .addToUi();
-}
+  const ui = SpreadsheetApp.getUi();
 
-/**
- * Also available as a manual setup trigger.
- */
-function setupMenu() {
-  onOpen();
+  // Existing: App pricing control
+  ui.createMenu('SCT App Control')
+    .addItem('🚀 Publish Pricing Updates to App', 'forceCacheRefresh')
+    .addToUi();
+
+  // Website product pages
+  ui.createMenu('SiliconCore Web')
+    .addItem('🚀 Push to Website', 'pushToWebsite')
+    .addSeparator()
+    .addItem('ℹ️ Setup Instructions', 'showSetupHelp')
+    .addToUi();
 }
 
 /**
