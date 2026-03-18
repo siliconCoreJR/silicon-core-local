@@ -21,43 +21,43 @@ const BRANCH     = 'main';
 const FILE_PATH  = 'product_data.json';
 const SHEET_NAME = 'Product data web';
 
-// Expected column header names (must match your sheet's header row exactly, case-insensitive)
-// The script maps these at runtime — column order in the sheet doesn't matter.
-const EXPECTED_HEADERS = [
-  'code',
-  'product_name',
-  'pitch',
-  'taa',
-  'indoor_outdoor',
-  'brightness',
-  'width',
-  'height',
-  'depth',
-  'aspect_ratio',
-  'viewing_angle_h',
-  'viewing_angle_v',
-  'ip_rating',
-  'max_power',
-  'avg_power',
-  'weight',
-  'operating_temp',
-  'scan',
-  'life_hours',
-  'bit_depth',
-  'voltage_range',
-  'active_in_web',
-];
+// Maps exact sheet header text (lowercase) → JSON field name used in product_data.json
+// Update the left side if you rename a column in the sheet.
+const HEADER_TO_FIELD = {
+  'code':               'code',
+  'product name':       'product_name',
+  'pitch':              'pitch',
+  'active in web':      'active_in_web',
+  'taa':                'taa',
+  'indoor/outdoor':     'indoor_outdoor',
+  'ip rating':          'ip_rating',
+  'brightness (nits)':  'brightness',
+  'width':              'width',
+  'height':             'height',
+  'depth':              'depth',
+  'aspect ratio':       'aspect_ratio',
+  'viewing angle h':    'viewing_angle_h',
+  'viewing angle v':    'viewing_angle_v',
+  'max power':          'max_power',
+  'average power':      'avg_power',
+  'weight (kg)':        'weight',
+  'operating temp c':   'operating_temp',
+  'scan':               'scan',
+  'life hours':         'life_hours',
+  'bit depth':          'bit_depth',
+  'voltage range':      'voltage_range',
+};
 
 /**
- * Build a column-index map from the sheet's header row.
- * Returns an object like { code: 0, product_name: 1, ... }
- * Keys are normalized to lowercase with spaces replaced by underscores.
+ * Build a field-name → column-index map from the sheet's header row.
+ * Uses HEADER_TO_FIELD for the mapping — immune to column reordering.
  */
 function buildColumnMap_(headerRow) {
   const map = {};
   headerRow.forEach((cell, i) => {
-    const key = String(cell).trim().toLowerCase().replace(/\s+/g, '_');
-    if (key) map[key] = i;
+    const header = String(cell).trim().toLowerCase();
+    const field = HEADER_TO_FIELD[header];
+    if (field) map[field] = i;
   });
   return map;
 }
@@ -132,12 +132,13 @@ function readSheetData_() {
   const headerRow = data[0];
   const col = buildColumnMap_(headerRow);
 
-  // Validate that all expected headers are present
-  const missing = EXPECTED_HEADERS.filter(h => !(h in col));
+  // Validate that all expected fields were found via header mapping
+  const expectedFields = Object.values(HEADER_TO_FIELD);
+  const missing = expectedFields.filter(f => !(f in col));
   if (missing.length > 0) {
     throw new Error(
-      'Missing column(s) in sheet header row: ' + missing.join(', ') + '\n\n' +
-      'Found headers: ' + Object.keys(col).join(', ')
+      'Could not find sheet columns for fields: ' + missing.join(', ') + '\n\n' +
+      'Mapped fields found: ' + Object.keys(col).join(', ')
     );
   }
 

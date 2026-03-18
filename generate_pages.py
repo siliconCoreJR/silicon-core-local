@@ -1638,8 +1638,8 @@ def main():
 
     indoor_active = [
         row for row in all_products
-        if str(row.get("indoor_outdoor", "")).strip().lower() == "yes"
-        and str(row.get("brightness", "")).strip().lower() == "indoor"
+        if str(row.get("active_in_web", "")).strip().lower() == "yes"
+        and str(row.get("indoor_outdoor", "")).strip().lower() == "indoor"
         and str(row.get("taa", "")).strip().lower() != "yes"
         and "taa" not in row.get("product_name", "").lower()
         and "aio" not in row.get("product_name", "").lower()
@@ -1688,8 +1688,8 @@ def main():
     # Filter: active AND outdoor AND NOT TAA — exclude AIO, Column, and TAA products
     outdoor_active = [
         row for row in all_products
-        if str(row.get("indoor_outdoor", "")).strip().lower() == "yes"
-        and str(row.get("brightness", "")).strip().lower() == "outdoor"
+        if str(row.get("active_in_web", "")).strip().lower() == "yes"
+        and str(row.get("indoor_outdoor", "")).strip().lower() == "outdoor"
         and str(row.get("taa", "")).strip().lower() != "yes"
         and "taa" not in row.get("product_name", "").lower()
         and "aio" not in row.get("product_name", "").lower()
@@ -1740,9 +1740,9 @@ def main():
     # Filter: active_in_web == "Yes" AND taa == "Yes" AND indoor_outdoor == "Indoor"
     taa_indoor_active = [
         row for row in all_products
-        if str(row.get("indoor_outdoor", "")).strip().lower() == "yes"
+        if str(row.get("active_in_web", "")).strip().lower() == "yes"
         and str(row.get("taa", "")).strip().lower() == "yes"
-        and str(row.get("brightness", "")).strip().lower() == "indoor"
+        and str(row.get("indoor_outdoor", "")).strip().lower() == "indoor"
     ]
     print(f"Filtered to {len(taa_indoor_active)} active TAA indoor products")
 
@@ -1789,9 +1789,9 @@ def main():
     # Filter: active_in_web == "Yes" AND taa == "Yes" AND indoor_outdoor == "Outdoor"
     taa_outdoor_active = [
         row for row in all_products
-        if str(row.get("indoor_outdoor", "")).strip().lower() == "yes"
+        if str(row.get("active_in_web", "")).strip().lower() == "yes"
         and str(row.get("taa", "")).strip().lower() == "yes"
-        and str(row.get("brightness", "")).strip().lower() == "outdoor"
+        and str(row.get("indoor_outdoor", "")).strip().lower() == "outdoor"
     ]
     print(f"Filtered to {len(taa_outdoor_active)} active TAA outdoor products")
 
