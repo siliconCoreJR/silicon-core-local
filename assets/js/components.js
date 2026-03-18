@@ -56,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
               <button class="dn-sub-btn">Outdoor <span class="dn-sub-arrow"></span></button>
               <ul class="dn-subflyout">
                 <li class="dn-subflyout-group-label">By Pixel Pitch</li>
-                <li><a href="${_root}products/outdoor/0.8mm/index.html">0.8 mm</a></li>
                 <li><a href="${_root}products/outdoor/1.2mm/index.html">1.2 mm</a></li>
                 <li><a href="${_root}products/outdoor/1.5mm/index.html">1.5 mm</a></li>
                 <li><a href="${_root}products/outdoor/1.9mm/index.html">1.9 mm</a></li>
