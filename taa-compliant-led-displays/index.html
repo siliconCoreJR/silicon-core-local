@@ -6,12 +6,130 @@
   <title>TAA Compliant LED Displays — SiliconCore</title>
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="icon" href="../assets/images/icons/favicon.ico">
+  <style>
+    .stats-bar {
+      background: #e31e24;
+      padding: 24px 5%;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+    .stats-bar-item {
+      display: inline-block;
+      margin: 0 40px;
+    }
+    @media (max-width: 768px) {
+      .stats-bar-item {
+        display: block;
+        margin: 12px 0;
+      }
+    }
+    .split-section-custom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+    .split-section-custom h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    .split-section-custom p {
+      color: #aaa;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .checkmark-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 24px;
+    }
+    .checkmark-list li {
+      color: #aaa;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 14px;
+      padding-left: 28px;
+      position: relative;
+      font-size: 0.95rem;
+    }
+    .checkmark-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #e31e24;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .dark-card {
+      background: #0d0d0d;
+      border: 1px solid #1e1e1e;
+      border-radius: 4px;
+      padding: 40px;
+    }
+    .product-line-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .product-line-card {
+      background: #0d0d0d;
+      border: 1px solid #1e1e1e;
+      border-radius: 4px;
+      padding: 40px;
+      text-align: center;
+    }
+    .product-line-card h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .product-line-card p {
+      color: #aaa;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+    .pitch-options {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .pitch-badge {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      color: #aaa;
+      padding: 8px 16px;
+      border-radius: 2px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 768px) {
+      .split-section-custom {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .product-line-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body class="page-body">
   <script src="../assets/js/components.js"></script>
 
   <section class="page-hero">
-    <div class="page-hero-bg" style="background-image: url('https://static1.squarespace.com/static/5d0a4fc001091b0001aa8e37/t/5d160e796a0cf2000123c4d1/1561726597616/Header_Displays.png');"></div>
+    <div class="page-hero-bg" style="background: linear-gradient(135deg, #111111 0%, #1c0607 65%, #111111 100%);"></div>
     <div class="page-hero-content">
       <h1>TAA COMPLIANT LED DISPLAYS</h1>
       <img class="page-hero-logo" src="../assets/images/logos/logo-siliconcore-blue.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/62d355ce-2327-4320-85c6-4300a8e4aff0/SC_Master_logo_blue.png'" alt="SiliconCore">
@@ -19,6 +137,12 @@
     <div class="page-hero-scroll"><div class="scroll-arrow"></div></div>
   </section>
 
+  <div class="stats-bar">
+    <span class="stats-bar-item">Government Ready</span>
+    <span class="stats-bar-item">U.S.-Based Support</span>
+    <span class="stats-bar-item">0.6mm to 1.5mm Indoor</span>
+    <span class="stats-bar-item">1.2mm Outdoor</span>
+  </div>
 
   <section class="section">
     <div class="section-inner">
@@ -27,22 +151,64 @@
         <div class="section-divider"></div>
         <p>SiliconCore offers a range of TAA compliant LED display solutions for U.S. government and federally funded projects. Our TAA compliant products meet all requirements under the Trade Agreements Act, ensuring your project qualifies for government procurement programs.</p>
       </div>
-      <div style="max-width:800px; margin:0 auto;">
-        <h3 style="margin-bottom:16px;">Why TAA Compliance Matters</h3>
-        <p>The Trade Agreements Act (TAA) requires that products purchased by the U.S. government are manufactured or substantially transformed in a TAA-designated country. SiliconCore's TAA compliant displays are designed and manufactured to meet these strict requirements.</p>
-        <h3 style="margin:30px 0 14px;">TAA Compliant Products</h3>
-        <ul class="benefits-list">
-          <li>Available in a range of pixel pitches from 0.78mm to 3.9mm</li>
-          <li>Fully certified and documented for government procurement</li>
-          <li>Suitable for control rooms, command centers, and government facilities</li>
-          <li>Supported by full U.S.-based technical support and service</li>
-          <li>Meets Buy American Act requirements where applicable</li>
-        </ul>
-        <div style="margin-top:40px;"><a href="../contact-us/index.html" class="btn btn-dark">Request TAA Documentation</a></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="split-section-custom">
+        <div>
+          <h3>Why TAA Compliance Matters</h3>
+          <p>The Trade Agreements Act (TAA) requires that products purchased by the U.S. government are manufactured or substantially transformed in a TAA-designated country. SiliconCore's TAA compliant displays are designed and manufactured to meet these strict requirements.</p>
+        </div>
+        <div class="dark-card">
+          <ul class="checkmark-list">
+            <li>Available in a range of pixel pitches from 0.6mm to 1.5mm</li>
+            <li>Fully certified and documented for government procurement</li>
+            <li>Suitable for control rooms, command centers, and government facilities</li>
+            <li>Supported by full U.S.-based technical support and service</li>
+            <li>Meets Buy American Act requirements where applicable</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-center">
+        <h2>TAA Product Line</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="product-line-grid">
+        <div class="product-line-card">
+          <h4>TAA Indoor</h4>
+          <p>Ultra-fine to fine pixel pitch options for indoor installations</p>
+          <div class="pitch-options">
+            <span class="pitch-badge">0.6mm</span>
+            <span class="pitch-badge">0.9mm</span>
+            <span class="pitch-badge">1.2mm</span>
+            <span class="pitch-badge">1.5mm</span>
+          </div>
+          <a href="../products/taa/indoor/0.6mm/index.html" class="btn btn-red">Explore TAA Indoor</a>
+        </div>
+        <div class="product-line-card">
+          <h4>TAA Outdoor</h4>
+          <p>Weather-resistant LED displays for exterior government installations</p>
+          <div class="pitch-options">
+            <span class="pitch-badge">1.2mm</span>
+          </div>
+          <a href="../products/taa/outdoor/1.2mm/index.html" class="btn btn-red">Explore TAA Outdoor</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#111; padding:80px 5%; text-align:center;">
+    <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:2.4rem; color:#fff; margin-bottom:16px;">READY TO TRANSFORM YOUR SPACE?</h2>
+    <p style="color:#aaa; max-width:560px; margin:0 auto 32px; font-family:'Inter',sans-serif;">Talk to the SiliconCore team about your project requirements.</p>
+    <a href="../contact-us/index.html" class="btn btn-red">GET IN TOUCH</a>
+  </section>
 
   <script src="../assets/js/main.js"></script>
 </body>

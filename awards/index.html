@@ -3,41 +3,173 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Awards — SiliconCore</title>
+  <title>Awards & Recognition — SiliconCore</title>
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="icon" href="../assets/images/icons/favicon.ico">
+  <style>
+    .awards-intro {
+      background: #0d0d0d;
+      padding: 60px 5%;
+      text-align: center;
+    }
+    .awards-intro h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .awards-intro p {
+      font-family: 'Inter', sans-serif;
+      color: #aaa;
+      font-size: 1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .awards-stats {
+      background: #0d0d0d;
+      padding: 40px 5%;
+      text-align: center;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+    }
+    .awards-stats p {
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 5%;
+    }
+    .award-item {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .award-item:hover {
+      border-color: #e31e24;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(227, 30, 36, 0.15);
+    }
+    .award-item img {
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 24px;
+      filter: brightness(1.1);
+    }
+    .award-item p {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      color: #fff;
+      letter-spacing: 0.5px;
+      margin: 0;
+      text-transform: uppercase;
+    }
+    .awards-legacy {
+      background: #0d0d0d;
+      padding: 80px 5%;
+      text-align: center;
+    }
+    .awards-legacy blockquote {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      color: #fff;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.4;
+      letter-spacing: 0.5px;
+    }
+    .awards-legacy .blockquote-attr {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #e31e24;
+      margin-top: 24px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    @media (max-width: 768px) {
+      .awards-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 40px 5%;
+      }
+      .awards-intro h2 {
+        font-size: 1.8rem;
+      }
+      .awards-legacy blockquote {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
 </head>
 <body class="page-body">
   <script src="../assets/js/components.js"></script>
 
   <section class="page-hero">
-    <div class="page-hero-bg" style="background-image: url('../assets/images/banners/About_Banner.jpg');"></div>
+    <div class="page-hero-bg" style="background: linear-gradient(135deg, #111111 0%, #1c0607 65%, #111111 100%);"></div>
     <div class="page-hero-content">
-      <h1>AWARDS</h1>
+      <h1>AWARDS & RECOGNITION</h1>
       <img class="page-hero-logo" src="../assets/images/logos/logo-siliconcore-blue.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/62d355ce-2327-4320-85c6-4300a8e4aff0/SC_Master_logo_blue.png'" alt="SiliconCore">
     </div>
     <div class="page-hero-scroll"><div class="scroll-arrow"></div></div>
   </section>
 
+  <div class="awards-intro">
+    <h2>Award-Winning Innovation</h2>
+    <p>SiliconCore has been recognized globally for its groundbreaking LED display technology and industry-first solutions.</p>
+  </div>
 
-  <section class="section">
-    <div class="section-inner">
-      <div class="section-center">
-        <h2>Award-Winning Innovation</h2>
-        <div class="section-divider"></div>
-        <p>SiliconCore has been recognized globally for its groundbreaking LED display technology and industry-first solutions.</p>
-      </div>
-      <div class="awards-grid">
-        <div class="award-item"><img src="../assets/images/awards/award-01.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1561627979036-XCXHWDRPQSPK7Q3GDAAO/Award_1.png'" alt="InfoComm Best in Show"><p>InfoComm Best of Show</p></div>
-        <div class="award-item"><img src="../assets/images/awards/award-02.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1561627982893-TJAWWVKZM2RRKL7BQ1DC/Award_2.png'" alt="AV Award"><p>AV Award Winner</p></div>
-        <div class="award-item"><img src="../assets/images/awards/award-03.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1561627985950-VFQX1KBYQ0QJPLFQF6BT/Award_3.png'" alt="Digital Signage Award"><p>Digital Signage Award</p></div>
-        <div class="award-item"><img src="../assets/images/awards/award-04.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1561627988924-CJHMDWG4G5SKASQ5QPWN/Award_4.png'" alt="Technology Innovation Award"><p>Technology Innovation Award</p></div>
-        <div class="award-item"><img src="../assets/images/awards/award-05.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1561627992075-ZRJSPZQWXYBPFMJL0CAT/Award_5.png'" alt="ISE Best of Show"><p>ISE Best of Show</p></div>
-        <div class="award-item"><img src="../assets/images/awards/award-06.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1561627995036-WKQPJNQZMRZWTPJX2JRB/Award_6.png'" alt="Energy Efficiency Award"><p>Energy Efficiency Award</p></div>
-      </div>
+  <div class="awards-stats">
+    <p>6+ Industry Awards | InfoComm Best of Show | ISE Best of Show | Multiple Tech Innovation Awards</p>
+  </div>
+
+  <div class="awards-grid">
+    <div class="award-item">
+      <img src="../assets/images/awards/award-01.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1561627979036-XCXHWDRPQSPK7Q3GDAAO/Award_1.png'" alt="InfoComm Best in Show">
+      <p>InfoComm Best of Show</p>
     </div>
-  </section>
+    <div class="award-item">
+      <img src="../assets/images/awards/award-02.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1561627982893-TJAWWVKZM2RRKL7BQ1DC/Award_2.png'" alt="AV Award">
+      <p>AV Award Winner</p>
+    </div>
+    <div class="award-item">
+      <img src="../assets/images/awards/award-03.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1561627985950-VFQX1KBYQ0QJPLFQF6BT/Award_3.png'" alt="Digital Signage Award">
+      <p>Digital Signage Award</p>
+    </div>
+    <div class="award-item">
+      <img src="../assets/images/awards/award-04.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1561627988924-CJHMDWG4G5SKASQ5QPWN/Award_4.png'" alt="Technology Innovation Award">
+      <p>Technology Innovation Award</p>
+    </div>
+    <div class="award-item">
+      <img src="../assets/images/awards/award-05.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1561627992075-ZRJSPZQWXYBPFMJL0CAT/Award_5.png'" alt="ISE Best of Show">
+      <p>ISE Best of Show</p>
+    </div>
+    <div class="award-item">
+      <img src="../assets/images/awards/award-06.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1561627995036-WKQPJNQZMRZWTPJX2JRB/Award_6.png'" alt="Energy Efficiency Award">
+      <p>Energy Efficiency Award</p>
+    </div>
+  </div>
 
+  <div class="awards-legacy">
+    <blockquote>A Legacy of Excellence in LED Display Innovation</blockquote>
+    <div class="blockquote-attr">Recognized by Industry Leaders Worldwide</div>
+  </div>
+
+  <section style="background:#111; padding:80px 5%; text-align:center;">
+    <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:2.4rem; color:#fff; margin-bottom:16px;">READY TO TRANSFORM YOUR SPACE?</h2>
+    <p style="color:#aaa; max-width:560px; margin:0 auto 32px; font-family:'Inter',sans-serif;">Talk to the SiliconCore team about your project requirements.</p>
+    <a href="../contact-us/index.html" class="btn btn-red">GET IN TOUCH</a>
+  </section>
 
   <script src="../assets/js/main.js"></script>
 </body>

@@ -1,11 +1,11 @@
 /* ============================================================
-   SILICONCORE LOCAL â Shared Header + Footer Components
+   SILICONCORE LOCAL — Shared Header + Footer Components
    Injected by each page via <script> at top/bottom of body
    ============================================================ */
 
 /* Determine path depth for relative asset links.
    On GitHub Pages the URL includes a repo subfolder (e.g. /silicon-core-local/)
-   that doesn't exist on localhost â strip it before counting depth. */
+   that doesn't exist on localhost — strip it before counting depth. */
 const _onGHPages = window.location.hostname.endsWith('github.io');
 const _pathname  = _onGHPages
   ? '/' + window.location.pathname.split('/').slice(2).join('/')
@@ -13,7 +13,7 @@ const _pathname  = _onGHPages
 const _depth = (_pathname.match(/\//g) || []).length - 1;
 const _root  = _depth > 0 ? '../'.repeat(_depth) : './';
 
-/* ââ Header ââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* —— Header ——————————————————————————————————————————————— */
 document.addEventListener('DOMContentLoaded', () => {
 
   /* Insert header */
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </ul>
             </li>
 
-                        <!-- Solutions â flyout -->
+                        <!-- Solutions — flyout -->
             <li>
               <button class="dn-sub-btn">Solutions <span class="dn-sub-arrow"></span></button>
               <ul class="dn-subflyout">
@@ -196,8 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <li><a href="${_root}products/orchid/index.html">Orchid 1.9mm HB</a></li>
           <li><a href="${_root}products/peony/index.html">Peony 2.6mm</a></li>
           <li><a href="${_root}products/daffodil/index.html">Daffodil 2.5mm</a></li>
-          <li><a href="${_root}products/tulip-indoor/index.html">Tulip 3.9mm â Indoor</a></li>
-          <li><a href="${_root}products/tulip-outdoor/index.html">Tulip 3.9mm â Outdoor</a></li>
+          <li><a href="${_root}products/tulip-indoor/index.html">Tulip 3.9mm – Indoor</a></li>
+          <li><a href="${_root}products/tulip-outdoor/index.html">Tulip 3.9mm – Outdoor</a></li>
           <li><a href="${_root}products/lotus/index.html">Lotus 0.83mm</a></li>
           <li><a href="${_root}products/lily/index.html">Lily</a></li>
           <li><a href="${_root}products/magnolia-158/index.html">Magnolia 158"</a></li>
@@ -279,9 +279,9 @@ document.addEventListener('DOMContentLoaded', () => {
         </ul>
       </div>
       <div class="footer-social">
-        <a href="https://twitter.com/siliconcore" target="_blank" aria-label="Twitter">ð</a>
-        <a href="https://linkedin.com/company/siliconcore" target="_blank" aria-label="LinkedIn">in</a>
-        <a href="https://youtube.com/siliconcore" target="_blank" aria-label="YouTube">â¶</a>
+        <a href="https://twitter.com/siliconcore_led" target="_blank" rel="noopener" aria-label="Twitter" style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:#1e1e1e;border-radius:50%;color:#ccc;text-decoration:none;margin:0 3px;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='#e31e24';this.style.color='#fff'" onmouseout="this.style.background='#1e1e1e';this.style.color='#ccc'"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.linkedin.com/company/siliconcore" target="_blank" rel="noopener" aria-label="LinkedIn" style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:#1e1e1e;border-radius:50%;color:#ccc;text-decoration:none;margin:0 3px;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='#e31e24';this.style.color='#fff'" onmouseout="this.style.background='#1e1e1e';this.style.color='#ccc'"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://www.youtube.com/@siliconcore" target="_blank" rel="noopener" aria-label="YouTube" style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:#1e1e1e;border-radius:50%;color:#ccc;text-decoration:none;margin:0 3px;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='#e31e24';this.style.color='#fff'" onmouseout="this.style.background='#1e1e1e';this.style.color='#ccc'"><svg width="17" height="13" viewBox="0 0 24 17" fill="currentColor"><path d="M23.495 2.205a3.02 3.02 0 0 0-2.122-2.136C19.545 0 12 0 12 0S4.455 0 2.627.069A3.02 3.02 0 0 0 .505 2.205 31.247 31.247 0 0 0 0 8.545a31.247 31.247 0 0 0 .505 6.34 2.973 2.973 0 0 0 2.122 2.098C4.455 17.09 12 17.09 12 17.09s7.545 0 9.373-.107a2.973 2.973 0 0 0 2.122-2.098 31.247 31.247 0 0 0 .505-6.34 31.247 31.247 0 0 0-.505-6.34zM9.545 12.204V4.886l6.273 3.659-6.273 3.659z"/></svg></a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
         TEL: +1 (408) 946 8185 &nbsp;|&nbsp;
         <a href="mailto:sales@silicon-core.com">sales@silicon-core.com</a>
       </span>
-      <span>Â© 2024 SiliconCore Technology Inc. &nbsp;|&nbsp; <a href="${_root}privacy-statement/index.html">Privacy Policy</a></span>
+      <span>© 2024 SiliconCore Technology Inc. &nbsp;|&nbsp; <a href="${_root}privacy-statement/index.html">Privacy Policy</a></span>
     </div>
   `;
   document.body.appendChild(footerEl);

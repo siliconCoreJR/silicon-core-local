@@ -6,58 +6,273 @@
   <title>News — SiliconCore</title>
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="icon" href="../assets/images/icons/favicon.ico">
+  <style>
+    .news-section {
+      background: #0a0a0a;
+    }
+    .featured-article {
+      background: #0d0d0d;
+      margin-bottom: 80px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .featured-image-wrapper {
+      position: relative;
+      max-height: 500px;
+      overflow: hidden;
+    }
+    .featured-image-wrapper img {
+      width: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.5;
+    }
+    .featured-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 48px 5%;
+    }
+    .featured-inner {
+      max-width: 680px;
+    }
+    .featured-badge {
+      background: #e31e24;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 2px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+    .featured-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #aaa;
+      margin: 12px 0 8px;
+    }
+    .featured-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.4rem;
+      color: #fff;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .featured-excerpt {
+      font-family: 'Inter', sans-serif;
+      color: #ccc;
+      margin-bottom: 24px;
+      max-width: 560px;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+    .more-news-section {
+      margin-bottom: 80px;
+    }
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .news-card {
+      background: #0d0d0d;
+      border: 1px solid #1e1e1e;
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .news-card:hover {
+      border-color: #2a2a2a;
+    }
+    .news-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+    .news-card-body {
+      padding: 28px 24px;
+    }
+    .news-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 10px;
+    }
+    .news-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .news-card p {
+      font-family: 'Inter', sans-serif;
+      color: #aaa;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+    .news-card a {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.8rem;
+      color: #e31e24;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .news-card a:hover {
+      color: #fff;
+    }
+    .subscribe-section {
+      background: #111;
+      padding: 60px 5%;
+      margin-bottom: 80px;
+      border-radius: 4px;
+    }
+    .subscribe-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .subscribe-inner h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .subscribe-inner p {
+      font-family: 'Inter', sans-serif;
+      color: #aaa;
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+    }
+    .subscribe-form {
+      display: flex;
+      gap: 12px;
+    }
+    .subscribe-form input {
+      flex: 1;
+      padding: 12px 16px;
+      background: #0d0d0d;
+      border: 1px solid #2a2a2a;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      border-radius: 3px;
+      outline: none;
+    }
+    .subscribe-form input:focus {
+      border-color: #e31e24;
+    }
+    .subscribe-form button {
+      background: #e31e24;
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background 0.2s;
+    }
+    .subscribe-form button:hover {
+      background: #c71a20;
+    }
+    @media (max-width: 768px) {
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+      .featured-title {
+        font-size: 1.8rem;
+      }
+      .featured-content {
+        padding: 32px 5%;
+      }
+      .subscribe-form {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body class="page-body">
   <script src="../assets/js/components.js"></script>
 
   <section class="page-hero">
-    <div class="page-hero-bg" style="background-image: url('../assets/images/banners/News_Banner.jpg');"></div>
+    <div class="page-hero-bg" style="background: linear-gradient(135deg, #111111 0%, #1c0607 65%, #111111 100%);"></div>
     <div class="page-hero-content">
-      <h1>NEWS</h1>
+      <h1>NEWS & UPDATES</h1>
       <img class="page-hero-logo" src="../assets/images/logos/logo-siliconcore-blue.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/62d355ce-2327-4320-85c6-4300a8e4aff0/SC_Master_logo_blue.png'" alt="SiliconCore">
     </div>
     <div class="page-hero-scroll"><div class="scroll-arrow"></div></div>
   </section>
 
+  <section class="news-section" style="padding:80px 5%;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <section class="featured-article">
+        <div class="featured-image-wrapper">
+          <img src="../assets/images/hero/hero-banner-01.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1771328434830-RVO7FVVDFJR576IKJ0OY/SC+Web+Banners+1.png'" alt="SiliconCore TRAK-KIT at ISE 2026">
+          <div class="featured-content">
+            <div class="featured-inner">
+              <div class="featured-badge">Featured</div>
+              <div class="featured-date">January 2026</div>
+              <h2 class="featured-title">SiliconCore Showcases TRAK-KIT at ISE 2026</h2>
+              <p class="featured-excerpt">SiliconCore and TRAK-KIT debut their groundbreaking kinetic dvLED display system at ISE Barcelona, revolutionizing how LED displays integrate into architectural environments.</p>
+              <a href="../contact-us/index.html" class="btn btn-red">Read More</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <section class="section">
-    <div class="section-inner">
-      <div class="section-center">
-        <h2>Latest News &amp; Updates</h2>
-        <div class="section-divider"></div>
-      </div>
-      <div class="news-grid">
-        <div class="news-card">
-          <img src="../assets/images/hero/hero-banner-01.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1771328434830-RVO7FVVDFJR576IKJ0OY/SC+Web+Banners+1.png'" alt="News 1">
-          <div class="news-card-body">
-            <div class="news-date">January 2026</div>
-            <h3>SiliconCore Showcases TRAK-KIT at ISE 2026</h3>
-            <p>SiliconCore and TRAK-KIT debut their groundbreaking kinetic dvLED display system at ISE Barcelona, revolutionizing how LED displays integrate into architectural environments.</p>
-            <a href="../contact-us/index.html" class="btn btn-dark" style="margin-top:14px;">Read More</a>
+      <section class="more-news-section">
+        <div class="news-grid">
+          <div class="news-card">
+            <img src="../assets/images/hero/hero-banner-03.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1759484387522-NADO4LLXR1EDCA1H5L54/SC+Web+Banners+3.png'" alt="Enlighten COB Series Wins InfoComm Best of Show">
+            <div class="news-card-body">
+              <div class="news-date">November 2025</div>
+              <h3>Enlighten COB Series Wins InfoComm Best of Show</h3>
+              <p>SiliconCore's Enlighten COB Series takes home the coveted InfoComm Best of Show award for its unprecedented combination of performance and energy efficiency.</p>
+              <a href="../contact-us/index.html">Read More →</a>
+            </div>
+          </div>
+          <div class="news-card">
+            <img src="../assets/images/hero/hero-banner-04.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1759484362448-KXBS3RAZHG94QNU9LGUL/SC+Web+Banners+4.png'" alt="SiliconCore LED Walls Power Major Virtual Production Studio">
+            <div class="news-card-body">
+              <div class="news-date">September 2025</div>
+              <h3>SiliconCore LED Walls Power Major Virtual Production Studio</h3>
+              <p>A leading Hollywood virtual production studio selects SiliconCore LED volumes for their expanded LED stage, citing superior color accuracy and refresh rate performance.</p>
+              <a href="../contact-us/index.html">Read More →</a>
+            </div>
           </div>
         </div>
-        <div class="news-card">
-          <img src="../assets/images/hero/hero-banner-03.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1759484387522-NADO4LLXR1EDCA1H5L54/SC+Web+Banners+3.png'" alt="News 2">
-          <div class="news-card-body">
-            <div class="news-date">November 2025</div>
-            <h3>Enlighten COB Series Wins InfoComm Best of Show</h3>
-            <p>SiliconCore's Enlighten COB Series takes home the coveted InfoComm Best of Show award for its unprecedented combination of performance and energy efficiency.</p>
-            <a href="../contact-us/index.html" class="btn btn-dark" style="margin-top:14px;">Read More</a>
-          </div>
-        </div>
-        <div class="news-card">
-          <img src="../assets/images/hero/hero-banner-04.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/1759484362448-KXBS3RAZHG94QNU9LGUL/SC+Web+Banners+4.png'" alt="News 3">
-          <div class="news-card-body">
-            <div class="news-date">September 2025</div>
-            <h3>SiliconCore LED Walls Power Major Virtual Production Studio</h3>
-            <p>A leading Hollywood virtual production studio selects SiliconCore LED volumes for their expanded LED stage, citing superior color accuracy and refresh rate performance.</p>
-            <a href="../contact-us/index.html" class="btn btn-dark" style="margin-top:14px;">Read More</a>
-          </div>
+      </section>
+
+      <div class="subscribe-section">
+        <div class="subscribe-inner">
+          <h3>Stay Updated</h3>
+          <p>Get the latest news and updates from SiliconCore delivered to your inbox.</p>
+          <form class="subscribe-form" action="#" method="post">
+            <input type="email" name="email" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe</button>
+          </form>
         </div>
       </div>
     </div>
   </section>
 
+  <section style="background:#111; padding:80px 5%; text-align:center;">
+    <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:2.4rem; color:#fff; margin-bottom:16px;">READY TO TRANSFORM YOUR SPACE?</h2>
+    <p style="color:#aaa; max-width:560px; margin:0 auto 32px; font-family:'Inter',sans-serif;">Talk to the SiliconCore team about your project requirements.</p>
+    <a href="../contact-us/index.html" class="btn btn-red">GET IN TOUCH</a>
+  </section>
 
   <script src="../assets/js/main.js"></script>
 </body>

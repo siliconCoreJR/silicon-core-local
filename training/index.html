@@ -6,12 +6,112 @@
   <title>Training — SiliconCore</title>
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="icon" href="../assets/images/icons/favicon.ico">
+  <style>
+    .training-section {
+      background: #0a0a0a;
+    }
+    .training-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .training-card {
+      background: #0d0d0d;
+      border: 1px solid #1e1e1e;
+      border-radius: 4px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s;
+    }
+    .training-card:hover {
+      border-color: #2a2a2a;
+    }
+    .training-card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+    }
+    .training-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .training-card p {
+      font-family: 'Inter', sans-serif;
+      color: #aaa;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      flex-grow: 1;
+    }
+    .training-card a {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.8rem;
+      color: #e31e24;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+      align-self: flex-start;
+    }
+    .training-card a:hover {
+      color: #fff;
+    }
+    .formats-section {
+      margin-top: 80px;
+    }
+    .formats-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+    .format-card {
+      background: #0d0d0d;
+      border: 1px solid #1e1e1e;
+      border-radius: 4px;
+      padding: 32px 28px;
+      text-align: center;
+    }
+    .format-card-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .format-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .format-card p {
+      font-family: 'Inter', sans-serif;
+      color: #aaa;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    @media (max-width: 768px) {
+      .training-grid {
+        grid-template-columns: 1fr;
+      }
+      .formats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body class="page-body">
   <script src="../assets/js/components.js"></script>
 
   <section class="page-hero">
-    <div class="page-hero-bg" style="background-image: url('../assets/images/banners/About_Banner.jpg');"></div>
+    <div class="page-hero-bg" style="background: linear-gradient(135deg, #111111 0%, #1c0607 65%, #111111 100%);"></div>
     <div class="page-hero-content">
       <h1>TRAINING</h1>
       <img class="page-hero-logo" src="../assets/images/logos/logo-siliconcore-blue.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/62d355ce-2327-4320-85c6-4300a8e4aff0/SC_Master_logo_blue.png'" alt="SiliconCore">
@@ -19,33 +119,94 @@
     <div class="page-hero-scroll"><div class="scroll-arrow"></div></div>
   </section>
 
-
-  <section class="section">
-    <div class="section-inner">
-      <div class="section-center">
-        <h2>SiliconCore Training Programs</h2>
-        <div class="section-divider"></div>
+  <section class="training-section" style="padding:80px 5%;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:60px;">
+        <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:2rem; color:#fff; margin-bottom:12px;">SiliconCore Training Programs</h2>
+        <div style="width:40px; height:2px; background:#e31e24; margin:0 auto;"></div>
       </div>
-      <div style="max-width:800px; margin:0 auto;">
-        <p>SiliconCore offers comprehensive training programs for AV professionals, integrators, and resellers. Our training covers installation, calibration, operation, and maintenance of SiliconCore LED display systems.</p>
-        <h3 style="margin:30px 0 14px;">Available Training</h3>
-        <ul class="benefits-list">
-          <li>Installation &amp; Setup Fundamentals</li>
-          <li>Display Calibration &amp; Color Management</li>
-          <li>Control System Integration</li>
-          <li>Maintenance &amp; Troubleshooting</li>
-          <li>Virtual Production LED Walls</li>
-          <li>Software Tools &amp; Management Platforms</li>
-          <li>Energy Management &amp; Efficiency Optimization</li>
-          <li>Advanced Configuration &amp; Customization</li>
-        </ul>
-        <div style="margin-top:40px;">
-          <a href="../contact-us/index.html" class="btn btn-dark">Contact Us to Schedule Training</a>
+      <div style="max-width:800px; margin:0 auto; text-align:center; margin-bottom:60px;">
+        <p style="font-family:'Inter',sans-serif; color:#aaa; font-size:0.95rem; line-height:1.8;">SiliconCore offers comprehensive training programs for AV professionals, integrators, and resellers. Our training covers installation, calibration, operation, and maintenance of SiliconCore LED display systems.</p>
+      </div>
+      <div class="training-grid">
+        <div class="training-card">
+          <div class="training-card-icon">🔧</div>
+          <h3>Installation & Setup</h3>
+          <p>Master proper mounting, cabling, and system integration for all SiliconCore systems.</p>
+          <a href="../contact-us/index.html">Learn More →</a>
+        </div>
+        <div class="training-card">
+          <div class="training-card-icon">🎨</div>
+          <h3>Display Calibration & Color Management</h3>
+          <p>Learn color management and calibration procedures for optimal image quality.</p>
+          <a href="../contact-us/index.html">Learn More →</a>
+        </div>
+        <div class="training-card">
+          <div class="training-card-icon">🔌</div>
+          <h3>Control System Integration</h3>
+          <p>Integrate SiliconCore displays with industry-standard AV control systems.</p>
+          <a href="../contact-us/index.html">Learn More →</a>
+        </div>
+        <div class="training-card">
+          <div class="training-card-icon">🛠️</div>
+          <h3>Maintenance & Troubleshooting</h3>
+          <p>Diagnose and resolve common issues quickly and effectively.</p>
+          <a href="../contact-us/index.html">Learn More →</a>
+        </div>
+        <div class="training-card">
+          <div class="training-card-icon">🎬</div>
+          <h3>Virtual Production LED Walls</h3>
+          <p>Specialized training for film and broadcast LED volume setups.</p>
+          <a href="../contact-us/index.html">Learn More →</a>
+        </div>
+        <div class="training-card">
+          <div class="training-card-icon">💻</div>
+          <h3>Software Tools & Management Platforms</h3>
+          <p>Management platforms, firmware updates, and diagnostic tools.</p>
+          <a href="../contact-us/index.html">Learn More →</a>
+        </div>
+        <div class="training-card">
+          <div class="training-card-icon">⚡</div>
+          <h3>Energy Management & Efficiency</h3>
+          <p>Optimize power efficiency and minimize operating costs.</p>
+          <a href="../contact-us/index.html">Learn More →</a>
+        </div>
+        <div class="training-card">
+          <div class="training-card-icon">⚙️</div>
+          <h3>Advanced Configuration</h3>
+          <p>Custom configurations, multi-display setups, and advanced features.</p>
+          <a href="../contact-us/index.html">Learn More →</a>
+        </div>
+      </div>
+
+      <div class="formats-section">
+        <h2 class="formats-title">Training Formats</h2>
+        <div class="formats-grid">
+          <div class="format-card">
+            <div class="format-card-icon">🏢</div>
+            <h3>On-Site Training</h3>
+            <p>Our experts come to your facility for hands-on, team training sessions.</p>
+          </div>
+          <div class="format-card">
+            <div class="format-card-icon">💻</div>
+            <h3>Virtual Training</h3>
+            <p>Live instructor-led sessions via video conference, available globally.</p>
+          </div>
+          <div class="format-card">
+            <div class="format-card-icon">🏆</div>
+            <h3>Certification Program</h3>
+            <p>Earn SiliconCore Certified Integrator status with our structured certification track.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <section style="background:#111; padding:80px 5%; text-align:center;">
+    <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:2.4rem; color:#fff; margin-bottom:16px;">READY TO TRANSFORM YOUR SPACE?</h2>
+    <p style="color:#aaa; max-width:560px; margin:0 auto 32px; font-family:'Inter',sans-serif;">Talk to the SiliconCore team about your project requirements.</p>
+    <a href="../contact-us/index.html" class="btn btn-red">GET IN TOUCH</a>
+  </section>
 
   <script src="../assets/js/main.js"></script>
 </body>

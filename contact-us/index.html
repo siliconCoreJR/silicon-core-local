@@ -6,12 +6,190 @@
   <title>Contact Us — SiliconCore</title>
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="icon" href="../assets/images/icons/favicon.ico">
+  <style>
+    .contact-section {
+      background: #0a0a0a;
+    }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .contact-form-wrap {
+      background: #0d0d0d;
+      border: 1px solid #1e1e1e;
+      border-radius: 4px;
+      padding: 40px;
+    }
+    .contact-form-wrap h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .contact-form-wrap > p {
+      color: #aaa;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      margin-bottom: 28px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-bottom: 8px;
+    }
+    .form-group label em {
+      color: #e31e24;
+      font-style: normal;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      background: #0a0a0a;
+      border: 1px solid #2a2a2a;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      border-radius: 3px;
+      outline: none;
+      box-sizing: border-box;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #e31e24;
+    }
+    .form-check {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: flex-start;
+    }
+    .form-check input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+      margin-top: 2px;
+      cursor: pointer;
+      accent-color: #e31e24;
+    }
+    .form-check label {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #aaa;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+    .btn-submit {
+      background: #e31e24;
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover {
+      background: #c71a20;
+    }
+    .contact-info {
+      background: #0d0d0d;
+      border: 1px solid #1e1e1e;
+      border-radius: 4px;
+      padding: 40px;
+    }
+    .contact-info h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+    .contact-info p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #aaa;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+    .contact-info a {
+      color: #e31e24;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-info a:hover {
+      color: #fff;
+    }
+    .contact-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 60px;
+    }
+    .contact-card {
+      background: #0d0d0d;
+      border: 1px solid #1e1e1e;
+      border-radius: 4px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .contact-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .contact-card p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+    .contact-card a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: #e31e24;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-card a:hover {
+      color: #fff;
+    }
+    @media (max-width: 768px) {
+      .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .contact-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body class="page-body">
   <script src="../assets/js/components.js"></script>
 
   <section class="page-hero">
-    <div class="page-hero-bg" style="background-image: url('../assets/images/banners/Contact_Banner.jpg');"></div>
+    <div class="page-hero-bg" style="background: linear-gradient(135deg, #111111 0%, #1c0607 65%, #111111 100%);"></div>
     <div class="page-hero-content">
       <h1>CONTACT</h1>
       <img class="page-hero-logo" src="../assets/images/logos/logo-siliconcore-blue.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/62d355ce-2327-4320-85c6-4300a8e4aff0/SC_Master_logo_blue.png'" alt="SiliconCore">
@@ -19,8 +197,7 @@
     <div class="page-hero-scroll"><div class="scroll-arrow"></div></div>
   </section>
 
-
-  <section class="contact-section" style="padding-top:80px;">
+  <section class="contact-section" style="padding-top:80px; padding-bottom:80px;">
     <div class="contact-inner section-inner">
       <div class="contact-form-wrap">
         <h2>Get in Touch</h2>
@@ -41,16 +218,38 @@
       <div class="contact-info">
         <h2>Contact Information</h2>
         <p>890 Hillview Court<br>Suite 120 Milpitas<br>CA 95035<br>USA</p>
-        <p style="margin-top:16px;">TEL: <a href="tel:+14089468185">+1 (408) 946 8185</a></p>
-        <p>FAX: +1 (408) 608 2603</p>
-        <p>WEB: <a href="https://www.silicon-core.com">silicon-core.com</a></p>
-        <p>EMAIL: <a href="mailto:sales@silicon-core.com">sales@silicon-core.com</a></p>
-        <p style="margin-top:24px;"><strong style="color:white;">Tech Support:</strong><br><a href="mailto:techsupport-us@silicon-core.com">techsupport-us@silicon-core.com</a></p>
-        <p style="margin-top:16px;"><strong style="color:white;">RMA Inquiries:</strong><br><a href="mailto:rma@silicon-core.com">rma@silicon-core.com</a></p>
+        <p style="margin-top:24px;"><strong style="color:#fff;">TEL:</strong> <a href="tel:+14089468185">+1 (408) 946 8185</a></p>
+        <p><strong style="color:#fff;">FAX:</strong> +1 (408) 608 2603</p>
+        <p><strong style="color:#fff;">WEB:</strong> <a href="https://www.silicon-core.com">silicon-core.com</a></p>
+        <p style="margin-top:24px;"><strong style="color:#fff;">EMAIL:</strong> <a href="mailto:sales@silicon-core.com">sales@silicon-core.com</a></p>
+        <p style="margin-top:24px;"><strong style="color:#fff;">Tech Support:</strong><br><a href="mailto:techsupport-us@silicon-core.com">techsupport-us@silicon-core.com</a></p>
+        <p style="margin-top:24px;"><strong style="color:#fff;">RMA:</strong><br><a href="mailto:rma@silicon-core.com">rma@silicon-core.com</a></p>
+        <p style="margin-top:24px; font-size:0.85rem; color:#888;">Response Time: We typically respond within 1 business day</p>
       </div>
     </div>
   </section>
 
+  <section style="background:#0a0a0a; padding:60px 5%;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div class="contact-strip">
+        <div class="contact-card">
+          <h3>Sales</h3>
+          <p>For product inquiries and quotes</p>
+          <a href="mailto:sales@silicon-core.com">sales@silicon-core.com</a>
+        </div>
+        <div class="contact-card">
+          <h3>Tech Support</h3>
+          <p>For technical assistance</p>
+          <a href="mailto:techsupport-us@silicon-core.com">techsupport-us@silicon-core.com</a>
+        </div>
+        <div class="contact-card">
+          <h3>RMA</h3>
+          <p>For return authorizations</p>
+          <a href="mailto:rma@silicon-core.com">rma@silicon-core.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <script src="../assets/js/main.js"></script>
 </body>

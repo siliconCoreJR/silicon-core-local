@@ -6,12 +6,146 @@
   <title>About Us — SiliconCore</title>
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="icon" href="../assets/images/icons/favicon.ico">
+  <style>
+    .about-stats {
+      background: #e31e24;
+      padding: 24px 5%;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .about-stats div {
+      text-align: center;
+      color: #fff;
+    }
+    .about-stats-value {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .about-stats-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+    .about-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .about-story {
+      font-family: 'Inter', sans-serif;
+      color: #bbb;
+      line-height: 1.75;
+    }
+    .about-story p {
+      margin-bottom: 16px;
+    }
+    .about-values-card {
+      background: #0d0d0d;
+      border: 1px solid #333;
+      padding: 48px;
+      border-radius: 4px;
+    }
+    .about-values-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      color: #e31e24;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .about-values-card p {
+      font-family: 'Inter', sans-serif;
+      color: #aaa;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .about-values-card p:last-child {
+      margin-bottom: 0;
+    }
+    .about-mission {
+      background: #0d0d0d;
+      padding: 80px 5%;
+      text-align: center;
+    }
+    .about-mission h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.4rem;
+      color: #fff;
+      max-width: 900px;
+      margin: 0 auto;
+      letter-spacing: 1px;
+      line-height: 1.4;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .feature-card {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+      border-color: #e31e24;
+      transform: translateY(-4px);
+    }
+    .feature-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      color: #e31e24;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .feature-card p {
+      font-family: 'Inter', sans-serif;
+      color: #aaa;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .feature-card a {
+      text-decoration: none;
+    }
+    @media (max-width: 768px) {
+      .about-stats {
+        gap: 40px;
+      }
+      .about-split {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .about-mission h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
 </head>
 <body class="page-body">
   <script src="../assets/js/components.js"></script>
 
   <section class="page-hero">
-    <div class="page-hero-bg" style="background-image: url('../assets/images/banners/About_Banner.jpg');"></div>
+    <div class="page-hero-bg" style="background: linear-gradient(135deg, #111111 0%, #1c0607 65%, #111111 100%);"></div>
     <div class="page-hero-content">
       <h1>ABOUT US</h1>
       <img class="page-hero-logo" src="../assets/images/logos/logo-siliconcore-blue.png" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/5d0a4fc001091b0001aa8e37/62d355ce-2327-4320-85c6-4300a8e4aff0/SC_Master_logo_blue.png'" alt="SiliconCore">
@@ -19,25 +153,78 @@
     <div class="page-hero-scroll"><div class="scroll-arrow"></div></div>
   </section>
 
+  <div class="about-stats">
+    <div>
+      <div class="about-stats-value">2011</div>
+      <div class="about-stats-label">Founded</div>
+    </div>
+    <div>
+      <div class="about-stats-value">Silicon Valley</div>
+      <div class="about-stats-label">Headquarters</div>
+    </div>
+    <div>
+      <div class="about-stats-value">100,000+</div>
+      <div class="about-stats-label">Hour Lifespan</div>
+    </div>
+    <div>
+      <div class="about-stats-value">25+</div>
+      <div class="about-stats-label">Patents Filed</div>
+    </div>
+  </div>
 
   <section class="section">
     <div class="section-inner">
-      <div class="section-center">
-        <h2>Why SiliconCore?</h2>
-        <div class="section-divider"></div>
-      </div>
-      <div style="max-width:780px; margin:0 auto;">
-        <p>We believe that LED is the future of display technology. It's all we focus on, and we've been focusing on it since disrupting the market in 2011 with the introduction of the highest resolution LED displays and our revolutionary Common Cathode technology to market.</p>
-        <p>Since 2011, we've continued to innovate with groundbreaking patented technologies at higher resolutions which drive the large scale display industry forward.</p>
-        <p>LED has come a long way since our beginnings in Silicon Valley, but our vision hasn't changed. Our team is dedicated to the research and development of the highest quality, most energy efficient LED displays available today.</p>
-        <p>We've made advancements in LED that have changed the landscape of display technology, consistently creating award-winning, industry-first solutions.</p>
-        <p>Our persistence and determination is in aid of providing you, our customers, with the ultimate display solution that not only enhances your content, but results in greater cost effectiveness and sustainability for your business.</p>
-        <p>For the last 25 years we have been synonymous with industry firsts and pushing the envelope of what is possible. Our dedicated research and development in fine pixel pitch LED engineering continues to propel us forward.</p>
-        <div style="margin-top:30px;"><a href="../unique-technologies/index.html" class="btn btn-dark">Find out more about our unique and patented innovations</a></div>
+      <div class="about-split">
+        <div class="about-story">
+          <p>We believe that LED is the future of display technology. It's all we focus on, and we've been focusing on it since disrupting the market in 2011 with the introduction of the highest resolution LED displays and our revolutionary Common Cathode technology to market. Since 2011, we've continued to innovate with groundbreaking patented technologies at higher resolutions which drive the large scale display industry forward. LED has come a long way since our beginnings in Silicon Valley, but our vision hasn't changed. Our team is dedicated to the research and development of the highest quality, most energy efficient LED displays available today. We've made advancements in LED that have changed the landscape of display technology, consistently creating award-winning, industry-first solutions.</p>
+        </div>
+        <div class="about-values-card">
+          <h3>Innovation</h3>
+          <p>Consistently first to market with patented breakthroughs</p>
+          <h3>Quality</h3>
+          <p>Designed and tested to the highest standards</p>
+          <h3>Sustainability</h3>
+          <p>Up to 40% energy savings through Common Cathode</p>
+        </div>
       </div>
     </div>
   </section>
 
+  <div class="about-mission">
+    <h2>The Future of Display Technology Starts Here</h2>
+  </div>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-center">
+        <h2>What Sets Us Apart</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>Common Cathode IQ</h3>
+          <p>Pioneering energy-efficient technology delivering up to 40% power savings without compromising performance or color accuracy.</p>
+          <a href="../unique-technologies/index.html" class="btn btn-red">Learn More</a>
+        </div>
+        <div class="feature-card">
+          <h3>ZACH Technology</h3>
+          <p>Advanced image processing that delivers exceptional high dynamic range, deeper blacks, and unprecedented color uniformity.</p>
+          <a href="../unique-technologies/index.html" class="btn btn-red">Learn More</a>
+        </div>
+        <div class="feature-card">
+          <h3>LISA Encapsulation</h3>
+          <p>Precision manufacturing process ensuring maximum durability, reliability, and consistent performance across all conditions.</p>
+          <a href="../unique-technologies/index.html" class="btn btn-red">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#111; padding:80px 5%; text-align:center;">
+    <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:2.4rem; color:#fff; margin-bottom:16px;">READY TO TRANSFORM YOUR SPACE?</h2>
+    <p style="color:#aaa; max-width:560px; margin:0 auto 32px; font-family:'Inter',sans-serif;">Talk to the SiliconCore team about your project requirements.</p>
+    <a href="../contact-us/index.html" class="btn btn-red">GET IN TOUCH</a>
+  </section>
 
   <script src="../assets/js/main.js"></script>
 </body>
